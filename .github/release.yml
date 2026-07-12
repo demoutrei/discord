@@ -1,0 +1,18 @@
+changelog:
+  exclude:
+    labels:
+      - Duplicate
+      - Inquiry
+      - Invalid
+      - Notice
+      - Rejected
+  categories:
+    - title: Added Changes
+      labels:
+        - Implementation
+    - title: Bugfixes
+      labels:
+        - Bugfix
+    - title: Documentation Changes
+      labels:
+        - Documentation
