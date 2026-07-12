@@ -1,6 +1,7 @@
 __all__ = (
   "Client",
   "Logger", "LogType",
+  "objects",
   "utils"
 )
 
@@ -14,4 +15,4 @@ __version__ = "26.0.0"
 
 from ._logging import LogType, Logger
 from .client import Client
-from . import utils
+from . import objects, utils
