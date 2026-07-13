@@ -31,6 +31,9 @@ class _MissingSentinel:
     return "..."
 
 
+type Match[V, T] = tuple[str, tuple[V, T], ...]
+"""Represents a match-case data type"""
+
 MISSING: _MissingSentinel = _MissingSentinel()
 """Represents a singleton MISSING sentinel"""
 
