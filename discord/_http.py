@@ -1,6 +1,6 @@
 from .exceptions import HTTPException
 from .utils import MISSING, Nullable, Optional
-from aiohttp import ClientResponse, ClientSession
+from aiohttp import ClientResponse
 from enum import StrEnum
 from traceback import TracebackException
 from typing import Any, Optional, Self, TYPE_CHECKING
@@ -63,7 +63,7 @@ class HTTPResponse:
 class HTTP:
   """Represents an HTTP/S connection to the Discord API"""
 
-  __BASE_URL: str = f"https://discord.com/api/v10/"
+  BASE_URL: str = f"https://discord.com/api/v10/"
   """Discord API base URL
 
   :meta private:
@@ -86,7 +86,6 @@ class HTTP:
         raise TypeError(f"client: Must be an instance of {Client}; not {client.__class__}")
       instance: Self = super().__new__(cls)
       instance.__client: Client = client
-      instance.__session: ClientSession = MISSING
       cls.__instance: Self = instance
     return cls.__instance
 
@@ -135,16 +134,9 @@ class HTTP:
       for index, key in enumerate(list(data.keys())):
         if not isinstance(key, str):
           raise TypeError(f"data.keys()[{index}]: Must be an instance of {str}; not {key.__class__}")
-    async with self._session.request(method, endpoint, json = data) as response:
+    async with self._client._session.request(method, endpoint, json = data) as response:
       payload: dict[str, Any] = await response.json() or dict()
       return HTTPResponse(payload, status = response.status, reason = response.reason)
-
-  @property
-  def _session(self) -> ClientSession:
-    """The current HTTP/S session"""
-    if not self.__session:
-      self.__session: ClientSession = ClientSession(base_url = self.__BASE_URL, raise_for_status = self.__status_check)
-    return self.__session
 
   async def get_gateway(self) -> HTTPResponse:
     """Returns an object containing a valid WSS URL which the application can use when connecting to the gateway"""
