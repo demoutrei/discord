@@ -50,8 +50,8 @@ class DiscordWebSocket:
         url: str = response["url"]
         self.__wss_url: str = url
         Logger.debug(f"Cached WSS URL: {url}")
-    url: str = url.strip()
-    if not url:
-      raise ValueError("url: Must not be an empty string")
-    self.__connection: ClientWebSocketResponse = await self._client._session.ws_connect(url)
-    Logger.debug("Connected to gateway")
+    with Logger.debug("Connected to gateway"):
+      url: str = url.strip()
+      if not url:
+        raise ValueError("url: Must not be an empty string")
+      self.__connection: ClientWebSocketResponse = await self._client._session.ws_connect(url)

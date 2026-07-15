@@ -1,4 +1,5 @@
 from ._http import HTTP
+from ._logging import Logger
 from .gateway import DiscordWebSocket
 from .utils import MISSING, Nullable, Optional
 from aiohttp import ClientSession
@@ -47,13 +48,20 @@ class Client:
 
     :param gateway: Join connection with the gateway
     """
-    if not isinstance(gateway, bool):
-      raise TypeError(f"gateway: Must be an instance of {bool}; not {gateway.__class__}")
-    self.__session: ClientSession = ClientSession(self._http.BASE_URL, raise_for_status = self._http._HTTP__status_check)
-    if gateway:
-      self.__socket: DiscordWebSocket = DiscordWebSocket(self)
-      await self.ws.connect()
+    try:
+      if not isinstance(gateway, bool):
+        raise TypeError(f"gateway: Must be an instance of {bool}; not {gateway.__class__}")
+      self.__session: ClientSession = ClientSession(self._http.BASE_URL, raise_for_status = self._http._HTTP__status_check)
+      if gateway:
+        self.__socket: DiscordWebSocket = DiscordWebSocket(self)
+        await self.ws.connect()
+        ...
+    except KeyboardInterrupt:
       ...
+      Logger.info("Program terminated through keyboard interrupt")
+      exit()
+    except Exception as exception:
+      Logger.error(exception)
 
   @property
   def ws(self) -> Nullable[DiscordWebSocket]:

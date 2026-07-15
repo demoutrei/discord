@@ -1,6 +1,7 @@
 from datetime import datetime, UTC
 from enum import StrEnum
 from os import environ, getcwd, getenv, get_terminal_size
+from sys import settrace
 from traceback import FrameSummary, print_exc, TracebackException
 from typing import Optional, Self
 
@@ -25,16 +26,25 @@ class LogType(StrEnum):
 
 
 class Logger:
-  __debug: bool = False
-  __instance: Optional[Self] = None
+  __allow_logging: bool = getenv("demoutrei.discord::with_logger") is not None
+  __debug_flag: bool = bool(getenv("demoutrei.discord::debug_enabled", False))
 
-  def __new__(cls: type[Self], *args, **kwargs) -> Optional[Self]:
-    if getenv("demoutrei.discord::with_logger") is None:
-      return None
-    if cls.__instance is None:
-      cls.__instance: Self = super().__new__(cls)
-      cls.__debug: bool = bool(getenv("demoutrei.discord::debug_enabled", False))
-    return cls.__instance
+  def __enter__(self) -> Self:
+    self.__in_context_manager: bool = True
+    settrace(None)
+    return self
+
+  def __exit__(self, exception_type: Optional[type[BaseException]], exception: Optional[BaseException], traceback: Optional[TracebackException]) -> bool:
+    if exception is not None and exception_type is not KeyboardInterrupt:
+      self.error(exception)
+      return True
+    self.log()
+
+  def __context_manager_check(self, frame, event, argument):
+    if not self._in_context_manager and event == "return":
+      self.log()
+      settrace(None)
+    return self.__context_manager_check
 
   @property
   def character_limit(self) -> int:
@@ -44,54 +54,47 @@ class Logger:
   def columns(self) -> int:
     return get_terminal_size().columns
 
-  @staticmethod
-  def debug(*messages: str) -> None:
-    if not Logger(): return
-    try:
-      if not messages: return
-      for index, message in enumerate(messages):
-        if not isinstance(message, str):
-          raise TypeError(f"messages[{index}]: Must be an instance of {str}; not {message.__class__}")
-      if not Logger._Logger__debug: return
-      Logger._Logger__instance.log(tuple(Logger._Logger__instance.split(message.strip(), log_type = LogType.DEBUG) for message in messages), log_type = LogType.DEBUG)
-    except Exception as exception:
-      Logger.error(exception)
+  @classmethod
+  def debug(cls, *messages: str) -> Self:
+    if not messages:
+      raise ValueError(f"messages: Must pass at least one message")
+    messages: list[str] = list(messages)
+    for index, message in enumerate(messages):
+      if not isinstance(message, str):
+        raise TypeError(f"messages[{index}]: Must be an instance of {str}; not {message.__class__}")
+      messages[index]: str = message.strip()
+    instance: Self = super().__new__(cls)
+    instance.__in_context_manager: bool = False
+    instance.__messages: list[str] = messages
+    instance.__type: LogType = LogType.DEBUG
+    settrace(instance._Logger__context_manager_check)
+    return instance
 
-  @staticmethod
-  def error(exception: Exception) -> None:
-    if not Logger(): return
-    try:
-      if not isinstance(exception, Exception):
-        raise TypeError(f"exception: Must be an instance of {Exception}; not {exception.__class__}")
-      traceback: TracebackException = TracebackException.from_exception(exception, capture_locals = True, max_group_depth = 100, max_group_width = 100)
-      frame: FrameSummary = None
-      for stack in traceback.stack[::-1]:
-        if stack.filename.startswith(getcwd()) and not (stack.filename.startswith(f"{getcwd()}\\\\venv") or stack.filename.startswith(f"{getcwd()}\\venv")):
-          frame: FrameSummary = stack
-          break
-      if not frame:
-        frame: FrameSummary = traceback.stack[-1]
-      log_message: str = f"{frame.filename.replace(f"{getcwd()}\\".replace("\\\\", ""), "")}:{frame.lineno}\n" \
-        f"{Logger._Logger__instance.split(frame.line, log_type = LogType.ERROR, indent = False, indent_space = 2)}\n" \
-        f"{exception.__class__.__name__}: {traceback}"
-      Logger._Logger__instance.log((log_message.replace("\n", f"\n{Logger._Logger__instance.get_prefix(LogType.ERROR, with_level = False, with_timestamp = False)} "), ), log_type = LogType.ERROR)
-    except Exception as exception:
-      Logger.error(exception)
+  @classmethod
+  def error(cls, exception: BaseException, /) -> Self:
+    if not isinstance(exception, BaseException):
+      raise TypeError(f"exception: Must be an instance of {BaseException}; not {exception.__class__}")
+    instance: Self = super().__new__(cls)
+    instance.__exception: BaseException = exception
+    instance.__in_context_manager: bool = False
+    instance.__type: LogType = LogType.ERROR
+    settrace(instance._Logger__context_manager_check)
+    return instance
 
-  def get_prefix(self, log_type: LogType, *, with_level: bool = True, with_timestamp: bool = True) -> str:
-    if not isinstance(log_type, LogType):
-      raise TypeError(f"log_type: Must be an instance of {LogType}; not {log_type.__class__}")
+  def get_prefix(self, *, with_level: bool = True, with_timestamp: bool = True) -> str:
+    if not isinstance(self.log_type, LogType):
+      raise TypeError(f"Logger.log_type: Must be an instance of {LogType}; not {self.log_type.__class__}")
     if not isinstance(with_level, bool):
       raise TypeError(f"with_level: Must be an instance of {bool}; not {with_level.__class__}")
     if not isinstance(with_timestamp, bool):
       raise TypeError(f"with_timestamp: Must be an instance of {bool}; not {with_timestamp.__class__}")
-    level: str = f"[{f"{log_type}":^5}]"
+    level: str = f"[{f"{self.log_type}":^5}]"
     if not with_level:
       level: str = " " * len(level)
     timestamp: str = self.timestamp
     if not with_timestamp:
       timestamp: str = " " * len(timestamp)
-    match log_type:
+    match self.log_type:
       case LogType.DEBUG:
         color, bg = LogColor.YELLOW, LogColor.BG_YELLOW
       case LogType.ERROR:
@@ -102,65 +105,85 @@ class Logger:
         color, bg = LogColor.ORANGE, LogColor.BG_ORANGE
     return f"{color}{timestamp} {bg} {LogColor.RESET}{color} {level}{LogColor.RESET}"
 
-  @staticmethod
-  def info(*messages: str) -> None:
-    if not Logger(): return
-    try:
-      if not messages: return
-      for index, message in enumerate(messages):
-        if not isinstance(message, str):
-          raise TypeError(f"messages[{index}]: Must be an instance of {str}; not {message.__class__}")
-      Logger._Logger__instance.log(tuple(Logger._Logger__instance.split(message.strip(), log_type = LogType.INFO) for message in messages), log_type = LogType.INFO)
-    except Exception as exception:
-      Logger.error(exception)
+  @classmethod
+  def info(cls, *messages: str) -> Self:
+    if not messages:
+      raise ValueError(f"messages: Must pass at least one message")
+    messages: list[str] = list(messages)
+    for index, message in enumerate(messages):
+      if not isinstance(message, str):
+        raise TypeError(f"messages[{index}]: Must be an instance of {str}; not {message.__class__}")
+      messages[index]: str = message.strip()
+    instance: Self = super().__new__(cls)
+    instance.__in_context_manager: bool = False
+    instance.__messages: list[str] = messages
+    instance.__type: LogType = LogType.INFO
+    settrace(instance._Logger__context_manager_check)
+    return instance
 
   @property
   def lines(self) -> int:
     return get_terminal_size().lines
 
-  def log(self, messages: tuple[str], *, log_type: LogType = LogType.INFO) -> None:
-    try:
-      if not isinstance(messages, tuple):
-        raise TypeError(f"messages: Must be an instance of {tuple}; not {messages.__class__}")
-      if not messages: return
-      for index, message in enumerate(messages):
-        if not isinstance(message, str):
-          raise TypeError(f"messages[{index}]: Must be an instance of {str}; not {message.__class__}")
-      if not isinstance(log_type, LogType):
-        raise TypeError(f"log_type: Must be an instance of {LogType}; not {log_type.__class__}")
-      print(f"{self.get_prefix(log_type)} {f"\n{self.get_prefix(log_type, with_level = False, with_timestamp = False)} ".join([message for message in messages])}")
-    except Exception as exception:
-      self.error(exception)
+  def log(self) -> None:
+    print(f"{self.get_prefix()} {f"\n{self.get_prefix(with_level = False, with_timestamp = False)} ".join([message for message in self.messages])}")
 
-  def split(self, message: str, *, log_type: LogType, indent: bool = True, indent_space: int = 0) -> str:
-    try:
-      if not isinstance(message, str):
-        raise TypeError(f"message: Must be an instance of {str}; not {message.__class__}")
-      if not isinstance(log_type, LogType):
-        raise TypeError(f"log_type: Must be an instance of {LogType}; not {log_type.__class__}")
-      if not message.strip(): return message
-      sections: list[str] = list()
-      for i in range((len(message) // self.character_limit) + 1):
-        index: int = (self.character_limit - indent_space) * i
-        position: int = index + (self.character_limit - indent_space)
-        section: str = f"{" " * indent_space}{message[index:position]}"
-        sections.append(section)
-      return f"\n{f"{self.get_prefix(log_type, with_level = False, with_timestamp = False)}" if indent else str()}".join(sections)
-    except Exception as exception:
-      Logger.error(exception)
+  @property
+  def log_type(self) -> LogType:
+    return self.__type
+
+  @property
+  def messages(self) -> list[str]:
+    if self.log_type is LogType.ERROR:
+      traceback: TracebackException = TracebackException.from_exception(self.__exception, capture_locals = True, max_group_depth = 100, max_group_width = 100)
+      frame: FrameSummary = None
+      for stack in traceback.stack[::-1]:
+        if stack.filename.startswith(getcwd()) and not (stack.filename.startswith(f"{getcwd()}\\\\venv") or stack.filename.startswith(f"{getcwd()}\\venv")):
+          frame: FrameSummary = stack
+          break
+      if not frame:
+        frame: FrameSummary = traceback.stack[-1]
+      message: str = f"{frame.filename.replace(f"{getcwd()}\\".replace("\\\\", ""), "")}:{frame.lineno}\n" \
+        f"{self.split(frame.line, indent = False, indent_space = 2)}\n" \
+        f"{self.__exception.__class__.__name__}: {traceback}"
+      message: str = message.replace("\n", f"\n{self.get_prefix(with_level = False, with_timestamp = False)} ")
+      return [message]
+    return [self.split(message) for message in self.__messages]
+
+  def split(self, message: str, /, *, indent: bool = True, indent_space: int = 0) -> str:
+    if not isinstance(message, str):
+      raise TypeError(f"message: Must be an instance of {str}; not {message.__class__}")
+    if not isinstance(indent, bool):
+      raise TypeError(f"indent: Must be an instance of {bool}; not {indent.__class__}")
+    if not isinstance(indent_space, int):
+      raise TypeError(f"indent_space: Must be an instance of {int}; not {indent_space.__class__}")
+    if indent_space < 0:
+      raise ValueError(f"indent_space: Must be greater than or equal to 0")
+    if not message.strip(): return message
+    sections: list[str] = list()
+    for i in range((len(message) // self.character_limit) + 1):
+      index: int = (self.character_limit - indent_space) * i
+      position: int = index + (self.character_limit - indent_space)
+      section: str = f"{" " * indent_space}{message[index:position]}"
+      sections.append(section)
+    return f"\n{f"{self.get_prefix(with_level = False, with_timestamp = False)}" if indent else str()}".join(sections)
 
   @property
   def timestamp(self) -> str:
     return datetime.now().strftime(r"%Y-%m-%d %H:%M:%S")
 
-  @staticmethod
-  def warn(*messages: str) -> None:
-    if not Logger(): return
-    try:
-      if not messages: return
-      for index, message in enumerate(messages):
-        if not isinstance(message, str):
-          raise TypeError(f"message[{index}]: Must be an instance of {str}; not {message.__class__}")
-      Logger._Logger__instance.log(tuple(Logger._Logger__instance.split(message.strip(), log_type = LogType.WARN) for message in messages), log_type = LogType.WARN)
-    except Exception as exception:
-      Logger.error(exception)
+  @classmethod
+  def warn(cls, *messages: str) -> Self:
+    if not messages:
+      raise ValueError(f"messages: Must pass at least one message")
+    messages: list[str] = list(messages)
+    for index, message in enumerate(messages):
+      if not isinstance(message, str):
+        raise TypeError(f"messages[{index}]: Must be an instance of {str}; not {message.__class__}")
+      messages[index]: str = message.strip()
+    instance: Self = super().__new__(cls)
+    instance.__in_context_manager: bool = False
+    instance.__messages: list[str] = messages
+    instance.__type: LogType = LogType.WARN
+    settrace(instance._Logger__context_manager_check)
+    return instance
