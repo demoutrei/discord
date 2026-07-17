@@ -1,9 +1,11 @@
 from ._http import HTTP
 from ._logging import Logger
+from .events import EventManager
 from .gateway import DiscordWebSocket
 from .flags import GatewayIntent
 from .utils import MISSING, Nullable, Optional
 from aiohttp import ClientSession
+from collections.abc import Coroutine, Callable
 from os import environ, getenv
 from typing import Self
 import asyncio
@@ -28,6 +30,7 @@ class Client:
         raise TypeError(f"intents: Must be an instance of {GatewayIntent}; not {intents.__class__}")
       instance: Self = super().__new__(cls)
       instance.__event_loop: Optional[asyncio.AbstractEventLoop] = MISSING
+      instance.__event_manager: EventManager = EventManager(instance)
       instance.__http: HTTP = HTTP(instance)
       instance.__intents: GatewayIntent = intents
       instance.__session: Nullable[ClientSession] = None
@@ -88,6 +91,15 @@ class Client:
       Logger.error(exception)
     else:
       self._loop.create_task(self.close(1000))
+
+  def event_listener(name: str) -> Callable[..., Coroutine]:
+    """Register a dispatch event listener
+
+    :param name: Name of the event to listen to
+    """
+    async def decorator(function: Callable[..., Coroutine]) -> None:
+      self.__event_manager.add_listener(name, function)
+    return decorator
 
   @property
   def intents(self) -> GatewayIntent:
