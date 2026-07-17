@@ -62,6 +62,8 @@ class GatewayEvent:
     
     :param sequence: Last received sequence number
     """
+    if sequence is not None and not isinstance(sequence, int):
+      raise TypeError(f"sequence: Must be an instance of {int}; not {sequence.__class__}")
     return cls(op = OpCode.HEARTBEAT.value, d = sequence)
 
   @classmethod
@@ -85,6 +87,30 @@ class GatewayEvent:
           "browser": "demoutrei.discord",
           "device": "demoutrei.discord"
         }
+      }
+    )
+
+  @classmethod
+  def RESUME(cls, *, token: str, session_id: str, sequence: Nullable[int]) -> Self:
+    """Generate a :attr:`~discord.enums.OpCode.RESUME` event
+
+    :param token: Session token
+    :param session_id: Session ID
+    :param sequence: Last sequence number received
+    """
+    if not isinstance(token, str):
+      raise TypeError(f"token: Must be an instance of {str}; not {token.__class__}")
+    if not isinstance(session_id, str):
+      raise TypeError(f"session_id: Must be an instance of {str}; not {session_id.__class__}")
+    if sequence is not None:
+      if not isinstance(sequence, int):
+        raise TypeError(f"sequence: Must be an instance of {int}; not {sequence.__class__}")
+    return cls(
+      op = OpCode.RESUME.value,
+      d = {
+        "token": token,
+        "session_id": session_id,
+        "seq": sequence
       }
     )
 
@@ -167,6 +193,8 @@ class DiscordWebSocket:
       instance.__client: Client = client
       instance.__connection: Optional[ClientWebSocketResponse] = MISSING
       instance.__last_sequence: Nullable[int] = None
+      instance.__resume_gateway_url: Optional[str] = MISSING
+      instance.__session_id: Optional[str] = MISSING
       instance.__wss_url: Optional[str] = MISSING
       instance._keep_alive: Optional[KeepAliveThread] = MISSING
       cls.__instance: Self = instance
@@ -220,8 +248,26 @@ class DiscordWebSocket:
         case OpCode.HELLO:
           await self.hello(heartbeat_interval = event.d["heartbeat_interval"])
           await self.identify()
+        case OpCode.INVALID_SESSION:
+          if not event.d:
+            await self.disconnect()
+            await self.connect()
+            await self.identify()
+          else:
+            await self.reconnect()
+        case OpCode.RECONNECT: await self.reconnect()
         case _:
           continue
+
+  async def disconnect(self) -> None:
+    """Disconnect the connection with the Discord gateway API"""
+    if self._keep_alive is not None:
+      self._keep_alive.stop()
+      self._keep_alive: Optional[KeepAliveThread] = MISSING
+    if self.__connection is not None:
+      with Logger.debug("Discord websocket connection disconnected"):
+        await self.__connection.close()
+        self.__connection: Optional[ClientWebSocketResponse] = MISSING
 
   async def heartbeat(self) -> None:
     """Send a :attr:`~discord.enums.OpCode.HEARTBEAT` event"""
@@ -265,6 +311,24 @@ class DiscordWebSocket:
         if self._keep_alive:
           self._keep_alive.tick()
         return event
+
+  async def reconnect(self) -> None:
+    """Initiate a reconnect with the Discord gateway API"""
+    with Logger.debug("Discord websocket connection reconnected"):
+      await self.disconnect()
+      if not self.__resume_gateway_url:
+        raise ValueError("'resume_gateway_url' is not yet received")
+      await self.connect(self.__resume_gateway_url)
+      await self.resume()
+
+  async def resume(self) -> None:
+    """Send a :attr:`~discord.enums.OpCode.RESUME` event"""
+    event: GatewayEvent = GatewayEvent.RESUME(
+      token = self._client._Client__token,
+      session_id = self.__session_id,
+      sequence = self.__last_sequence
+    )
+    await self.send(event)
 
   async def send(self, event: GatewayEvent, /) -> None:
     if not isinstance(event, GatewayEvent):

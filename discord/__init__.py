@@ -12,7 +12,7 @@ __author__ = "demoutrei"
 __copyright__ = "Copyright 2026-present demoutrei"
 __license__ = "MIT"
 __title__ = "demoutrei.discord"
-__version__ = "26.0.6"
+__version__ = "26.0.7"
 
 
 from ._logging import LogType, Logger
