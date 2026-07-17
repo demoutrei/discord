@@ -1,5 +1,6 @@
 from ._logging import Logger
 from .enums import OpCode
+from .events import DispatchEvent
 from .flags import GatewayIntent
 from .utils import MISSING, Nullable, Optional
 from aiohttp import ClientWebSocketResponse, WSMessage, WSMsgType
@@ -243,6 +244,8 @@ class DiscordWebSocket:
       event: Nullable[GatewayEvent] = await self.receive()
       if not event: continue
       match event.op:
+        case OpCode.DISPATCH:
+          await self.dispatch(event)
         case OpCode.HEARTBEAT: await self.heartbeat()
         case OpCode.HEARTBEAT_ACK: await self.heartbeat_ack()
         case OpCode.HELLO:
@@ -268,6 +271,16 @@ class DiscordWebSocket:
       with Logger.debug("Discord websocket connection disconnected"):
         await self.__connection.close()
         self.__connection: Optional[ClientWebSocketResponse] = MISSING
+
+  async def dispatch(self, event: GatewayEvent) -> None:
+    """Handle a dispatch event"""
+    if not isinstance(event, GatewayEvent):
+      raise TypeError(f"event: Must be an instance of {GatewayEvent}; not {event.__class__}")
+    if event.op is not OpCode.DISPATCH:
+      raise ValueError(f"event.op: Must be {OpCode.DISPATCH}; not {event.op}")
+    event_cls: Nullable[type[DispatchEvent]] = DispatchEvent[event.t]
+    if event_cls is not None:
+      await self._client._Client__event_manager.dispatch(event_cls(**event.d))
 
   async def heartbeat(self) -> None:
     """Send a :attr:`~discord.enums.OpCode.HEARTBEAT` event"""
