@@ -5,6 +5,7 @@ from .utils import MISSING, Nullable, Optional
 from aiohttp import ClientSession
 from os import environ, getenv
 from typing import Self
+import asyncio
 
 
 class Client:
@@ -20,6 +21,7 @@ class Client:
     """Client constructor"""
     if not cls.__instance:
       instance: Self = super().__new__(cls)
+      instance.__event_loop: Optional[asyncio.AbstractEventLoop] = MISSING
       instance.__http: HTTP = HTTP(instance)
       instance.__session: Nullable[ClientSession] = None
       instance.__socket: Nullable[DiscordWebSocket] = None
@@ -39,29 +41,45 @@ class Client:
     return self.__http
 
   @property
+  def _loop(self):
+    if not self.__event_loop:
+      from asyncio import new_event_loop, set_event_loop
+      self.__event_loop = new_event_loop()
+      set_event_loop(self.__event_loop)
+    return self.__event_loop
+
+  @property
   def _session(self) -> Nullable[ClientSession]:
     """Current aiohttp session of the client, if any"""
     return self.__session
 
-  async def connect(self, *, gateway: bool = True) -> None:
+  async def close(self, code: int = 4000, /) -> None:
+    """Close connection from the Discord API"""
+    await self.ws.close(code)
+    await self._session.close()
+
+  def connect(self, *, gateway: bool = True) -> None:
     """Initiate a connection with the Discord API
 
     :param gateway: Join connection with the gateway
     """
     try:
-      if not isinstance(gateway, bool):
-        raise TypeError(f"gateway: Must be an instance of {bool}; not {gateway.__class__}")
-      self.__session: ClientSession = ClientSession(self._http.BASE_URL, raise_for_status = self._http._HTTP__status_check)
-      if gateway:
-        self.__socket: DiscordWebSocket = DiscordWebSocket(self)
-        await self.ws.connect()
-        ...
+      async def inner() -> None:
+        if not isinstance(gateway, bool):
+          raise TypeError(f"gateway: Must be an instance of {bool}; not {gateway.__class__}")
+        self.__session: ClientSession = ClientSession(self._http.BASE_URL, raise_for_status = self._http._HTTP__status_check)
+        if gateway:
+          self.__socket: DiscordWebSocket = DiscordWebSocket(self)
+          await self.ws.connect()
+      self._loop.run_until_complete(inner())
     except KeyboardInterrupt:
-      ...
+      self._loop.create_task(self.close())
       Logger.info("Program terminated through keyboard interrupt")
       exit()
     except Exception as exception:
       Logger.error(exception)
+    else:
+      self._loop.create_task(self.close(1000))
 
   @property
   def ws(self) -> Nullable[DiscordWebSocket]:

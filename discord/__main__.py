@@ -20,5 +20,4 @@ def main() -> None:
     system("cls")
     subprocess.run([executable, file_path], env = _new_)
   except KeyboardInterrupt: pass
-  except Exception as exception:
-    Logger.error(exception)
+  except Exception as exception: pass

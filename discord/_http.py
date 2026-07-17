@@ -89,7 +89,7 @@ class HTTP:
       cls.__instance: Self = instance
     return cls.__instance
 
-  async def __status_check(response: ClientResponse) -> None:
+  async def __status_check(self, response: ClientResponse) -> None:
     match response.status:
       case 400:
         raise HTTPException(400, "The request was improperly formatted, or the server couldn't understand it.")
