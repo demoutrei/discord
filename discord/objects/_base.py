@@ -1,4 +1,4 @@
-from ._dataclass import dataclass
+from .._dataclass import dataclass
 
 
 @dataclass

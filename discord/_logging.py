@@ -41,7 +41,7 @@ class Logger:
     self.log()
 
   def __context_manager_check(self, frame, event, argument):
-    if not self._in_context_manager and event == "return":
+    if not self.__in_context_manager and event == "return":
       self.log()
       settrace(None)
     return self.__context_manager_check
