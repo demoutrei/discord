@@ -1,6 +1,7 @@
 from ._http import HTTP
 from ._logging import Logger
 from .gateway import DiscordWebSocket
+from .flags import GatewayIntent
 from .utils import MISSING, Nullable, Optional
 from aiohttp import ClientSession
 from os import environ, getenv
@@ -17,12 +18,18 @@ class Client:
   :meta private:
   """
 
-  def __new__(cls: type[Self]) -> Self:
-    """Client constructor"""
+  def __new__(cls: type[Self], *, intents: GatewayIntent) -> Self:
+    """Client constructor
+
+    :param intents: Set of Gateway intents to associate with the client
+    """
     if not cls.__instance:
+      if not isinstance(intents, GatewayIntent):
+        raise TypeError(f"intents: Must be an instance of {GatewayIntent}; not {intents.__class__}")
       instance: Self = super().__new__(cls)
       instance.__event_loop: Optional[asyncio.AbstractEventLoop] = MISSING
       instance.__http: HTTP = HTTP(instance)
+      instance.__intents: GatewayIntent = intents
       instance.__session: Nullable[ClientSession] = None
       instance.__socket: Nullable[DiscordWebSocket] = None
       instance.__token: Optional[str] = environ.get("APPLICATION_TOKEN")
@@ -32,6 +39,7 @@ class Client:
         instance.__token: Optional[str] = getenv("APPLICATION_TOKEN")
       if not instance._Client__token:
         raise ValueError("No valid Discord application token configured")
+        exit()
       cls.__instance: Self = instance
     return cls.__instance
 
@@ -82,6 +90,11 @@ class Client:
       self._loop.create_task(self.close(1000))
 
   @property
+  def intents(self) -> GatewayIntent:
+    """Set of Gateway intents to associate with the client."""
+    return self.__intents
+
+  @property
   def ws(self) -> Nullable[DiscordWebSocket]:
-    """WebSocket connection instance to the Discord gateway, if any"""
+    """WebSocket connection instance to the Discord gateway, if any."""
     return self.__socket

@@ -1,5 +1,6 @@
 from ._logging import Logger
 from .enums import OpCode
+from .flags import GatewayIntent
 from .utils import MISSING, Nullable, Optional
 from aiohttp import ClientWebSocketResponse, WSMessage, WSMsgType
 from typing import Any, Self, TYPE_CHECKING
@@ -62,6 +63,30 @@ class GatewayEvent:
     :param sequence: Last received sequence number
     """
     return cls(op = OpCode.HEARTBEAT.value, d = sequence)
+
+  @classmethod
+  def IDENTIFY(cls, *, token: str, intents: GatewayIntent) -> Self:
+    """Generate an :attr:`~discord.enums.OpCode.IDENTIFY` event.
+
+    :param token: Authentication token
+    :param intents: Gateway intents you wish to receive
+    """
+    if not isinstance(token, str):
+      raise TypeError(f"token: Must be an instance of {str}; not {token.__class__}")
+    if not isinstance(intents, GatewayIntent):
+      raise TypeError(f"intents: Must be an instance of {GatewayIntent}; not {intents.__class__}")
+    return cls(
+      op = OpCode.IDENTIFY.value,
+      d = {
+        "token": token,
+        "intents": intents.value,
+        "properties": {
+          "os": "windows",
+          "browser": "demoutrei.discord",
+          "device": "demoutrei.discord"
+        }
+      }
+    )
 
 
 class KeepAliveThread(threading.Thread):
@@ -194,7 +219,7 @@ class DiscordWebSocket:
         case OpCode.HEARTBEAT_ACK: await self.heartbeat_ack()
         case OpCode.HELLO:
           await self.hello(heartbeat_interval = event.d["heartbeat_interval"])
-          ...
+          await self.identify()
         case _:
           continue
 
@@ -216,6 +241,14 @@ class DiscordWebSocket:
     await self.heartbeat()
     self._keep_alive.start()
 
+  async def identify(self) -> None:
+    """Send an :attr:`~discord.enums.OpCode.IDENTIFY` event"""
+    event: GatewayEvent = GatewayEvent.IDENTIFY(
+      token = self._client._Client__token,
+      intents = self._client.intents
+    )
+    await self.send(event)
+
   async def receive(self) -> Nullable[GatewayEvent]:
     """Poll an event from the gateway"""
     if not self.__connection:
@@ -223,7 +256,7 @@ class DiscordWebSocket:
     message: WSMessage = await self.__connection.receive()
     match message.type:
       case WSMsgType.CLOSE: await self.close(message.data)
-      case WSMsgType.TEXT:
+      case _:
         event: GatewayEvent = GatewayEvent(**message.json())
         if event.op is not OpCode.DISPATCH:
           Logger.debug(f"Gateway event received: {event.op!r}")
