@@ -5,6 +5,7 @@ from .avatar_decoration_data import AvatarDecorationData
 from .collectible import Collectible
 from .emoji import Emoji
 from .guild import Guild
+from .guild_application_command_permissions import GuildApplicationCommandPermissions
 from .incidents_data import IncidentsData
 from .install_params import InstallParams
 from .nameplate import Nameplate
