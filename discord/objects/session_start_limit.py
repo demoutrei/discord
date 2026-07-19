@@ -1,7 +1,7 @@
 from ._base import BaseObject
 
 
-class SessionStartLimitObject(BaseObject):
+class SessionStartLimit(BaseObject):
   max_concurrency: int
   """Number of identify requests allowed per 5 seconds"""
   

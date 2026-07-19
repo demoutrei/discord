@@ -280,7 +280,11 @@ class DiscordWebSocket:
       raise ValueError(f"event.op: Must be {OpCode.DISPATCH}; not {event.op}")
     event_cls: Nullable[type[DispatchEvent]] = DispatchEvent[event.t]
     if event_cls is not None:
-      await self._client._Client__event_manager.dispatch(event_cls(**event.d))
+      dispatch_event: DispatchEvent = event_cls(**event.d)
+      if event.t.strip().upper() == "READY":
+        self.__resume_gateway_url: str = dispatch_event.resume_gateway_url
+        self.__session_id: str = dispatch_event.session_id
+      await self._client._Client__event_manager.dispatch(dispatch_event)
 
   async def heartbeat(self) -> None:
     """Send a :attr:`~discord.enums.OpCode.HEARTBEAT` event"""

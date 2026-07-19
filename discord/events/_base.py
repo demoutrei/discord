@@ -9,4 +9,7 @@ class DispatchEvent:
     name: str = name.strip().upper()
     if not name:
       raise ValueError(f"name: Must not be an empty string")
-    ...
+    match name:
+      case "READY":
+        from .ready import ReadyEvent
+        return ReadyEvent
