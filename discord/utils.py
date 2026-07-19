@@ -31,6 +31,9 @@ class _MissingSentinel:
     return "..."
 
 
+type ISO8601Timestamp = str
+"""Represents an ISO8601 timestamp"""
+
 type Match[V, T] = tuple[str, tuple[V, T], ...]
 """Represents a match-case data type"""
 

@@ -1,5 +1,9 @@
-from .utils import Match, MISSING, Nullable, Optional
+from .flags import PermissionFlag
+from .snowflake import Snowflake
+from .utils import ISO8601Timestamp, Match, MISSING, Nullable, Optional
 from annotationlib import get_annotations
+from datetime import datetime
+from enum import Enum
 from types import GenericAlias
 from typing import Any, Self, Union
 
@@ -27,6 +31,13 @@ def dataclass[T](cls: T) -> T:
       if annotation.__origin__ is Nullable: return self.__parse_nullable(annotation.__args__[0], value, data = data)
       if annotation.__origin__ is Optional: return self.__parse_optional(annotation.__args__[0], value, data = data)
     if is_dataclass(annotation): return self.__parse_dataclass(annotation, value, data = data)
+    if annotation is Snowflake and value not in (MISSING, None, Ellipsis): return Snowflake(value)
+    if issubclass(annotation, Enum) and value not in (MISSING, None, Ellipsis):
+      if annotation is PermissionFlag:
+        value: int = int(value)
+      return annotation(value)
+    if annotation is ISO8601Timestamp and value not in (MISSING, None, Ellipsis):
+      return datetime.fromisoformat(value)
     if value is Ellipsis: return MISSING
     return value
 
@@ -62,6 +73,10 @@ def dataclass[T](cls: T) -> T:
     if value is Ellipsis: return MISSING
     return self.__parse(annotation, value, data = data)
 
+  def __setattr__(self, name: str, value: Any) -> None:
+    if name not in self.__dict__:
+      object.__setattr__(self, name, value)
+
   def _to_dict(self) -> dict[str, Any]:
     data: dict[str, Any] = dict()
     for name, annotation in get_annotations(self.__class__).items():
@@ -73,6 +88,15 @@ def dataclass[T](cls: T) -> T:
         value: dict[str, Any] = {k: (v._to_dict() if is_dataclass(v) else v) for k, v in value.items()}
       elif is_dataclass(value.__class__):
         value: dict[str, Any] = value._to_dict()
+      elif isinstance(value, Enum):
+        if isinstance(value, PermissionFlag):
+          value: str = str(value.value)
+        else:
+          value: Any = value.value
+      elif isinstance(value, Snowflake):
+        value: str = str(value)
+      elif isinstance(value, datetime):
+        value: str = value.isoformat()
       data[name]: Any = value
     return data
 
@@ -92,6 +116,7 @@ def dataclass[T](cls: T) -> T:
   cls.__parse_match = __parse_match
   cls.__parse_nullable = __parse_nullable
   cls.__parse_optional = __parse_optional
+  cls.__setattr__ = __setattr__
   cls._to_dict = _to_dict
   cls.update = update
   return cls

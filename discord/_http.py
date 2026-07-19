@@ -145,6 +145,6 @@ class HTTP:
   async def get_gateway_bot(self) -> HTTPResponse:
     """Returns an object based on the information in :meth:`~.get_gateway`, plus additional metadata that can help during the operation of large or sharded bots."""
     async with await self._request(RequestMethod.GET, "gateway/bot") as response:
-      from .objects import SessionStartLimitObject
-      response["session_start_limit"]: SessionStartLimit = SessionStartLimitObject(**response["session_start_limit"])
+      from .objects import SessionStartLimit
+      response["session_start_limit"]: SessionStartLimit = SessionStartLimit(**response["session_start_limit"])
       return response
