@@ -10,3 +10,4 @@ API Reference
   http
   objects
   enums
+  exceptions
