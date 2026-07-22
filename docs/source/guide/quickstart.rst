@@ -7,7 +7,7 @@ Quickstart
 
 
 Prerequisites
-=============
+-------------
 
 
 1. Create your ``.env`` file
@@ -18,7 +18,7 @@ Your ``.env`` file should contain the following keys:
 
 
 Steps
-=====
+-----
 
 
 1. **Import modules**
