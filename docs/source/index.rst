@@ -12,4 +12,5 @@ demoutrei.discord documentation
    :caption: Table of Contents
 
    installation
+   guide/index
    api/index
