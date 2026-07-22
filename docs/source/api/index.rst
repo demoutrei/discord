@@ -7,6 +7,7 @@ API Reference
   :maxdepth: 2
 
   core
+  events
   http
   objects
   enums
