@@ -7,10 +7,7 @@ class ApplicationCommandPermissions(BaseObject):
   """Application command permissions allow you to enable or disable commands for specific users, roles, or channels within a guild."""
 
   id: Snowflake
-  """ID of the role, user, or channel. It can also be a `permission constant`_
-
-  _ permission constant: :class:`~discord.enums.ApplicationCommandPermissionsConstants`
-  """
+  """ID of the role, user, or channel. It can also be a permission constant"""
 
   permission: bool
   """``True`` to allow, ``False`` to disallow"""
