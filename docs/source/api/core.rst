@@ -12,6 +12,8 @@ Core Reference
 
 .. autoclass:: discord.Client()
 
+  .. autoproperty:: discord.Client._http
+
 
 .. autoclass:: discord.Logger()
 
