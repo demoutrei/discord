@@ -9,3 +9,4 @@ API Reference
   core
   http
   objects
+  enums
