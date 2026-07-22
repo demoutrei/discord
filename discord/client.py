@@ -91,7 +91,7 @@ class Client:
     else:
       self._loop.create_task(self.close(1000))
 
-  def event_listener(name: str) -> Callable[..., Coroutine]:
+  def event_listener(name: str) -> None:
     """Register a dispatch event listener
 
     :param name: Name of the event to listen to

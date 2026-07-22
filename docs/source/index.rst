@@ -12,3 +12,4 @@ demoutrei.discord documentation
    :caption: Table of Contents
 
    installation
+   api/index

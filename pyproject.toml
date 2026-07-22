@@ -5,7 +5,7 @@ dependencies = ["aiohttp", "python-dotenv"]
 
 
 [project.optional-dependencies]
-docs = ["sphinx", "shibuya"]
+docs = ["sphinx", "furo"]
 
 
 [project.scripts]

@@ -22,7 +22,6 @@ autodoc_default_options = {
 }
 
 toc_object_entries_show_parents = "hide"
-# toc_object_entries_shown = ["attribute"]
 
 templates_path = ['_templates']
 exclude_patterns = []
@@ -34,10 +33,7 @@ exclude_patterns = []
 
 html_favicon = "_static/favicon.ico"
 html_static_path = ['_static']
-html_theme = 'shibuya'
-html_theme_options = {
-  "accent_color": "blurple"
-}
+html_theme = 'furo'
 
 
 def setup(app):
