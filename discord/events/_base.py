@@ -10,6 +10,9 @@ class DispatchEvent:
     if not name:
       raise ValueError(f"name: Must not be an empty string")
     match name:
+      case "APPLICATION_COMMAND_PERMISSIONS_UPDATE":
+        from ..objects import GuildApplicationCommandPermissions
+        return GuildApplicationCommandPermissions
       case "READY":
         from .ready import ReadyEvent
         return ReadyEvent
