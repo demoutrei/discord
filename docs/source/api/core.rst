@@ -16,11 +16,3 @@ Core Reference
 
 
 .. autoclass:: discord.Logger()
-
-
-Utilities
----------
-
-
-.. automodule:: discord.utils
-  :no-value:

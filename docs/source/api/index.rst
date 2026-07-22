@@ -10,4 +10,5 @@ API Reference
   http
   objects
   enums
+  utilities
   exceptions
