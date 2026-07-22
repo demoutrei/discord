@@ -36,15 +36,7 @@ class ApplicationFlag(IntFlag):
 
 @unique
 class GatewayIntent(IntFlag):
-  """Represents a set of Gateway intents.
-
-  .. note::
-     \* **Thread Members Update** contains different data depending on which intents are used.
-     \*\* Events under the :attr:```~.GUILD_PRESENCES``` and :attr:```~.GUILD_MEMBERS``` intents are **turned off by default on all API versions**. If you are using **API v6**, you will receive those events if you are authorized to receive them and have enabled the intents in the `Developer Portal`_. You do not need to use intents on API v6 to receive these events; you just need to enable the flags. If you are using **API v8 or above**, intents are mandatory and must be specified when identifying.
-     \*\*\* :attr:```~.MESSAGE_CONTENT``` does not represent individual events, but rather affects what data is present for events that could contain message content fields.
-
-  .. _Developer Portal: https://discord.com/developers/applications
-  """
+  """Represents a set of Gateway intents"""
 
   GUILDS: int = 1 << 0
   """- GUILD_CREATE
@@ -203,35 +195,35 @@ class PermissionFlag(IntFlag):
   KICK_MEMBERS: int = 1 << 1
   """Allows kicking members.
   
-  .. note::
+  .. attention::
      This permission requires the owner account to use two-factor authentication when used on a guild that has server-wide 2FA enabled.
   """
 
   BAN_MEMBERS: int = 1 << 2
   """Allows banning members.
 
-  .. note::
+  .. attention::
      This permission requires the owner account to use two-factor authentication when used on a guild that has server-wide 2FA enabled.
   """
 
   ADMINISTRATOR: int = 1 << 3
   """Allows all permission and bypasses channel permission overwrites.
 
-  .. note::
+  .. attention::
      This permission requires the owner account to use two-factor authentication when used on a guild that has server-wide 2FA enabled.
   """
 
   MANAGE_CHANNELS: int = 1 << 4
   """Allows management and editing of channels.
 
-  .. note::
+  .. attention::
      This permission requires the owner account to use two-factor authentication when used on a guild that has server-wide 2FA enabled.
   """
 
   MANAGE_GUILD: int = 1 << 5
   """Allows management and editing of the guild.
 
-  .. note::
+  .. attention::
      This permission requires the owner account to use two-factor authentication when used on a guild that has server-wide 2FA enabled.
   """
 
@@ -259,7 +251,7 @@ class PermissionFlag(IntFlag):
   MANAGE_MESSAGES: int = 1 << 13
   """Allows for deletion of other users messages.
 
-  .. note::
+  .. attention::
      This permission requires the owner account to use two-factor authentication when used on a guild that has server-wide 2FA enabled.
   """
 
@@ -308,21 +300,21 @@ class PermissionFlag(IntFlag):
   MANAGE_ROLES: int = 1 << 28
   """Allows management and editing of roles.
 
-  .. note::
+  .. attention::
      This permission requires the owner account to use two-factor authentication when used on a guild that has server-wide 2FA enabled.
   """
 
   MANAGE_WEBHOOKS: int = 1 << 29
   """Allows management and editing of webhooks.
 
-  .. note::
+  .. attention::
      This permission requires the owner account to use two-factor authentication when used on a guild that has server-wide 2FA enabled.
   """
 
   MANAGE_GUILD_EXPRESSIONS: int = 1 << 30
   """Allows for editing and deleting emojis, stickers, and soundboard sounds created by all users.
   
-  .. note::
+  .. attention::
      This permission requires the owner account to use two-factor authentication when used on a guild that has server-wide 2FA enabled.
   """
 
@@ -338,7 +330,7 @@ class PermissionFlag(IntFlag):
   MANAGE_THREADS: int = 1 << 34
   """Allows for deleting and archiving threads, and viewing all private threads.
 
-  .. note::
+  .. attention::
      This permission requires the owner account to use two-factor authentication when used on a guild that has server-wide 2FA enabled.
   """
 
@@ -363,7 +355,7 @@ class PermissionFlag(IntFlag):
   VIEW_CREATOR_MONETIZATION_ANALYTICS: int = 1 << 41
   """Allows for viewing role subscription insights.
   
-  .. note::
+  .. attention::
      This permission requires the owner account to use two-factor authentication when used on a guild that has server-wide 2FA enabled.
   """
 

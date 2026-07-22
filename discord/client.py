@@ -12,7 +12,10 @@ import asyncio
 
 
 class Client:
-  """Represents a Discord client"""
+  """Represents a Discord client.
+
+  :param intents: Set of Gateway intents to associate with the client
+  """
 
   __instance: Optional[Self] = MISSING
   """Singleton Discord client instance
@@ -21,10 +24,6 @@ class Client:
   """
 
   def __new__(cls: type[Self], *, intents: GatewayIntent) -> Self:
-    """Client constructor
-
-    :param intents: Set of Gateway intents to associate with the client
-    """
     if not cls.__instance:
       if not isinstance(intents, GatewayIntent):
         raise TypeError(f"intents: Must be an instance of {GatewayIntent}; not {intents.__class__}")
@@ -92,7 +91,7 @@ class Client:
     else:
       self._loop.create_task(self.close(1000))
 
-  def event_listener(name: str) -> Callable[..., Coroutine]:
+  def event_listener(name: str) -> None:
     """Register a dispatch event listener
 
     :param name: Name of the event to listen to

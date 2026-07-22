@@ -89,18 +89,18 @@ class Guild(BaseObject):
   """ID of the owner.
 
   .. note::
-     This field is only sent when using the :meth:```~discord._http.HTTP.get_current_user_guilds``` endpoint and are relative to the requested user.
+     This field is only sent when using the :meth:`~discord._http.HTTP.get_current_user_guilds` endpoint and are relative to the requested user.
   """
 
   permissions: Optional[PermissionFlag]
   """Total permissiosn for the user in the guild (excludes overwrites and implicit permissions).
 
   .. note::
-     This field is only sent when using the :meth:```~discord._http.HTTP.get_current_user_guilds``` endpoint and are relative to the requested user.
+     This field is only sent when using the :meth:`~discord._http.HTTP.get_current_user_guilds` endpoint and are relative to the requested user.
   """
 
   preferred_locale: Locale
-  """The preferred locale of a Community guild; used in server discovery and notices from Discord, and sent in interactions; defaults to :attr:```~discord.enums.Locale.ENGLISH_US```"""
+  """The preferred locale of a Community guild; used in server discovery and notices from Discord, and sent in interactions; defaults to :attr:`~discord.enums.Locale.ENGLISH_US`"""
 
   premium_progress_bar_enabled: bool
   """Whether the guild has the boost progress bar enabled"""
@@ -118,7 +118,7 @@ class Guild(BaseObject):
   """Voice region Id of the guild (deprecated).
 
   .. note::
-      This field is deprecated and is replaced by :attr:```discord.objects.Channel.rtc_region```.
+      This field is deprecated and is replaced by :attr:`discord.objects.Channel.rtc_region`.
   """
 
   roles: list[Role]
@@ -149,7 +149,7 @@ class Guild(BaseObject):
   """Verification level required for the guild"""
 
   welcome_screen: Optional[WelcomeScreen]
-  """The welcome screen of a Community guild, shown to new members, returned in an :class:```~discord.objects.Invite```'s guild object"""
+  """The welcome screen of a Community guild, shown to new members, returned in an :class:`~discord.objects.Invite`'s guild object"""
 
   widget_channel_id: Optional[Nullable[Snowflake]]
   """The channel ID that the widget will generate an invite to, or ``None`` if set to no invite"""

@@ -42,7 +42,7 @@ class Application(BaseObject):
   """If webhook events are enabled for the app. ``1`` (default) means disabled, ``2`` means enabled, ``3`` means disabled by Discord"""
 
   event_webhooks_types: Optional[list[WebhookEventType]]
-  """List of :class:`~discord.enums.WebhookEventType`s the app subscribes to"""
+  r"""List of :class:`~discord.enums.WebhookEventType`\s the app subscribes to"""
 
   event_webhooks_url: Optional[Nullable[str]]
   """Event webhooks URL for the app to receive webhook events"""

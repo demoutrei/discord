@@ -101,6 +101,7 @@ def dataclass[T](cls: T) -> T:
     return data
 
   def update(self, data: T) -> Self[T]:
+    """:meta private:"""
     for name in get_annotations(self.__class__).keys():
       value: Any = getattr(data, name, MISSING)
       if value is MISSING: continue

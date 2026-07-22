@@ -1,11 +1,11 @@
 [project]
 name = "demoutrei.discord"
-version = "26.1.2"
+version = "26.1.3"
 dependencies = ["aiohttp", "python-dotenv"]
 
 
 [project.optional-dependencies]
-docs = ["sphinx"]
+docs = ["sphinx", "furo"]
 
 
 [project.scripts]
