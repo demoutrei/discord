@@ -2,6 +2,13 @@ from enum import auto, IntEnum, StrEnum, unique
 
 
 @unique
+class ApplicationCommandPermissionType(IntEnum):
+  ROLE: int = 1
+  USER: int = 2
+  CHANNEL: int = 3
+
+
+@unique
 class ApplicationEventWebhookStatus(IntEnum):
   """Status indicating whether event webhooks are enabled or disabled for an application"""
 
