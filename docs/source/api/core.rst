@@ -10,10 +10,10 @@ Core Reference
   :no-value:
 
 
-.. autoclass:: discord.Client
+.. autoclass:: discord.Client()
 
 
-.. autoclass:: discord.Logger
+.. autoclass:: discord.Logger()
 
 
 Utilities
