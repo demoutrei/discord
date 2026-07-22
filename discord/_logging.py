@@ -26,6 +26,8 @@ class LogType(StrEnum):
 
 
 class Logger:
+  """Singleton logger instance"""
+  
   __allow_logging: bool = getenv("demoutrei.discord::with_logger") is not None
   __debug_flag: bool = bool(getenv("demoutrei.discord::debug_enabled", False))
 
@@ -48,14 +50,17 @@ class Logger:
 
   @property
   def character_limit(self) -> int:
+    """:meta private:"""
     return max(self.columns - (len(str(self.timestamp)) + 11), 75)
 
   @property
   def columns(self) -> int:
+    """:meta private:"""
     return get_terminal_size().columns
 
   @classmethod
   def debug(cls, *messages: str) -> Self:
+    """:param messages: Messages to log as DEBUG level"""
     if not messages:
       raise ValueError(f"messages: Must pass at least one message")
     messages: list[str] = list(messages)
@@ -72,6 +77,7 @@ class Logger:
 
   @classmethod
   def error(cls, exception: BaseException, /) -> Self:
+    """:param exception: Exception to log as ERROR level"""
     if not isinstance(exception, BaseException):
       raise TypeError(f"exception: Must be an instance of {BaseException}; not {exception.__class__}")
     instance: Self = super().__new__(cls)
@@ -82,6 +88,7 @@ class Logger:
     return instance
 
   def get_prefix(self, *, with_level: bool = True, with_timestamp: bool = True) -> str:
+    """:meta private:"""
     if not isinstance(self.log_type, LogType):
       raise TypeError(f"Logger.log_type: Must be an instance of {LogType}; not {self.log_type.__class__}")
     if not isinstance(with_level, bool):
@@ -107,6 +114,7 @@ class Logger:
 
   @classmethod
   def info(cls, *messages: str) -> Self:
+    """:param messages: Messages to log as INFO level"""
     if not messages:
       raise ValueError(f"messages: Must pass at least one message")
     messages: list[str] = list(messages)
@@ -123,17 +131,21 @@ class Logger:
 
   @property
   def lines(self) -> int:
+    """:meta private:"""
     return get_terminal_size().lines
 
   def log(self) -> None:
+    """:meta private:"""
     print(f"{self.get_prefix()} {f"\n{self.get_prefix(with_level = False, with_timestamp = False)} ".join([message for message in self.messages])}")
 
   @property
   def log_type(self) -> LogType:
+    """:meta private:"""
     return self.__type
 
   @property
   def messages(self) -> list[str]:
+    """:meta private:"""
     if self.log_type is LogType.ERROR:
       traceback: TracebackException = TracebackException.from_exception(self.__exception, capture_locals = True, max_group_depth = 100, max_group_width = 100)
       frame: FrameSummary = None
@@ -151,6 +163,7 @@ class Logger:
     return [self.split(message) for message in self.__messages]
 
   def split(self, message: str, /, *, indent: bool = True, indent_space: int = 0) -> str:
+    """:meta private:"""
     if not isinstance(message, str):
       raise TypeError(f"message: Must be an instance of {str}; not {message.__class__}")
     if not isinstance(indent, bool):
@@ -170,10 +183,12 @@ class Logger:
 
   @property
   def timestamp(self) -> str:
+    """:meta private:"""
     return datetime.now().strftime(r"%Y-%m-%d %H:%M:%S")
 
   @classmethod
   def warn(cls, *messages: str) -> Self:
+    """:param messages: Messages to log as WARN level"""
     if not messages:
       raise ValueError(f"messages: Must pass at least one message")
     messages: list[str] = list(messages)

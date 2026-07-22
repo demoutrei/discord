@@ -320,7 +320,7 @@ class TeamMemberRole(StrEnum):
   """Admins have similar access as owners, except they cannot take destructive actions on the team or team-owned apps."""
 
   DEVELOPER: str = auto()
-  """Developers can access information about team-owned apps, like the client secret or public key. They can also take limited actions on team-owned apps, like configuring interaction endpoints or resetting the bot token. Members with the :attr:```~.DEVELOPER``` role *cannot* manage the team or its members, or take destructive actions on team-owned apps."""
+  """Developers can access information about team-owned apps, like the client secret or public key. They can also take limited actions on team-owned apps, like configuring interaction endpoints or resetting the bot token. Members with the :attr:`~.DEVELOPER` role *cannot* manage the team or its members, or take destructive actions on team-owned apps."""
 
   READ_ONLY: str = auto()
   """Read-only members can access information about a team and any team-owned apps. Some examples including getting the IDs of applications and exporting payout records. Members can also invite bots associated with team-owned apps that are marked private."""

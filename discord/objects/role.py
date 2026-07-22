@@ -13,7 +13,7 @@ class Role(BaseObject):
   """**Deprecated**. Integer representation of hexadecimal color code.
 
   .. attention::
-      :attr:```~.color``` will still be returned by the API, but using the :attr:```~.colors``` field is recommended when doing requests.
+      :attr:`~.color` will still be returned by the API, but using the :attr:`~.colors` field is recommended when doing requests.
   """
 
   colors: RoleColors
