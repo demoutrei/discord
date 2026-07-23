@@ -8,6 +8,8 @@ Discord Objects
 
 .. autoclass:: discord.objects.ApplicationIntegrationTypeConfiguration()
 
+.. autoclass:: discord.objects.AutoModerationRule()
+  
 .. autoclass:: discord.objects.AvatarDecorationData()
 
 .. autoclass:: discord.objects.Collectible()
