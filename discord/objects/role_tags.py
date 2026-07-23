@@ -6,7 +6,7 @@ from ._base import BaseObject
 class RoleTags(BaseObject):
   """
   .. note::
-      Tags with type ``None`` represent booleans. They will be present and set to ``None`` if they are \"true\", and will be not present if they are \"false\".
+      Tags with type ``None`` represent booleans. They will be present and set to ``None`` if they are "true", and will be not present if they are "false".
   """
 
   available_for_purchase: Optional[None]
