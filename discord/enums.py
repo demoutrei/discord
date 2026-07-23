@@ -44,11 +44,46 @@ class AutoModerationActionType(IntEnum):
   TIMEOUT: int = 3
   """Timeout user for a specified duration.
 
-  \* Can only be set up for ``KEYWORD`` and ``MENTION_SPAM`` rules. The :attr:`~discord.flags.PermissionFlag.MODERATE_MEMBERS` permission is required to use the :attr:`~.TIMEOUT` action type.
+  \\* Can only be set up for :attr:`~discord.enums.AutoModerationRuleTriggerType.KEYWORD` and :attr:`~discord.enums.AutoModerationRuleTriggerType.MENTION_SPAM` rules. The :attr:`~discord.flags.PermissionFlag.MODERATE_MEMBERS` permission is required to use the :attr:`~.TIMEOUT` action type.
   """
 
   BLOCK_MEMBER_INTERACTION: int = 4
   """Prevents a member from using text, voice, or other interactions"""
+
+
+@unique
+class AutoModerationRuleTriggerType(IntEnum):
+  """Characterizes the type of content which can trigger the rule."""
+
+  KEYWORD: int = 1
+  """Check if content contains words from a user-defined list of keywords.
+
+  **Max per Guild**: 6
+  """
+
+  SPAM: int = 3
+  """Check if content represents generic spam.
+
+  **Max per Guild**: 1
+  """
+
+  KEYWORD_PRESET: int = 4
+  """Check if content contains words from internal pre-defined words.
+
+  **Max per Guild**: 1
+  """
+
+  MENTION_SPAM: int = 5
+  """Check if content contains more unique mentions than allowed.
+
+  **Max per Guild**: 1
+  """
+
+  MEMBER_PROFILE: int = 6
+  """Check if member profile contains words from a user-defined list of keywords.
+
+  **Max per Guild**: 1
+  """
 
 
 @unique

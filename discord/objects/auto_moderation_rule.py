@@ -1,4 +1,5 @@
-# from ..enums import AutoModerationRuleEventType, AutoModerationRuleTriggerType
+# from ..enums import AutoModerationRuleEventType
+from ..enums import AutoModerationRuleTriggerType
 from ..snowflake import Snowflake
 from ._base import BaseObject
 from .auto_moderation_action import AutoModerationAction
@@ -36,5 +37,5 @@ class AutoModerationRule(BaseObject):
   trigger_metadata: AutoModerationRuleTriggerMetadata
   """The rule trigger metadata"""
 
-  trigger_type: "AutoModerationRuleTriggerType"
+  trigger_type: AutoModerationRuleTriggerType
   """The rule trigger type"""
