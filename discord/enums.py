@@ -52,6 +52,18 @@ class AutoModerationActionType(IntEnum):
 
 
 @unique
+class AutoModerationRuleKeywordPresetType(IntEnum):
+  PROFANITY: int = 1
+  """Words that may be considered forms of swearing or cursing"""
+
+  SEXUAL_CONTENT: int = 2
+  """Words that refer to sexually explicit behavior or activity"""
+
+  SLURS: int = 3
+  """Personal insults or words that may be considered hate speech"""
+
+
+@unique
 class AutoModerationRuleTriggerType(IntEnum):
   """Characterizes the type of content which can trigger the rule."""
 
