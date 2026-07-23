@@ -2,6 +2,7 @@ from ._base import BaseObject
 from .application import Application
 from .application_command_permissions import ApplicationCommandPermissions
 from .application_integration_type_configuration import ApplicationIntegrationTypeConfiguration
+from .auto_moderation_rule import AutoModerationRule
 from .avatar_decoration_data import AvatarDecorationData
 from .collectible import Collectible
 from .emoji import Emoji
