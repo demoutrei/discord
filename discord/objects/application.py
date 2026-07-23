@@ -78,7 +78,7 @@ class Application(BaseObject):
   """Partial user object for the owner of the app"""
 
   primary_sku_id: Optional[Snowflake]
-  """If this app is a game sold on Discord, this field will be the id of the \"Game SKU\" that is created, if exists"""
+  """If this app is a game sold on Discord, this field will be the id of the "Game SKU" that is created, if exists"""
 
   privacy_policy_url: Optional[str]
   """URL of the app's Privacy Policy"""

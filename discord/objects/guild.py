@@ -11,7 +11,7 @@ from .welcome_screen import WelcomeScreen
 
 
 class Guild(BaseObject):
-  """Represents an isolated collection of users and channels, and are often referred to as \"servers\" in the UI."""
+  """Represents an isolated collection of users and channels, and are often referred to as "servers" in the UI."""
 
   afk_channel_id: Nullable[Snowflake]
   """ID of AFK channel"""
@@ -38,7 +38,7 @@ class Guild(BaseObject):
   """The description of a guild"""
 
   discovery_splash: Nullable[str]
-  """Discovery splash hash; only present for guilds with the \"DISCOVERABLE\" feature"""
+  """Discovery splash hash; only present for guilds with the "DISCOVERABLE" feature"""
 
   emojis: list[Emoji]
   """Custom guild emojis"""

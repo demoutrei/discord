@@ -13,6 +13,15 @@ class DispatchEvent:
       case "APPLICATION_COMMAND_PERMISSIONS_UPDATE":
         from ..objects import GuildApplicationCommandPermissions
         return GuildApplicationCommandPermissions
+      case "AUTO_MODERATION_RULE_CREATE":
+        from ..objects import AutoModerationRule
+        return AutoModerationRule
+      case "AUTO_MODERATION_RULE_DELETE":
+        from ..objects import AutoModerationRule
+        return AutoModerationRule
+      case "AUTO_MODERATION_RULE_UPDATE":
+        from ..objects import AutoModerationRule
+        return AutoModerationRule
       case "READY":
         from .ready import ReadyEvent
         return ReadyEvent
