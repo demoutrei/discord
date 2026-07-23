@@ -2,7 +2,7 @@
 from ..snowflake import Snowflake
 from ._base import BaseObject
 from .auto_moderation_action import AutoModerationAction
-# from .auto_moderation_rule_trigger_metadata import AutoModerationRuleTriggerMetadata
+from .auto_moderation_rule_trigger_metadata import AutoModerationRuleTriggerMetadata
 
 
 class AutoModerationRule(BaseObject):
@@ -33,7 +33,7 @@ class AutoModerationRule(BaseObject):
   name: str
   """The rule name"""
 
-  trigger_metadata: "AutoModerationRuleTriggerMetadata"
+  trigger_metadata: AutoModerationRuleTriggerMetadata
   """The rule trigger metadata"""
 
   trigger_type: "AutoModerationRuleTriggerType"
