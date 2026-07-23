@@ -12,6 +12,8 @@ Discord Objects
 
 \* :attr:`~discord.objects.AutoModerationAction.metadata` can be omitted based on :attr:`~discord.objects.AutoModerationAction.type`.
 
+.. autoclass:: discord.objects.AutoModerationActionMetadata()
+
 .. autoclass:: discord.objects.AutoModerationRule()
   
 .. autoclass:: discord.objects.AvatarDecorationData()
