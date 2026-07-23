@@ -2,7 +2,7 @@
 from ._base import BaseObject
 
 
-class AutoModerationRuleTriggerMetata(BaseObject):
+class AutoModerationRuleTriggerMetadata(BaseObject):
   """Additional data used to determine whether a rule should be triggered. Different fields are relevant based on the value of ``trigger_type``."""
 
   allow_list: list[str]
@@ -47,5 +47,5 @@ class AutoModerationRuleTriggerMetata(BaseObject):
   **Associated trigger types**: :attr:`~discord.enums.AutoModerationRuleTriggerType.KEYWORD`, :attr:`~discord.enums.AutoModerationRuleTriggerType.MEMBER_PROFILE`
 
   .. note::
-      Only Rust-flavored regex is currently supported, which can be tested in online editors such as `Rustexp <https://rustexp.lpil.uk/>`. Each regex pattern must be 260 characters or less.
+      Only Rust-flavored regex is currently supported, which can be tested in online editors such as `Rustexp <https://rustexp.lpil.uk/>`_. Each regex pattern must be 260 characters or less.
   """
