@@ -44,7 +44,7 @@ class AutoModerationActionType(IntEnum):
   TIMEOUT: int = 3
   """Timeout user for a specified duration.
 
-  \* Can only be set up for ``KEYWORD`` and ``MENTION_SPAM`` rules. The :attr:`~discord.flags.PermissionFlag.MODERATE_MEMBERS` permission is required to use the :attr:`~.TIMEOUT` action type.
+  \\* Can only be set up for :attr:`~discord.enums.AutoModerationRuleTriggerType.KEYWORD` and :attr:`~discord.enums.AutoModerationRuleTriggerType.MENTION_SPAM` rules. The :attr:`~discord.flags.PermissionFlag.MODERATE_MEMBERS` permission is required to use the :attr:`~.TIMEOUT` action type.
   """
 
   BLOCK_MEMBER_INTERACTION: int = 4
