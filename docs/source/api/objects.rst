@@ -8,6 +8,10 @@ Discord Objects
 
 .. autoclass:: discord.objects.ApplicationIntegrationTypeConfiguration()
 
+.. autoclass:: discord.objects.AutoModerationAction()
+
+\* :attr:`~discord.objects.AutoModerationAction.metadata` can be omitted based on :attr:`~discord.objects.AutoModerationAction.type`.
+
 .. autoclass:: discord.objects.AutoModerationRule()
   
 .. autoclass:: discord.objects.AvatarDecorationData()

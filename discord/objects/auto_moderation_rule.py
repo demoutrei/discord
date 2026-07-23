@@ -1,12 +1,12 @@
 # from ..enums import AutoModerationRuleEventType, AutoModerationRuleTriggerType
 from ..snowflake import Snowflake
 from ._base import BaseObject
-# from .auto_moderation_action import AutoModerationAction
+from .auto_moderation_action import AutoModerationAction
 # from .auto_moderation_rule_trigger_metadata import AutoModerationRuleTriggerMetadata
 
 
 class AutoModerationRule(BaseObject):
-  actions: list["AutoModerationAction"]
+  actions: list[AutoModerationAction]
   """The actions which will execute when the rule is triggered"""
   
   creator_id: Snowflake
