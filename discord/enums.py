@@ -52,6 +52,17 @@ class AutoModerationActionType(IntEnum):
 
 
 @unique
+class AutoModerationRuleEventType(IntEnum):
+  """Indicates in what event context a rule should be checked."""
+
+  MESSAGE_SEND: int = 1
+  """When a member sends or edits a message in the guild"""
+
+  MEMBER_UPDATE: int = 2
+  """When a member edits their profile"""
+
+
+@unique
 class AutoModerationRuleKeywordPresetType(IntEnum):
   PROFANITY: int = 1
   """Words that may be considered forms of swearing or cursing"""

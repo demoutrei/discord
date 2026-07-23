@@ -10,5 +10,5 @@ class AutoModerationAction(BaseObject):
   metadata: Optional[AutoModerationActionMetadata]
   """Additional metadata needed during execution for this specific action type"""
 
-  type: "AutoModerationActionType"
+  type: AutoModerationActionType
   """The type of action"""
