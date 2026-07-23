@@ -1,5 +1,4 @@
-# from ..enums import AutoModerationRuleEventType
-from ..enums import AutoModerationRuleTriggerType
+from ..enums import AutoModerationRuleEventType, AutoModerationRuleTriggerType
 from ..snowflake import Snowflake
 from ._base import BaseObject
 from .auto_moderation_action import AutoModerationAction
@@ -16,7 +15,7 @@ class AutoModerationRule(BaseObject):
   enabled: bool
   """Whether the rule is enabled"""
   
-  event_type: "AutoModerationRuleEventType"
+  event_type: AutoModerationRuleEventType
   """The rule event type"""
 
   exempt_channels: list[Snowflake]
