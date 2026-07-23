@@ -1,7 +1,7 @@
 # from ..enums import AutoModerationActionType
 from ..utils import Optional
 from ._base import BaseObject
-# from .auto_moderation_action_metadata import AutoModerationActionMetadata
+from .auto_moderation_action_metadata import AutoModerationActionMetadata
 
 
 class AutoModerationAction(BaseObject):
