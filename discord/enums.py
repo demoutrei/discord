@@ -52,6 +52,41 @@ class AutoModerationActionType(IntEnum):
 
 
 @unique
+class AutoModerationRuleTriggerType(IntEnum):
+  """Characterizes the type of content which can trigger the rule."""
+
+  KEYWORD: int = 1
+  """Check if content contains words from a user-defined list of keywords.
+
+  **Max per Guild**: 6
+  """
+
+  SPAM: int = 3
+  """Check if content represents generic spam.
+
+  **Max per Guild**: 1
+  """
+
+  KEYWORD_PRESET: int = 4
+  """Check if content contains words from internal pre-defined words.
+
+  **Max per Guild**: 1
+  """
+
+  MENTION_SPAM: int = 5
+  """Check if content contains more unique mentions than allowed.
+
+  **Max per Guild**: 1
+  """
+
+  MEMBER_PROFILE: int = 6
+  """Check if member profile contains words from a user-defined list of keywords.
+
+  **Max per Guild**: 1
+  """
+
+
+@unique
 class DefaultMessageNotificationLevel(IntEnum):
   ALL_MESSAGES: int = 0
   """Members will receive notifications for all messages by default"""
