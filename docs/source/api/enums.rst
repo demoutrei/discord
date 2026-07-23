@@ -12,6 +12,8 @@ Enumerations
 
 .. autoclass:: discord.enums.AutoModerationActionType()
 
+.. autoclass:: discord.enums.AutoModerationRuleKeywordPresetType()
+
 .. autoclass:: discord.enums.AutoModerationRuleTriggerType()
 
 .. autoclass:: discord.enums.DefaultMessageNotificationLevel()
