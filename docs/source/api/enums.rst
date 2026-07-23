@@ -10,6 +10,8 @@ Enumerations
 
 .. autoclass:: discord.enums.ApplicationIntegrationType()
 
+.. autoclass:: discord.enums.AutoModerationActionType()
+
 .. autoclass:: discord.enums.DefaultMessageNotificationLevel()
 
 .. autoclass:: discord.enums.ExplicitContentFilterLevel()
