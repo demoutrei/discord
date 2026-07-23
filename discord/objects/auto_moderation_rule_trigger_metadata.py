@@ -1,4 +1,4 @@
-# from ..enums import AutoModerationRuleKeywordPresetType
+from ..enums import AutoModerationRuleKeywordPresetType
 from ._base import BaseObject
 
 
@@ -35,7 +35,7 @@ class AutoModerationRuleTriggerMetadata(BaseObject):
   **Associated trigger types**: :attr:`~discord.enums.AutoModerationRuleTriggerType.MENTION_SPAM`
   """
 
-  presets: list["AutoModerationRuleKeywordPresetType"]
+  presets: list[AutoModerationRuleKeywordPresetType]
   """The internally pre-defined wordsets which will be searched for in content.
 
   **Associated trigger types**: :attr:`~discord.enums.AutoModerationRuleTriggerType.KEYWORD_PRESET`
