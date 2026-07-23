@@ -16,6 +16,8 @@ Discord Objects
 
 .. autoclass:: discord.objects.AutoModerationRule()
   
+.. autoclass:: discord.objects.AutoModerationRuleTriggerMetadata()
+  
 .. autoclass:: discord.objects.AvatarDecorationData()
 
 .. autoclass:: discord.objects.Collectible()
