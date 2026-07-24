@@ -6,7 +6,7 @@ from ..snowflake import Snowflake
 from ..utils import ISO8601Timestamp, Nullable, Optional
 from ._base import BaseObject
 from .default_reaction import DefaultReaction
-# from .forum_tag import ForumTag
+from .forum_tag import ForumTag
 # from .permission_overwrite import PermissionOverwrite
 # from .thread_member import ThreadMember
 # from .thread_metadata import ThreadMetadata
@@ -25,7 +25,7 @@ class Channel(BaseObject):
   app_permissions: Optional[PermissionFlag]
   """Computed permissions for the bot user in the channel, including overwrites, only included when part of the ``resolved`` data received on an interaction. This does not include implicit permissions, which may need to be checked separately"""
 
-  available_tags: Optional[list["ForumTag"]]
+  available_tags: Optional[list[ForumTag]]
   """The set of tags that can be used in a :attr:`~discord.enums.ChannelType.GUILD_FORUM` or a :attr:`~discord.enums.ChannelType.GUILD_MEDIA` channel"""
 
   bitrate: Optional[int]

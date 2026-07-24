@@ -11,6 +11,7 @@ from .channel import Channel
 from .collectible import Collectible
 from .default_reaction import DefaultReaction
 from .emoji import Emoji
+from .forum_tag import ForumTag
 from .guild import Guild
 from .guild_application_command_permissions import GuildApplicationCommandPermissions
 from .incidents_data import IncidentsData
