@@ -17,6 +17,7 @@ from .guild_application_command_permissions import GuildApplicationCommandPermis
 from .incidents_data import IncidentsData
 from .install_params import InstallParams
 from .nameplate import Nameplate
+from .permission_overwrite import PermissionOverwrite
 from .role import Role
 from .role_colors import RoleColors
 from .role_tags import RoleTags
