@@ -5,7 +5,7 @@ from ..flags import PermissionFlag
 from ..snowflake import Snowflake
 from ..utils import ISO8601Timestamp, Nullable, Optional
 from ._base import BaseObject
-# from .default_reaction import DefaultReaction
+from .default_reaction import DefaultReaction
 # from .forum_tag import ForumTag
 # from .permission_overwrite import PermissionOverwrite
 # from .thread_member import ThreadMember
@@ -37,7 +37,7 @@ class Channel(BaseObject):
   default_forum_layout: Optional[ForumLayoutType]
   """The default forum layout view used to display posts in :attr:`~discord.enums.ChannelType.GUILD_FORUM` channels. Defaults to :attr:`~discord.enums.ForumLayoutType.NOT_SET`, which indicates a layout view has not been set by a channel admin"""
 
-  default_reaction_emoji: Optional[Nullable["DefaultReaction"]]
+  default_reaction_emoji: Optional[Nullable[DefaultReaction]]
   """The emoji to show in the add reaction button on a thread in a :attr:`~discord.enums.ChannelType.GUILD_FORUM` or a :attr:`~discord.enums.ChannelType.GUILD_MEDIA` channel"""
 
   default_sort_order: Optional[Nullable[DefaultSortOrderType]]
