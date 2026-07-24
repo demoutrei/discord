@@ -42,6 +42,8 @@ Discord Objects
 
 .. autoclass:: discord.objects.Nameplate()
 
+.. autoclass:: discord.objects.PermissionOverwrite()
+
 .. autoclass:: discord.objects.Role()
 
 .. autoclass:: discord.objects.SessionStartLimit()
