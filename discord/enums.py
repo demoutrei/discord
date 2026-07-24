@@ -442,6 +442,15 @@ class VerificationLevel(IntEnum):
 
 
 @unique
+class VideoQualityMode(IntEnum):
+  AUTO: int = 1
+  """Discord chooses the quality for optimal performances"""
+
+  FULL: int = 2
+  """720p"""
+
+
+@unique
 class WebhookEventType(StrEnum):
   APPLICATION_AUTHORIZED: str = "APPLICATION_AUTHORIZED"
   """Sent when an app was authorized by a user to a server or their account"""
