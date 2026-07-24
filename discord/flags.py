@@ -35,6 +35,21 @@ class ApplicationFlag(IntFlag):
 
 
 @unique
+class ChannelFlag(IntFlag):
+   PINNED: int = 1 << 1
+   """This thread is pinned to the top of its parent :attr:`~discord.enums.ChannelType.GUILD_FORUM` or :attr:`~discord.enums.ChannelType.GUILD_MEDIA` channel"""
+
+   REQUIRE_TAG: int = 1 << 4
+   """Whether a tag is required to be specified when creating a thread in a :attr:`~discord.enums.ChannelType.GUILD_FORUM` or a :attr:`~discord.enums.ChannelType.GUILD_MEDIA` channel. Tags are specified in the :attr:`~discord.objects.ChannelType.applied_tags` field"""
+
+   HIDE_MEDIA_DOWNLOAD_OPTIONS: int = 1 << 15
+   """When set hides the embedded media download options. Available only for media channels"""
+
+   IS_SPOILER_CHANNEL: int = 1 << 21
+   """This channel is a Spoiler Channel i.e. users must opt-in to view its contents. Can be set on all textual guild channels and voice channels (not :attr:`~discord.enums.ChannelType.GUILD_STAGE`). Can only be set if channel's :attr:`~discord.objects.Channel.nsfw` is ``False``"""
+
+
+@unique
 class GatewayIntent(IntFlag):
   """Represents a set of Gateway intents"""
 
