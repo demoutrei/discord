@@ -72,4 +72,6 @@ Enumerations
 
 .. autoclass:: discord.enums.VerificationLevel()
 
+.. autoclass:: discord.enums.VideoQualityMode()
+
 .. autoclass:: discord.enums.WebhookEventType()

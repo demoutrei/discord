@@ -1,5 +1,5 @@
-# from ..enums import ChannelType, VideoQualityMode
-from ..enums import DefaultSortOrderType, ForumLayoutType
+# from ..enums import ChannelType
+from ..enums import DefaultSortOrderType, ForumLayoutType, VideoQualityMode
 from ..flags import ChannelFlag, PermissionFlag
 from ..snowflake import Snowflake
 from ..utils import ISO8601Timestamp, Nullable, Optional
@@ -128,5 +128,5 @@ class Channel(BaseObject):
   user_limit: Optional[int]
   """The user limit of the voice channel"""
 
-  video_quality_mode: Optional["VideoQualityMode"]
+  video_quality_mode: Optional[VideoQualityMode]
   """The camera video quality mode of the voice channel, ``1`` when not present"""
