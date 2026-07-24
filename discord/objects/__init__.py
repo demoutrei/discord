@@ -25,6 +25,7 @@ from .sticker import Sticker
 from .team import Team
 from .team_member import TeamMember
 from .thread_member import ThreadMember
+from .thread_metadata import ThreadMetadata
 from .unavailable_guild import UnavailableGuild
 from .user import User
 from .user_primary_guild import UserPrimaryGuild

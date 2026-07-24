@@ -8,7 +8,7 @@ from .default_reaction import DefaultReaction
 from .forum_tag import ForumTag
 # from .permission_overwrite import PermissionOverwrite
 from .thread_member import ThreadMember
-# from .thread_metadata import ThreadMetadata
+from .thread_metadata import ThreadMetadata
 from .user import User
 
 
@@ -113,7 +113,7 @@ class Channel(BaseObject):
   rtc_region: Optional[Nullable[str]]
   """Voice region ID for the voice channel, automatic when set to null"""
 
-  thread_metadata: Optional["ThreadMetadata"]
+  thread_metadata: Optional[ThreadMetadata]
   """Thread-specific fields not needed by other channels"""
 
   topic: Optional[Nullable[str]]
