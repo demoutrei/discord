@@ -7,6 +7,7 @@ from .auto_moderation_action_metadata import AutoModerationActionMetadata
 from .auto_moderation_rule import AutoModerationRule
 from .auto_moderation_rule_trigger_metadata import AutoModerationRuleTriggerMetadata
 from .avatar_decoration_data import AvatarDecorationData
+from .channel import Channel
 from .collectible import Collectible
 from .emoji import Emoji
 from .guild import Guild

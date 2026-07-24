@@ -25,6 +25,9 @@ class DispatchEvent:
       case "AUTO_MODERATION_RULE_UPDATE":
         from ..objects import AutoModerationRule
         return AutoModerationRule
+      case "CHANNEL_CREATE":
+        from ..objects import Channel
+        return Channel
       case "READY":
         from .ready import ReadyEvent
         return ReadyEvent
