@@ -24,6 +24,8 @@ Discord Objects
 
 .. autoclass:: discord.objects.Collectible()
 
+.. autoclass:: discord.objects.DefaultReaction()
+
 .. autoclass:: discord.objects.Emoji()
 
 .. autoclass:: discord.objects.Guild()
