@@ -1,6 +1,6 @@
 # from ..enums import ChannelType, VideoQualityMode
-from ..flags import PermissionFlag
-# from ..flags import ChannelFlag, DefaultSortOrderType, ForumLayoutType
+from ..flags import PermissionFlag, ForumLayoutType
+# from ..flags import ChannelFlag, DefaultSortOrderType
 from ..snowflake import Snowflake
 from ..utils import ISO8601Timestamp, Nullable, Optional
 from ._base import BaseObject
@@ -33,7 +33,7 @@ class Channel(BaseObject):
   default_auto_archive_duration: Optional[int]
   """Default duration, copied onto newly created threads, in minutes, threads will stop showing in the channel list after the specified period of inactivity, can be set to: 60, 1440, 4320, 10080"""
 
-  default_forum_layout: Optional["ForumLayoutType"]
+  default_forum_layout: Optional[ForumLayoutType]
   """The default forum layout view used to display posts in :attr:`~discord.enums.ChannelType.GUILD_FORUM` channels. Defaults to :attr:`~discord.enums.ForumLayoutType.NOT_SET`, which indicates a layout view has not been set by a channel admin"""
 
   default_reaction_emoji: Optional[Nullable["DefaultReaction"]]
