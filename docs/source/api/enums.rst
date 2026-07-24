@@ -18,6 +18,8 @@ Enumerations
 
 .. autoclass:: discord.enums.AutoModerationRuleTriggerType()
 
+.. autoclass:: discord.flags.ChannelFlag()
+
 .. autoclass:: discord.enums.DefaultMessageNotificationLevel()
 
 .. autoclass:: discord.enums.DefaultSortOrderType()

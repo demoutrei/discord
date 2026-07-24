@@ -1,7 +1,6 @@
 # from ..enums import ChannelType, VideoQualityMode
 from ..enums import DefaultSortOrderType, ForumLayoutType
-from ..flags import PermissionFlag
-# from ..flags import ChannelFlag
+from ..flags import ChannelFlag, PermissionFlag
 from ..snowflake import Snowflake
 from ..utils import ISO8601Timestamp, Nullable, Optional
 from ._base import BaseObject
