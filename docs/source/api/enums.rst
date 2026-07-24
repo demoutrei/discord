@@ -22,6 +22,8 @@ Enumerations
 
 .. autoclass:: discord.enums.ExplicitContentFilterLevel()
 
+.. autoclass:: discord.enums.ForumLayoutType()
+
 .. autoclass:: discord.flags.GatewayIntent()
 
 \* **Thread Members Update** contains different data depending on which intents are used.
