@@ -1,7 +1,7 @@
 # from ..enums import ChannelType, VideoQualityMode
-from ..enums import ForumLayoutType
+from ..enums import DefaultSortOrderType, ForumLayoutType
 from ..flags import PermissionFlag
-# from ..flags import ChannelFlag, DefaultSortOrderType
+# from ..flags import ChannelFlag
 from ..snowflake import Snowflake
 from ..utils import ISO8601Timestamp, Nullable, Optional
 from ._base import BaseObject
@@ -40,7 +40,7 @@ class Channel(BaseObject):
   default_reaction_emoji: Optional[Nullable["DefaultReaction"]]
   """The emoji to show in the add reaction button on a thread in a :attr:`~discord.enums.ChannelType.GUILD_FORUM` or a :attr:`~discord.enums.ChannelType.GUILD_MEDIA` channel"""
 
-  default_sort_order: Optional[Nullable["DefaultSortOrderType"]]
+  default_sort_order: Optional[Nullable[DefaultSortOrderType]]
   """The default sort order type used to order posts in :attr:`~discord.enums.ChannelType.GUILD_FORUM` and :attr:`~discord.enums.ChannelType.GUILD_MEDIA` channels. Defaults to ``None``, which indicates a preferred sort order hasn't been set by a channel admin"""
 
   default_thread_rate_limit_per_user: Optional[int]

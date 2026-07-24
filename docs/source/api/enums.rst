@@ -20,6 +20,8 @@ Enumerations
 
 .. autoclass:: discord.enums.DefaultMessageNotificationLevel()
 
+.. autoclass:: discord.enums.DefaultSortOrderType()
+
 .. autoclass:: discord.enums.ExplicitContentFilterLevel()
 
 .. autoclass:: discord.enums.ForumLayoutType()

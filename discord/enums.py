@@ -119,6 +119,15 @@ class DefaultMessageNotificationLevel(IntEnum):
 
 
 @unique
+class DefaultSortOrderType(IntEnum):
+  LATEST_ACTIVITY: int = 0
+  """Sort forum posts by activity"""
+
+  CREATION_DATE: int = 1
+  """Sort forum posts by creation time (from most recent to oldest)"""
+
+
+@unique
 class ExplicitContentFilterLevel(IntEnum):
   DISABLED: int = 0
   """Media content will not be scanned"""
