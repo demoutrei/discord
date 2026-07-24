@@ -7,7 +7,7 @@ from ._base import BaseObject
 from .default_reaction import DefaultReaction
 from .forum_tag import ForumTag
 # from .permission_overwrite import PermissionOverwrite
-# from .thread_member import ThreadMember
+from .thread_member import ThreadMember
 # from .thread_metadata import ThreadMetadata
 from .user import User
 
@@ -45,7 +45,7 @@ class Channel(BaseObject):
   default_thread_rate_limit_per_user: Optional[int]
   """The initial :attr:`~.rate_limit_per_user` to set on newly created threads in a channel. This field is copied to the thread at creation time and does not live update"""
 
-  flags: Optional["ChannelFlag"]
+  flags: Optional[ChannelFlag]
   """Channel flags combined as a bitfield"""
 
   guild_id: Optional[Snowflake]
@@ -66,7 +66,7 @@ class Channel(BaseObject):
   managed: Optional[bool]
   """For group DM channels: whether the channel is managed by an application via the ``gdm.join`` OAuth2 scope"""
 
-  member: Optional["ThreadMember"]
+  member: Optional[ThreadMember]
   """Thread member object for the current user, if they have joined the thread, only included on certain API endpoints"""
 
   member_count: Optional[int]

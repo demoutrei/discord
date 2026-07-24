@@ -1,0 +1,35 @@
+from ..snowflake import Snowflake
+from ..utils import ISO8601Timestamp, Optional
+from ._base import BaseObject
+# from .guild_member import GuildMember
+
+
+class ThreadMember(BaseObject):
+  """Contains information about a user that has joined a thread."""
+
+  flags: int
+  """Any user-thread settings, currently only used for notifications"""
+
+  id: Optional[Snowflake]
+  """ID of the thread.
+
+  .. note::
+      Omitted on the member sent within each thread in the ``GUILD_CREATE`` event.
+  """
+
+  join_timestamp: ISO8601Timestamp
+  """Time the user last joined the thread"""
+
+  member: Optional["GuildMember"]
+  """Additional information about the user.
+
+  .. note::
+      Only present when ``with_member`` is set to ``True`` when calling :meth:`~discord._http.HTTP.list_thread_members` or :meth:`~discord._http.HTTP.get_thread_member`.
+  """
+
+  user_id: Optional[Snowflake]
+  """ID of the user.
+
+  .. note::
+      Omitted on the member sent within each thread in the ``GUILD_CREATE`` event.
+  """

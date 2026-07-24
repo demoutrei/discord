@@ -24,6 +24,7 @@ from .session_start_limit import SessionStartLimit
 from .sticker import Sticker
 from .team import Team
 from .team_member import TeamMember
+from .thread_member import ThreadMember
 from .unavailable_guild import UnavailableGuild
 from .user import User
 from .user_primary_guild import UserPrimaryGuild
