@@ -6,7 +6,7 @@ from ..utils import ISO8601Timestamp, Nullable, Optional
 from ._base import BaseObject
 from .default_reaction import DefaultReaction
 from .forum_tag import ForumTag
-# from .permission_overwrite import PermissionOverwrite
+from .permission_overwrite import PermissionOverwrite
 from .thread_member import ThreadMember
 from .thread_metadata import ThreadMetadata
 from .user import User
@@ -94,7 +94,7 @@ class Channel(BaseObject):
   permissions: Optional[PermissionFlag]
   """Computed permissions for the invoking user in the channel, including overwrites, only included when part of the ``resolved`` data received on an interaction. This does not include implicit permissions, which may need to be checked separately"""
 
-  permission_overwrites: Optional[list["PermissionOverwrite"]]
+  permission_overwrites: Optional[list[PermissionOverwrite]]
   """Explicit permission overwrites for members and roles"""
 
   position: Optional[int]
