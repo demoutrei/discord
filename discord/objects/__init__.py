@@ -9,6 +9,7 @@ from .auto_moderation_rule_trigger_metadata import AutoModerationRuleTriggerMeta
 from .avatar_decoration_data import AvatarDecorationData
 from .channel import Channel
 from .collectible import Collectible
+from .default_reaction import DefaultReaction
 from .emoji import Emoji
 from .guild import Guild
 from .guild_application_command_permissions import GuildApplicationCommandPermissions
