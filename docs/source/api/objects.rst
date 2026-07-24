@@ -20,6 +20,8 @@ Discord Objects
   
 .. autoclass:: discord.objects.AvatarDecorationData()
 
+.. autoclass:: discord.objects.Channel()
+
 .. autoclass:: discord.objects.Collectible()
 
 .. autoclass:: discord.objects.Emoji()
