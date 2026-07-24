@@ -56,6 +56,8 @@ Discord Objects
 
 .. autoclass:: discord.objects.ThreadMember()
 
+.. autoclass:: discord.objects.ThreadMetadata()
+
 .. autoclass:: discord.objects.UnavailableGuild()
 
 .. autoclass:: discord.objects.User()
