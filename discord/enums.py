@@ -131,6 +131,18 @@ class ExplicitContentFilterLevel(IntEnum):
 
 
 @unique
+class ForumLayoutType(IntEnum):
+  NOT_SET: int = 0
+  """No default has been set for forum channel"""
+
+  LIST_VIEW: int = 1
+  """Display posts as a list"""
+
+  GALLERY_VIEW: int = 2
+  """Display posts as a collection of tiles"""
+
+
+@unique
 class GuildAgeRestrictionLevel(IntEnum):
   DEFAULT: int = 0
   EXPLICIT: int = 1
