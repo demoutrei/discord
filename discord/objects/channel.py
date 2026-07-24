@@ -9,7 +9,7 @@ from ._base import BaseObject
 # from .permission_overwrite import PermissionOverwrite
 # from .thread_member import ThreadMember
 # from .thread_metadata import ThreadMetadata
-# from .user import User
+from .user import User
 
 
 class Channel(BaseObject):
@@ -107,7 +107,7 @@ class Channel(BaseObject):
       :attr:`~.rate_limit_per_user` also applies to thread creation. Users can send one message and create one thread during each :attr:`~.rate_limit_per_user` interval.
   """
 
-  recipients: Optional[list["User"]]
+  recipients: Optional[list[User]]
   """The recipients of the DM"""
 
   rtc_region: Optional[Nullable[str]]
