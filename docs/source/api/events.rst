@@ -15,6 +15,14 @@ Event names are case-insensitive and uses underscores (``_``) for spaces.
 Received when an application command's permissions are updated. The inner payload is an :class:`~discord.objects.GuildApplicationCommandPermissions` object.
 
 
+``AUTO_MODERATION_ACTION_EXECUTION``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Received when a rule is triggered and an action is executed (e.g. when a message is blocked).
+
+.. autoclass:: discord.events.AutoModerationActionExecutionEvent()
+
+
 ``AUTO_MODERATION_RULE_CREATE``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
