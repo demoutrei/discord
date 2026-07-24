@@ -1,5 +1,4 @@
-# from ..enums import ChannelType
-from ..enums import DefaultSortOrderType, ForumLayoutType, VideoQualityMode
+from ..enums import ChannelType, DefaultSortOrderType, ForumLayoutType, VideoQualityMode
 from ..flags import ChannelFlag, PermissionFlag
 from ..snowflake import Snowflake
 from ..utils import ISO8601Timestamp, Nullable, Optional
@@ -122,7 +121,7 @@ class Channel(BaseObject):
   total_messages_sent: Optional[int]
   """Number of messages ever sent in a thread, it's similar to :attr:`~.message_count` on message creation, but will not decrement the number when a message is deleted"""
 
-  type: "ChannelType"
+  type: ChannelType
   """The type of channel"""
 
   user_limit: Optional[int]
