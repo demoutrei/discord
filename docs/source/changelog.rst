@@ -2,8 +2,17 @@ Changelog
 =========
 
 
+v26.1.7-dev0
+------------
+
+
+**Documentation Changes**
+
+- Added documentation for ``CHANNEL_CREATE`` event.
+
+
 v26.1.6
--------------
+-------
 
 
 **Added Changes**
