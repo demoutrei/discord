@@ -41,6 +41,12 @@ Received when a rule is deleted. The inner payload is an :class:`~discord.object
 Received when a rule is updated. The inner payload is an :class:`~discord.objects.AutoModerationRule` object.
 
 
+``CHANNEL_CREATE``
+~~~~~~~~~~~~~~~~~~
+
+Received when a new guild channel is created, relevant to the current user. The inner payload is a :class:`~discord.objects.Channel` object.
+
+
 ``READY``
 ~~~~~~~~~
 
