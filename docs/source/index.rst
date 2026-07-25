@@ -14,3 +14,4 @@ demoutrei.discord documentation
    installation
    guide/index
    api/index
+   changelog
