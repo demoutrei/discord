@@ -20,6 +20,8 @@ Enumerations
 
 .. autoclass:: discord.flags.ChannelFlag()
 
+.. autoclass:: discord.enums.ChannelType()
+
 .. autoclass:: discord.enums.DefaultMessageNotificationLevel()
 
 .. autoclass:: discord.enums.DefaultSortOrderType()

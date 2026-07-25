@@ -13,7 +13,7 @@ __author__: str = "demoutrei"
 __copyright__: str = "Copyright 2026-present demoutrei"
 __license__: str = "MIT"
 __title__: str = "demoutrei.discord"
-__version__: str = "26.1.6-dev9"
+__version__: str = "26.1.6-dev10"
 """``demoutrei.discord`` package version"""
 
 

@@ -110,6 +110,48 @@ class AutoModerationRuleTriggerType(IntEnum):
 
 
 @unique
+class ChannelType(IntEnum):
+  GUILD_TEXT: int = 0
+  """A text channel within a server."""
+
+  DM: int = 1
+  """A direct message between users."""
+
+  GUILD_VOICE: int = 2
+  """A voice channel within a server."""
+
+  GROUP_DM: int = 3
+  """A direct message between multiple users."""
+
+  GUILD_CATEGORY: int = 4
+  """An organizational category that contains up to 50 channels."""
+
+  GUILD_ANNOUNCEMENT: int = 5
+  """A channel that users can follow and crosspost into their own server (formerly news channels)."""
+
+  ANNOUNCEMENT_THREAD: int = 10
+  """A temporary sub-channel within a :attr:`~.GUILD_ANNOUNCEMENT` channel."""
+
+  PUBLIC_THREAD: int = 11
+  """A temporary sub-channel within a :attr:`~.GUILD_TEXT` or :attr:`~.GUILD_FORUM` channel."""
+
+  PRIVATE_THREAD: int = 12
+  """A temporary sub-channel within a :attr:`~.GUILD_TEXT` channel that is only viewable by those invited and those with the :attr:`~discord.flags.PermissionFlag.MANAGE_THREADS` permission."""
+
+  GUILD_STAGE_VOICE: int = 13
+  """A voice channel for hosting events with an audience."""
+
+  GUILD_DIRECTORY: int = 14
+  """The channel in a hub containing the listed servers."""
+
+  GUILD_FORUM: int = 15
+  """Channel that can only contain threads."""
+
+  GUILD_MEDIA: int = 16
+  """Channel that can only contain threads, similar to :attr:`~.GUILD_FORUM` channels."""
+
+
+@unique
 class DefaultMessageNotificationLevel(IntEnum):
   ALL_MESSAGES: int = 0
   """Members will receive notifications for all messages by default"""
