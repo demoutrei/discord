@@ -1,7 +1,7 @@
 from ..snowflake import Snowflake
 from ..utils import ISO8601Timestamp, Optional
 from ._base import BaseObject
-# from .guild_member import GuildMember
+from .guild_member import GuildMember
 
 
 class ThreadMember(BaseObject):
@@ -20,7 +20,7 @@ class ThreadMember(BaseObject):
   join_timestamp: ISO8601Timestamp
   """Time the user last joined the thread"""
 
-  member: Optional["GuildMember"]
+  member: Optional[GuildMember]
   """Additional information about the user.
 
   .. note::

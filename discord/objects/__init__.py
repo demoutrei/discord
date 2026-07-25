@@ -14,6 +14,7 @@ from .emoji import Emoji
 from .forum_tag import ForumTag
 from .guild import Guild
 from .guild_application_command_permissions import GuildApplicationCommandPermissions
+from .guild_member import GuildMember
 from .incidents_data import IncidentsData
 from .install_params import InstallParams
 from .nameplate import Nameplate
