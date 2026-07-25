@@ -1,3 +1,4 @@
+from ..utils import Optional
 from ._base import DispatchEvent
 from collections.abc import Awaitable, Callable
 from inspect import iscoroutinefunction
@@ -20,11 +21,12 @@ class EventManager:
   def add_listener(self, name: str, callback: Callable[..., Awaitable]) -> None:
     if not isinstance(name, str):
       raise TypeError(f"name: Must be an instance of {str}; not {name.__class__}")
-    name: str = name.strip().upper()
+    name: str = name.strip()
     if not name: raise ValueError(f"name: Must not be an empty string")
     if not iscoroutinefunction(callback):
       raise TypeError(f"callback: Must be a coroutine function")
-    event_cls: DispatchEvent = DispatchEvent[name]
+    event_cls: Optional[DispatchEvent] = DispatchEvent[name]
+    if not event_cls: return
     if event_cls not in self.__listeners:
       self.__listeners[event_cls]: list[Callable[..., Awaitable]] = list()
     self.__listeners[event_cls].append(callback)

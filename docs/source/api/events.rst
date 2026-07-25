@@ -6,7 +6,7 @@ Event Reference
 
 Events are received in listeners using :meth:`~discord.Client.event_listener`.
 
-Event names are case-insensitive and uses underscores (``_``) for spaces.
+Event names are case-sensitive and uses underscores (``_``) for spaces.
 
 
 ``APPLICATION_COMMAND_PERMISSIONS_UPDATE``

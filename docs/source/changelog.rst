@@ -41,6 +41,8 @@ v26.1.6-dev12
 
 - Added Changelog.
 
+- Reconstruct documentation (a bit).
+
 
 v26.1.4
 -------

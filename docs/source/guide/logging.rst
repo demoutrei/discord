@@ -55,3 +55,9 @@ The log prints after it exits the context manager. If an exception is caught oth
 
   # Output:
   # ERROR | ZeroDivisionError: ...
+
+
+Logging Reference
+-----------------
+
+.. autoclass:: discord.Logger()

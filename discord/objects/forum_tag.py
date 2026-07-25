@@ -6,7 +6,7 @@ from ._base import BaseObject
 class ForumTag(BaseObject):
   """Represents a tag that is able to be applied to a thread in a :attr:`~discord.enums.ChannelType.GUILD_FORUM` or :attr:`~discord.enums.ChannelType.GUILD_MEDIA` channel.
 
-  .. note::
+  .. important::
       When updating a :attr:`~discord.enums.ChannelType.GUILD_FORUM` or a :attr:`~discord.enums.ChannelType.GUILD_MEDIA` channel, tag objects in :attr:`~discord.objects.Channel.available_tags` only require the :attr:`~.name` field.
   """
 

@@ -32,14 +32,6 @@ Enumerations
 
 .. autoclass:: discord.flags.GatewayIntent()
 
-\* **Thread Members Update** contains different data depending on which intents are used.
-
-\*\* Events under the :attr:`~.GUILD_PRESENCES` and :attr:`~.GUILD_MEMBERS` intents are **turned off by default on all API versions**. If you are using **API v6**, you will receive those events if you are authorized to receive them and have enabled the intents in the `Developer Portal`_. You do not need to use intents on API v6 to receive these events; you just need to enable the flags. If you are using **API v8 or above**, intents are mandatory and must be specified when identifying.
-
-\*\*\* :attr:`~.MESSAGE_CONTENT` does not represent individual events, but rather affects what data is present for events that could contain message content fields.
-
-.. _Developer Portal: https://discord.com/developers/applications
-
 .. autoclass:: discord.enums.GuildAgeRestrictionLevel()
 
 .. autoclass:: discord.enums.GuildFeature()

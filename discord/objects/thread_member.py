@@ -23,7 +23,7 @@ class ThreadMember(BaseObject):
   member: Optional[GuildMember]
   """Additional information about the user.
 
-  .. note::
+  .. important::
       Only present when ``with_member`` is set to ``True`` when calling :meth:`~discord._http.HTTP.list_thread_members` or :meth:`~discord._http.HTTP.get_thread_member`.
   """
 
