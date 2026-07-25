@@ -219,7 +219,7 @@ class GuildMemberFlag(IntFlag):
 
   **Editable**: ``True``
 
-  .. note::
+  .. hint::
       Allows a member who does not meet verification requirements to participate in a server.
   """
 
