@@ -44,6 +44,8 @@ Enumerations
 
 .. autoclass:: discord.enums.GuildFeature()
 
+.. autoclass:: discord.flags.GuildMemberFlag()
+
 .. autoclass:: discord.enums.Locale()
 
 .. autoclass:: discord.enums.MembershipState()

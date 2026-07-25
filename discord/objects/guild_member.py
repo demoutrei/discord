@@ -1,5 +1,4 @@
-# from ..flags import GuildMemberFlag
-from ..flags import PermissionFlag
+from ..flags import GuildMemberFlag, PermissionFlag
 from ..snowflake import Snowflake
 from ..utils import ISO8601Timestamp, Nullable, Optional
 from ._base import BaseObject
@@ -38,7 +37,7 @@ class GuildMember(BaseObject):
   deaf: bool
   """Whether the user is deafened in voice channels."""
 
-  flags: "GuildMemberFlag"
+  flags: GuildMemberFlag
   """Guild member flags represented as a bit set, defaults to ``0``."""
 
   joined_at: Optional[ISO8601Timestamp]

@@ -201,6 +201,72 @@ class GatewayIntent(IntFlag):
 
 
 @unique
+class GuildMemberFlag(IntFlag):
+  DID_REJOIN: int = 1 << 0
+  """Member has left and rejoined the guild.
+
+  **Editable**: ``False``
+  """
+
+  COMPLETED_ONBOARDING: int = 1 << 1
+  """Member has completed onboarding.
+
+  **Editable**: ``False``
+  """
+
+  BYPASSES_VERIFICATION: int = 1 << 2
+  """Member is exempt from guild verification requirements.
+
+  **Editable**: ``True``
+
+  .. hint::
+      Allows a member who does not meet verification requirements to participate in a server.
+  """
+
+  STARTED_ONBOARDING: int = 1 << 3
+  """Member has started onboarding.
+
+  **Editable**: ``False``
+  """
+
+  IS_GUEST: int = 1 << 4
+  """Member is a guest and can only access the voice channel they were invited to.
+
+  **Editable**: ``False``
+  """
+
+  STARTED_HOME_ACTIONS: int = 1 << 5
+  """Member has started Server Guide new member actions.
+
+  **Editable**: ``False``
+  """
+
+  COMPLETED_HOME_ACTIONS: int = 1 << 6
+  """Member has completed Server Guide new member actions.
+
+  **Editable**: ``False``
+  """
+
+  AUTOMOD_QUARANTINED_USERNAME: str = 1 << 7
+  """Member's username, display name, or nickname is blocked by AutoMod.
+
+  **Editable**: ``False``
+  """
+
+  DM_SETTINGS_UPSELL_ACKNOWLEDGED: int = 1 << 9
+  """Member has dismissed the DM settings upsell.
+
+  **Editable**: ``False``
+  """
+
+  AUTOMOD_QUARANTINED_GUILD_TAG: int = 1 << 10
+  """Member's guild tag is blocked by AutoMod.
+
+  **Editable**: ``False``
+  """
+
+
+@unique
 class PermissionFlag(IntFlag):
   """Represents a set of permission flags"""
 
