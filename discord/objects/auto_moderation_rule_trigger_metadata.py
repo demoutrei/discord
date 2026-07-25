@@ -10,7 +10,7 @@ class AutoModerationRuleTriggerMetadata(BaseObject):
 
   **Associated trigger types**: :attr:`~discord.enums.AutoModerationRuleTriggerType.KEYWORD`, :attr:`~discord.enums.AutoModerationRuleTriggerType.KEYWORD_PRESET`, :attr:`~discord.enums.AutoModerationRuleTriggerType.MEMBER_PROFILE`
 
-  .. note::
+  .. tip::
       Each ``allow_list`` keyword can be a phrase which contains multiple words. Wildcard symbols can be used to customize how each keyword will be matched. Rules with :attr:`~discord.enums.AutoModerationRuleTriggerType.KEYWORD` trigger type accept a maximum of 100 keywords. Rules with :attr:`~discord.enums.AutoModerationRuleTriggerType.KEYWORD_PRESET` trigger type accept a maximum of 1000 keywords.
   """
 
@@ -19,7 +19,7 @@ class AutoModerationRuleTriggerMetadata(BaseObject):
 
   **Associated trigger types**: :attr:`~discord.enums.AutoModerationRuleTriggerType.KEYWORD`, :attr:`~discord.enums.AutoModerationRuleTriggerType.MEMBER_PROFILE`
 
-  .. note::
+  .. tip::
       A keyword can be a phrase which contains multiple words. Wildcard symbols can be used to customize how each keyword will be matched. Each keyword must be 60 characters or less.
   """
 

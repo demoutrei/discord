@@ -11,8 +11,8 @@ Core Reference
 
 
 .. autoclass:: discord.Client()
+  :exclude-members: event_listener
 
   .. autoproperty:: discord.Client._http
 
-
-.. autoclass:: discord.Logger()
+  .. autodecorator:: discord.Client.event_listener(name)

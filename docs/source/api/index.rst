@@ -8,8 +8,8 @@ API Reference
 
   core
   events
-  http
   objects
   enums
   utilities
+  http
   exceptions

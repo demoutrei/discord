@@ -117,7 +117,7 @@ class Guild(BaseObject):
   region: Optional[Nullable[str]]
   """Voice region Id of the guild (deprecated).
 
-  .. note::
+  .. attention::
       This field is deprecated and is replaced by :attr:`discord.objects.Channel.rtc_region`.
   """
 

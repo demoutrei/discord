@@ -102,7 +102,7 @@ class Channel(BaseObject):
   rate_limit_per_user: Optional[int]
   """Amount of seconds a user has to wait before sending another message (0-21600); bots, as well as users with the permission :attr:`~discord.flags.PermissionFlag.BYPASS_SLOWMODE`, are unaffected
 
-  .. note::
+  .. tip::
       :attr:`~.rate_limit_per_user` also applies to thread creation. Users can send one message and create one thread during each :attr:`~.rate_limit_per_user` interval.
   """
 

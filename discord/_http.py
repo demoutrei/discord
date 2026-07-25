@@ -16,7 +16,15 @@ class RequestMethod(StrEnum):
 
 
 class HTTPResponse:
-  """Represents an HTTP response"""
+  """Represents an HTTP response.
+
+  Utilizes ``__getitem__(key)`` method for retrieving values in the BODY of the response, if ``key`` exists.
+
+  .. code:: python
+
+    response: HTTPResponse = await client._http.sample_endpoint()
+    response["sample_key"] # "sample value"
+  """
 
   async def __aenter__(self) -> Self:
     return self
