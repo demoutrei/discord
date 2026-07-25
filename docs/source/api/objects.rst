@@ -36,6 +36,8 @@ Discord Objects
 
 .. autoclass:: discord.objects.GuildApplicationCommandPermissions()
 
+.. autoclass:: discord.objects.GuildMember()
+
 .. autoclass:: discord.objects.IncidentsData()
 
 .. autoclass:: discord.objects.InstallParams()

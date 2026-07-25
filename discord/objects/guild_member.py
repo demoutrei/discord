@@ -1,14 +1,11 @@
+# from ..flags import GuildMemberFlag
+from ..flags import PermissionFlag
+from ..snowflake import Snowflake
+from ..utils import ISO8601Timestamp, Nullable, Optional
 from ._base import BaseObject
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-  # from ..flags import GuildMemberFlag
-  from ..flags import PermissionFlag
-  from ..snowflake import Snowflake
-  from ..utils import ISO8601Timestamp, Nullable, Optional
-  from .avatar_decoration_data import AvatarDecorationData
-  from .collectible import Collectible
-  from .user import User
+from .avatar_decoration_data import AvatarDecorationData
+from .collectible import Collectible
+from .user import User
 
 
 class GuildMember(BaseObject):
