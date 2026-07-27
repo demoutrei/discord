@@ -22,6 +22,8 @@ Discord Objects
 
 .. autoclass:: discord.objects.Channel()
 
+.. autoclass:: discord.objects.ChannelInfoChannel()
+
 .. autoclass:: discord.objects.Collectible()
 
 .. autoclass:: discord.objects.DefaultReaction()
