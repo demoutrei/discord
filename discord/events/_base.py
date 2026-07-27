@@ -47,6 +47,9 @@ class DispatchEvent:
       case "THREAD_DELETE":
         from ..objects import Channel
         return Channel
+      case "THREAD_LIST_SYNC":
+        from .thread_list_sync import ThreadListSyncEvent
+        return ThreadListSyncEvent
       case "THREAD_UPDATE":
         from ..objects import Channel
         return Channel
