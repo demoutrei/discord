@@ -2,25 +2,20 @@ Changelog
 =========
 
 
-v26.1.7-dev6
+v26.1.7-dev8
 ------------
 
 
 **Added Changes**
 
 - Receive ``CHANNEL_UPDATE`` gateway event.
-
 - Receive ``CHANNEL_DELETE`` gateway event.
-
 - Receive ``CHANNEL_INFO`` gateway event.
-
 - Added :class:`~discord.events.ChannelInfoEvent` event object.
-
 - Added :class:`~discord.objects.ChannelInfoChannel` object.
-
 - Added :class:`~discord.events.VoiceChannelStatusUpdateEvent` event object.
-
 - Added :class:`~discord.events.VoiceChannelStartTimeUpdateEvent` event object.
+- Added :class:`~discord.events.ThreadCreateEvent` event object.
 
 
 **Documentation Changes**
@@ -35,38 +30,24 @@ v26.1.6
 **Added Changes**
 
 - Added :class:`~discord.events.AutoModerationActionExecutionEvent` event object.
-
 - Added :class:`~discord.objects.Channel` object.
-
 - Added :class:`~discord.enums.ForumLayoutType` enum.
-
 - Added :class:`~discord.enums.DefaultSortOrderType` enum.
-
 - Added :class:`~discord.objects.DefaultReaction` object.
-
 - Added :class:`~discord.objects.ForumTag` object.
-
 - Added :class:`~discord.flags.ChannelFlag` flag.
-
 - Added :class:`~discord.objects.ThreadMember` object.
-
 - Added :class:`~discord.objects.ThreadMetadata` object.
-
 - Added :class:`~discord.enums.VideoQualityMode` enum.
-
 - Added :class:`~discord.objects.PermissionOverwrite` object.
-
 - Added :class:`~discord.enums.ChannelType` enum.
-
 - Added :class:`~discord.objects.GuildMember` object.
-
 - Added :class:`~discord.flags.GuildMemberFlag` flag.
 
 
 **Documentation Changes**
 
 - Added Changelog.
-
 - Reconstruct documentation (a bit).
 
 
@@ -77,34 +58,22 @@ v26.1.4
 **Added Changes**
 
 - Manage event listeners.
-
 - Handle dispatch event.
-
 - Handle ``APPLICATION_COMMAND_PERMISSIONS_UPDATE`` dispatch event.
-
 - Receive ``AUTO_MODERATION_RULE_*`` events.
-
 - Added :class:`~discord.objects.AutoModerationRule` object.
-
 - Added :class:`~discord.objects.AutoModerationAction` object.
-
 - Added :class:`~discord.objects.AutoModerationActionMetadata` object.
-
 - Added :class:`~discord.enums.AutoModerationActionType` enum.
-
 - Added :class:`~discord.objects.AutoModerationRuleTriggerMetadata` object.
-
 - Added :class:`~discord.enums.AutoModerationRuleTriggerType` enum.
-
 - Added :class:`~discord.enums.AutoModerationRuleKeywordPresetType` enum.
-
 - Added :class:`~discord.enums.AutoModerationRuleEventType` enum.
 
 
 **Documentation Changes**
 
 - Build documentation.
-
 - Add ``.readthedocs.yaml`` file.
 
 
@@ -115,13 +84,8 @@ v26.0.7
 **Added Changes**
 
 - Added HTTP endpoint hooks: :meth:`~discord._http.HTTP.get_gateway`, :meth:`~discord._http.HTTP.get_gateway_bot`.
-
 - Connect to the gateway. Defaults to ``True``.
-
 - Added context manager-wise logging.
-
 - Handle heartbeats and :attr:`~discord.enums.OpCode.HELLO`.
-
 - Handle identifying.
-
 - Handle disconnect and reconnect.

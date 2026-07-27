@@ -78,6 +78,20 @@ Dispatched when the client has completed the initial handshake with the gateway 
 .. autoclass:: discord.events.ReadyEvent()
 
 
+``THREAD_CREATE``
+~~~~~~~~~~~~~~~~~
+
+Received when a thread is created, relevant to the current user, or when the current user is added to a thread. The inner payload is a :class:`~discord.objects.Channel` object.
+
+- When a thread is created, includes an additional :attr:`~discord.events.ThreadCreateEvent.newly_created` boolean field.
+- When being added to an existing private thread, includes a :attr:`~discord.objects.Channel.member` object.
+
+.. py:class:: discord.events.ThreadCreateEvent()
+
+  .. py:attribute:: newly_created
+    :type: ~discord.utils.Optional[bool]
+
+
 ``VOICE_CHANNEL_START_TIME_UPDATE``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
