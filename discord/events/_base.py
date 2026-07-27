@@ -7,7 +7,7 @@ class DispatchEvent:
   def __class_getitem__(cls, name: str) -> Optional[type]:
     if not isinstance(name, str):
       raise TypeError(f"name: Must be an instance of {str}; not {name.__class__}")
-    name: str = name.strip().upper()
+    name: str = name.strip()
     if not name:
       raise ValueError(f"name: Must not be an empty string")
     match name:
@@ -27,6 +27,9 @@ class DispatchEvent:
         from ..objects import AutoModerationRule
         return AutoModerationRule
       case "CHANNEL_CREATE":
+        from ..objects import Channel
+        return Channel
+      case "CHANNEL_UPDATE":
         from ..objects import Channel
         return Channel
       case "READY":
