@@ -20,6 +20,7 @@ v26.1.7-dev12
 - Receive ``THREAD_DELETE`` gateway event.
 - Added :class:`~discord.events.ThreadListSyncEvent` event object.
 - Added :class:`~discord.events.ThreadMembersUpdateEvent` event object.
+- Added :attr:`~discord.objects.ThreadMember.presence` attribute.
 
 
 **Documentation Changes**
