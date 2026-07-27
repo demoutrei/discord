@@ -92,6 +92,12 @@ Received when a thread is created, relevant to the current user, or when the cur
     :type: ~discord.utils.Optional[bool]
 
 
+``THREAD_UPDATE``
+~~~~~~~~~~~~~~~~~
+
+Received when a thread is updated. The inner payload is a :class:`~discord.objects.Channel` object. This is not sent when the :attr:`~discord.objects.Channel.last_message_id` is altered. To keep track of the :attr:`~discord.objects.Channel.last_message_id` changes, you must listen for ``MESSAGE_CREATE`` events.
+
+
 ``VOICE_CHANNEL_START_TIME_UPDATE``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
