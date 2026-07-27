@@ -60,8 +60,6 @@ Includes ephemeral data for channels in a guild. Received in response to :meth:`
 
 .. autoclass:: discord.events.ChannelInfoEvent()
 
-.. autoclass:: discord.objects.ChannelInfoChannel()
-
 
 ``CHANNEL_UPDATE``
 ~~~~~~~~~~~~~~~~~~
@@ -78,3 +76,11 @@ Received when a channel is updated. The inner payload is a :class:`~discord.obje
 Dispatched when the client has completed the initial handshake with the gateway (for new sessions).
 
 .. autoclass:: discord.events.ReadyEvent()
+
+
+``VOICE_CHANNEL_STATUS_UPDATE``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Received when the voice channel status changes.
+
+.. autoclass:: discord.events.VoiceChannelStatusUpdateEvent()
