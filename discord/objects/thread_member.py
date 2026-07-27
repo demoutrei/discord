@@ -1,5 +1,6 @@
+# from ..events import PresenceUpdateEvent
 from ..snowflake import Snowflake
-from ..utils import ISO8601Timestamp, Optional
+from ..utils import ISO8601Timestamp, Nullable, Optional
 from ._base import BaseObject
 from .guild_member import GuildMember
 
@@ -26,6 +27,8 @@ class ThreadMember(BaseObject):
   .. important::
       Only present when ``with_member`` is set to ``True`` when calling :meth:`~discord._http.HTTP.list_thread_members` or :meth:`~discord._http.HTTP.get_thread_member`.
   """
+
+  presence: Optional[Nullable["PresenceUpdateEvent"]]
 
   user_id: Optional[Snowflake]
   """ID of the user.
