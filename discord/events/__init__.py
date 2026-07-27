@@ -3,4 +3,5 @@ from ._manager import EventManager
 from .auto_moderation_action_execution import AutoModerationActionExecutionEvent
 from .channel_info import ChannelInfoEvent
 from .ready import ReadyEvent
+from .voice_channel_start_time_update import VoiceChannelStartTimeUpdateEvent
 from .voice_channel_status_update import VoiceChannelStatusUpdateEvent

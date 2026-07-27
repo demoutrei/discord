@@ -41,6 +41,9 @@ class DispatchEvent:
       case "READY":
         from .ready import ReadyEvent
         return ReadyEvent
+      case "VOICE_CHANNEL_START_TIME_UPDATE":
+        from .voice_channel_start_time_update import VoiceChannelStartTimeUpdateEvent
+        return VoiceChannelStartTimeUpdateEvent
       case "VOICE_CHANNEL_STATUS_UPDATE":
         from .voice_channel_status_update import VoiceChannelStatusUpdateEvent
         return VoiceChannelStatusUpdateEvent
