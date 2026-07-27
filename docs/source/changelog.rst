@@ -20,6 +20,8 @@ v26.1.7-dev6
 
 - Added :class:`~discord.events.VoiceChannelStatusUpdateEvent` event object.
 
+- Added :class:`~discord.events.VoiceChannelStartTimeUpdateEvent` event object.
+
 
 **Documentation Changes**
 

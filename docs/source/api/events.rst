@@ -78,6 +78,14 @@ Dispatched when the client has completed the initial handshake with the gateway 
 .. autoclass:: discord.events.ReadyEvent()
 
 
+``VOICE_CHANNEL_START_TIME_UPDATE``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Received when the voice channel start time changes.
+
+.. autoclass:: discord.events.VoiceChannelStartTimeUpdateEvent()
+
+
 ``VOICE_CHANNEL_STATUS_UPDATE``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
