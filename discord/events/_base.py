@@ -32,6 +32,9 @@ class DispatchEvent:
       case "CHANNEL_DELETE":
         from ..objects import Channel
         return Channel
+      case "CHANNEL_INFO":
+        from .channel_info import ChannelInfoEvent
+        return ChannelInfoEvent
       case "CHANNEL_UPDATE":
         from ..objects import Channel
         return Channel

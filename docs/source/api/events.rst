@@ -53,6 +53,16 @@ Received when a new guild channel is created, relevant to the current user. The 
 Received when a channel relevant to the current user is deleted. The inner payload is a :class:`~discord.objects.Channel` object.
 
 
+``CHANNEL_INFO``
+~~~~~~~~~~~~~~~~
+
+Includes ephemeral data for channels in a guild. Received in response to :meth:`~discord.gateway.DiscordWebSocket.request_channel_info`.
+
+.. autoclass:: discord.events.ChannelInfoEvent()
+
+.. autoclass:: discord.objects.ChannelInfoChannel()
+
+
 ``CHANNEL_UPDATE``
 ~~~~~~~~~~~~~~~~~~
 
