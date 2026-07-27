@@ -92,6 +92,12 @@ Received when a thread is created, relevant to the current user, or when the cur
     :type: ~discord.utils.Optional[bool]
 
 
+``THREAD_DELETE``
+~~~~~~~~~~~~~~~~~
+
+Received when a thread relevant to the current user is deleted. The inner payload is a subset of the :class:`~discord.objects.Channel` object, containing just the :attr:`~discord.objects.Channel.id`, :attr:`~discord.objects.Channel.guild_id`, :attr:`~discord.objects.Channel.parent_id`, and :attr:`~discord.objects.Channel.type` fields.
+
+
 ``THREAD_UPDATE``
 ~~~~~~~~~~~~~~~~~
 
