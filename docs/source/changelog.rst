@@ -2,8 +2,8 @@ Changelog
 =========
 
 
-v26.1.7-dev9
-------------
+v26.1.7-dev10
+-------------
 
 
 **Added Changes**
@@ -17,6 +17,7 @@ v26.1.7-dev9
 - Added :class:`~discord.events.VoiceChannelStartTimeUpdateEvent` event object.
 - Added :class:`~discord.events.ThreadCreateEvent` event object.
 - Receive ``THREAD_UPDATE`` gateway event.
+- Receive ``THREAD_DELETE`` gateway event.
 
 
 **Documentation Changes**
