@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-v26.1.7-dev5
+v26.1.7-dev6
 ------------
 
 
@@ -17,6 +17,8 @@ v26.1.7-dev5
 - Added :class:`~discord.events.ChannelInfoEvent` event object.
 
 - Added :class:`~discord.objects.ChannelInfoChannel` object.
+
+- Added :class:`~discord.events.VoiceChannelStatusUpdateEvent` event object.
 
 
 **Documentation Changes**
