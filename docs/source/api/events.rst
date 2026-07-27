@@ -106,6 +106,14 @@ Received when the current user *gains* access to a channel.
 .. autoclass:: discord.events.ThreadListSyncEvent()
 
 
+``THREAD_MEMBERS_UPDATE``
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Received when anyone is added to or removed from a thread. If the current user does not have the :attr:`~discord.flags.GatewayIntent.GUILD_MEMBERS` gateway intent, then this event will only be sent if the current user was added to or removed from the thread.
+
+.. autoclass:: discord.events.ThreadMembersUpdateEvent()
+
+
 ``THREAD_UPDATE``
 ~~~~~~~~~~~~~~~~~
 
