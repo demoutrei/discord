@@ -5,5 +5,6 @@ from .channel_info import ChannelInfoEvent
 from .ready import ReadyEvent
 from .thread_create import ThreadCreateEvent
 from .thread_list_sync import ThreadListSyncEvent
+from .thread_members_update import ThreadMembersUpdateEvent
 from .voice_channel_start_time_update import VoiceChannelStartTimeUpdateEvent
 from .voice_channel_status_update import VoiceChannelStatusUpdateEvent

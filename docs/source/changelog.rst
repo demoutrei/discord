@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-v26.1.7-dev11
+v26.1.7-dev12
 -------------
 
 
@@ -19,6 +19,7 @@ v26.1.7-dev11
 - Receive ``THREAD_UPDATE`` gateway event.
 - Receive ``THREAD_DELETE`` gateway event.
 - Added :class:`~discord.events.ThreadListSyncEvent` event object.
+- Added :class:`~discord.events.ThreadMembersUpdateEvent` event object.
 
 
 **Documentation Changes**

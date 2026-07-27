@@ -50,6 +50,9 @@ class DispatchEvent:
       case "THREAD_LIST_SYNC":
         from .thread_list_sync import ThreadListSyncEvent
         return ThreadListSyncEvent
+      case "THREAD_MEMBERS_UPDATE":
+        from .thread_members_update import ThreadMembersUpdateEvent
+        return ThreadMembersUpdateEvent
       case "THREAD_UPDATE":
         from ..objects import Channel
         return Channel
