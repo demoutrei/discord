@@ -44,6 +44,9 @@ class DispatchEvent:
       case "THREAD_CREATE":
         from .thread_create import ThreadCreateEvent
         return ThreadCreateEvent
+      case "THREAD_DELETE":
+        from ..objects import Channel
+        return Channel
       case "THREAD_UPDATE":
         from ..objects import Channel
         return Channel
