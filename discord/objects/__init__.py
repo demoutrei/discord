@@ -8,6 +8,7 @@ from .auto_moderation_rule import AutoModerationRule
 from .auto_moderation_rule_trigger_metadata import AutoModerationRuleTriggerMetadata
 from .avatar_decoration_data import AvatarDecorationData
 from .channel import Channel
+from .channel_info_channel import ChannelInfoChannel
 from .collectible import Collectible
 from .default_reaction import DefaultReaction
 from .emoji import Emoji
