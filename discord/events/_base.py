@@ -35,6 +35,9 @@ class DispatchEvent:
       case "CHANNEL_INFO":
         from .channel_info import ChannelInfoEvent
         return ChannelInfoEvent
+      case "CHANNEL_PINS_UPDATE":
+        from .channel_pins_update import ChannelPinsUpdateEvent
+        return ChannelPinsUpdateEvent
       case "CHANNEL_UPDATE":
         from ..objects import Channel
         return Channel

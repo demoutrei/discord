@@ -9,7 +9,7 @@
 project = 'demoutrei.discord'
 copyright = '2026, demoutrei'
 author = 'demoutrei'
-release = '26.1.7-dev13'
+release = '26.1.7-dev14'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -19,6 +19,10 @@ extensions = ["sphinx.ext.autodoc", "sphinx.ext.viewcode", "sphinx.ext.intersphi
 autodoc_default_options = {
   "members": True,
   "undoc-members": True
+}
+
+intersphinx_mapping = {
+  "python": ("https://docs.python.org/3", None)
 }
 
 toc_object_entries_show_parents = "hide"
