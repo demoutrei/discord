@@ -61,6 +61,14 @@ Includes ephemeral data for channels in a guild. Received in response to :meth:`
 .. autoclass:: discord.events.ChannelInfoEvent()
 
 
+``CHANNEL_PINS_UPDATE``
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Received when a message is pinned or unpinned in a text channel. This is not sent when a pinned message is deleted.
+
+.. autoclass:: discord.events.ChannelPinsUpdateEvent()
+
+
 ``CHANNEL_UPDATE``
 ~~~~~~~~~~~~~~~~~~
 

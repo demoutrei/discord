@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-v26.1.7-dev12
+v26.1.7-dev14
 -------------
 
 
@@ -21,6 +21,7 @@ v26.1.7-dev12
 - Added :class:`~discord.events.ThreadListSyncEvent` event object.
 - Added :class:`~discord.events.ThreadMembersUpdateEvent` event object.
 - Added :attr:`~discord.objects.ThreadMember.presence` attribute.
+- Added :class:`~discord.events.ChannelPinsUpdateEvent` event object.
 
 
 **Documentation Changes**
