@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-v26.1.7-dev3
+v26.1.7-dev4
 ------------
 
 
@@ -13,6 +13,8 @@ v26.1.7-dev3
 - Receive ``CHANNEL_DELETE`` gateway event.
 
 - Receive ``CHANNEL_INFO`` gateway event.
+
+- Added :class:`~discord.events.ChannelInfoEvent` event object.
 
 
 **Documentation Changes**
