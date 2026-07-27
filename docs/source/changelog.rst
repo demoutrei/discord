@@ -2,8 +2,13 @@ Changelog
 =========
 
 
-v26.1.7-dev0
+v26.1.7-dev1
 ------------
+
+
+**Added Changes**
+
+- Receive ``CHANNEL_UPDATE`` gateway event.
 
 
 **Documentation Changes**

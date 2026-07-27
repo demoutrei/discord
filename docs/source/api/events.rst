@@ -47,6 +47,15 @@ Received when a rule is updated. The inner payload is an :class:`~discord.object
 Received when a new guild channel is created, relevant to the current user. The inner payload is a :class:`~discord.objects.Channel` object.
 
 
+``CHANNEL_UPDATE``
+~~~~~~~~~~~~~~~~~~
+
+Received when a channel is updated. The inner payload is a :class:`~discord.objects.Channel` object. This is not sent when the :attr:`~discord.objects.Channel.last_message_id` field is altered. To keep track of the :attr:`~discord.objects.Channel.last_message_id` changes, you must listen for ``MESSAGE_CREATE`` events (or ``THREAD_CREATE`` events for :attr:`~discord.enums.ChannelType.GUILD_FORUM` and :attr:`~discord.enums.ChannelType.GUILD_MEDIA` channels).
+
+.. note::
+    This event may reference roles or guild members that no longer exist in the guild.
+
+
 ``READY``
 ~~~~~~~~~
 
