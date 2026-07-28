@@ -2,6 +2,14 @@ Changelog
 =========
 
 
+v26.1.8-dev0
+------------
+
+**Added Changes**
+
+- Receive ``ENTITLEMENT_CREATE`` gateway event.
+
+
 v26.1.7
 -------
 

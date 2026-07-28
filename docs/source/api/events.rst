@@ -78,6 +78,12 @@ Received when a channel is updated. The inner payload is a :class:`~discord.obje
     This event may reference roles or guild members that no longer exist in the guild.
 
 
+``ENTITLEMENT_CREATE``
+~~~~~~~~~~~~~~~~~~~~~~
+
+Received when an entitlement is created. The inner payload is an :class:`~discord.objects.Entitlement` object.
+
+
 ``READY``
 ~~~~~~~~~
 
