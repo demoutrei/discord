@@ -44,6 +44,12 @@ class DispatchEvent:
       case "ENTITLEMENT_CREATE":
         from ..objects import Entitlement
         return Entitlement
+      case "ENTITLEMENT_DELETE":
+        from ..objects import Entitlement
+        return Entitlement
+      case "ENTITLEMENT_UPDATE":
+        from ..objects import Entitlement
+        return Entitlement
       case "READY":
         from .ready import ReadyEvent
         return ReadyEvent
