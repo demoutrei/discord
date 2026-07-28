@@ -26,6 +26,8 @@ Enumerations
 
 .. autoclass:: discord.enums.DefaultSortOrderType()
 
+.. autoclass:: discord.enums.EntitlementType()
+
 .. autoclass:: discord.enums.ExplicitContentFilterLevel()
 
 .. autoclass:: discord.enums.ForumLayoutType()
