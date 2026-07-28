@@ -41,6 +41,9 @@ class DispatchEvent:
       case "CHANNEL_UPDATE":
         from ..objects import Channel
         return Channel
+      case "ENTITLEMENT_CREATE":
+        from ..objects import Entitlement
+        return Entitlement
       case "READY":
         from .ready import ReadyEvent
         return ReadyEvent
