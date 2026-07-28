@@ -172,6 +172,33 @@ class DefaultSortOrderType(IntEnum):
 
 
 @unique
+class EntitlementType(IntEnum):
+  PURCHASE: int = 1
+  """Entitlement was purchased by user."""
+
+  PREMIUM_SUBSCRIPTION: int = 2
+  """Entitlement for Discord Nitro subscription."""
+
+  DEVELOPER_GIFT: int = 3
+  """Entitlement was gifted by developer."""
+
+  TEST_MODE_PURCHASE: int = 4
+  """Entitlement was purchased by a dev in application test mode."""
+
+  FREE_PURCHASE: int = 5
+  """Entitlement was granted when the SKU was free."""
+
+  USER_GIFT: int = 6
+  """Entitlement was gifted by another user."""
+
+  PREMIUM_PURCHASE: int = 7
+  """Entitlement was claimed by user for free as a Nitro Subscriber."""
+
+  APPLICATION_SUBSCRIPTION: int = 8
+  """Entitlement was purchased as an app subscription."""
+
+
+@unique
 class ExplicitContentFilterLevel(IntEnum):
   DISABLED: int = 0
   """Media content will not be scanned"""
