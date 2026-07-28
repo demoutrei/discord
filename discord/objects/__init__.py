@@ -12,6 +12,7 @@ from .channel_info_channel import ChannelInfoChannel
 from .collectible import Collectible
 from .default_reaction import DefaultReaction
 from .emoji import Emoji
+from .entitlement import Entitlement
 from .forum_tag import ForumTag
 from .guild import Guild
 from .guild_application_command_permissions import GuildApplicationCommandPermissions
