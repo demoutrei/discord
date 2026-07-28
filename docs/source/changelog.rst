@@ -2,11 +2,12 @@ Changelog
 =========
 
 
-v26.1.8-dev1
+v26.1.8-dev2
 ------------
 
 **Added Changes**
 
+- Added :class:`~discord.objects.Entitlement` object.
 - Receive all entitlement-related gateway events.
 - Receive ``ENTITLEMENT_CREATE`` gateway event.
 

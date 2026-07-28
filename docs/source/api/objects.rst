@@ -30,6 +30,8 @@ Discord Objects
 
 .. autoclass:: discord.objects.Emoji()
 
+.. autoclass:: discord.objects.Entitlement()
+
 .. autoclass:: discord.objects.ForumTag()
 
     \* At most one of :attr:`~discord.objects.ForumTag.emoji_id` and :attr:`~discord.objects.ForumTag.emoji_name` may be set to a non-null value.
