@@ -2,11 +2,12 @@ Changelog
 =========
 
 
-v26.1.8-dev0
+v26.1.8-dev1
 ------------
 
 **Added Changes**
 
+- Receive all entitlement-related gateway events.
 - Receive ``ENTITLEMENT_CREATE`` gateway event.
 
 

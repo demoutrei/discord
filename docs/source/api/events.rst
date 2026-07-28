@@ -84,6 +84,25 @@ Received when a channel is updated. The inner payload is a :class:`~discord.obje
 Received when an entitlement is created. The inner payload is an :class:`~discord.objects.Entitlement` object.
 
 
+``ENTITLEMENT_DELETE``
+~~~~~~~~~~~~~~~~~~~~~~
+
+Received when an entitlement is deleted. The inner payload is an :class:`~discord.objects.Entitlement` object.
+
+Entitlement deletions are infrequent, and occur when:
+- Discord issues a refund for a subscription
+- Discord removes an entitlement from a user via internal tooling
+- Discord deletes an app-managed entitlement they created via the API
+
+
+``ENTITLEMENT_UPDATE``
+~~~~~~~~~~~~~~~~~~~~~~
+
+Received when an entitlement is updated. The inner payload is an :class:`~discord.objects.Entitlement` object.
+
+For subscription entitlements, this event is triggered only when a user's subscription ends, providing an :attr:`~discord.objects.Entitlement.ends_at` timestamp that indicates the end of the entitlement.
+
+
 ``READY``
 ~~~~~~~~~
 
