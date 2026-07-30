@@ -2,6 +2,19 @@ Changelog
 =========
 
 
+v26.1.9-dev0
+------------
+
+**Added Changes**
+
+- Receive all guild-related gateway events.
+
+
+**Documentation Changes**
+
+- Fix unordered list.
+
+
 v26.1.8
 -------
 

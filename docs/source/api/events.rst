@@ -104,12 +104,219 @@ Received when an entitlement is updated. The inner payload is an :class:`~discor
 For subscription entitlements, this event is triggered only when a user's subscription ends, providing an :attr:`~discord.objects.Entitlement.ends_at` timestamp that indicates the end of the entitlement.
 
 
+``GUILD_AUDIT_LOG_ENTRY_CREATE``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Received when a guild audit log entry is created. The inner payload is an :class:`~discord.events.GuildAuditLogEntryCreateEvent` object. This event is only sent to bots with the :attr:`~discord.flags.PermissionFlag.VIEW_AUDIT_LOG` permission.
+
+.. autoclass:: discord.events.GuildAuditLogEntryCreateEvent()
+
+
+``GUILD_BAN_ADD``
+~~~~~~~~~~~~~~~~~
+
+Received when a user is banned from a guild. This event is only sent to bots with the :attr:`~discord.flags.PermissionFlag.BAN_MEMBERS` or :attr:`~discord.flags.PermissionFlag.VIEW_AUDIT_LOG` permission.
+
+.. autoclass:: discord.events.GuildBanAddEvent()
+
+
+``GUILD_BAN_REMOVE``
+~~~~~~~~~~~~~~~~~~~~
+
+Received when a user is unbanned from a guild. This event is only sent to bots with the :attr:`~discord.flags.PermissionFlag.BAN_MEMBERS` or :attr:`~discord.flags.PermissionFlag.VIEW_AUDIT_LOG` permission.
+
+.. autoclass:: discord.events.GuildBanRemoveEvent()
+
+
+``GUILD_CREATE``
+~~~~~~~~~~~~~~~~
+
+This event can be received in three different scenarios:
+
+1. When a user is initially connecting, to lazily load and backfill information for all unavailable guilds sent in ``READY`` event. Guilds that are unavailable due to an outage will send a ``GUILD_DELETE`` event.
+2. When a Guild becomes available again to the client.
+3. When the current user joins a new Guild.
+
+.. note::
+    During an outage, the guild object in scenarios 1 and 3 may be marked as unavailable.
+
+.. autoclass:: discord.events.GuildCreateEvent()
+
+
+``GUILD_DELETE``
+~~~~~~~~~~~~~~~~
+
+Received when a guild becomes or was already unavailable due to an outage, or when the user leaves or is removed from a guild. The inner payload is an :class:`~discord.objects.UnavailableGuild` object. If the :attr:`~discord.objects.UnavailableGuild.unavailable` is not set, the user was removed from the guild.
+
+
+``GUILD_EMOJIS_UPDATE``
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Received when a guild's emojis have been updated.
+
+.. autoclass:: discord.events.GuildEmojisUpdateEvent()
+
+
+``GUILD_INTEGRATIONS_UPDATE``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Received when a guild integration is updated.
+
+.. autoclass:: discord.events.GuildIntegrationsUpdateEvent()
+
+
+``GUILD_MEMBER_ADD``
+~~~~~~~~~~~~~~~~~~~~
+
+Received when a user joins a guild. This event may also be sent for users who are already members of the guild.
+
+.. important::
+    If using gateway intents, the :attr:`~discord.flags.GatewayIntent.GUILD_MEMBERS` intent will be required to receive this event.
+
+.. autoclass:: discord.events.GuildMemberAddEvent()
+
+
+``GUILD_MEMBER_REMOVE``
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Received when a user is removed from a guild (leave/kick/ban).
+
+.. important::
+    If using gateway intents, the :attr:`~discord.flags.GatewayIntent.GUILD_MEMBERS` intent will be required to receive this event.
+
+.. autoclass:: discord.events.GuildMemberRemoveEvent()
+
+
+``GUILD_MEMBER_UPDATE``
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Received when a guild member is updated. This will also fire when the user object of a guild member changes.
+
+.. autoclass:: discord.events.GuildMemberUpdateEvent()
+
+
+``GUILD_MEMBERS_CHUNK``
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Received in response to ``Guild Request Members``. You can use the :attr:`~discord.events.GuildMembersChunkEvent.chunk_index` and :attr:`~discord.events.GuildMembersChunkEvent.chunk_count` to calculate how many chunks are left for your request.
+
+.. autoclass:: discord.events.GuildMembersChunkEvent()
+
+
+``GUILD_ROLE_CREATE``
+~~~~~~~~~~~~~~~~~~~~~
+
+Received when a guild role is created.
+
+.. autoclass:: discord.events.GuildRoleCreateEvent()
+
+
+``GUILD_ROLE_DELETE``
+~~~~~~~~~~~~~~~~~~~~~
+
+Received when a guild role is deleted.
+
+.. autoclass:: discord.events.GuildRoleDeleteEvent()
+
+
+``GUILD_ROLE_UPDATE``
+~~~~~~~~~~~~~~~~~~~~~
+
+Received when a guild role is updated.
+
+.. autoclass:: discord.events.GuildRoleUpdateEvent()
+
+
+``GUILD_SCHEDULED_EVENT_CREATE``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Received when a guild scheduled event is created. The inner payload is a :class:`~discord.objects.GuildScheduledEvent` object.
+
+
+``GUILD_SCHEDULED_EVENT_DELETE``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Received when a guild scheduled event is deleted. The inner payload is a :class:`~discord.objects.GuildScheduledEvent` object.
+
+
+``GUILD_SCHEDULED_EVENT_UPDATE``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Received when a guild scheduled event is updated. The inner payload is a :class:`~discord.objects.GuildScheduledEvent` object.
+
+
+``GUILD_SCHEDULED_EVENT_USER_ADD``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Received when a user has subscribed to a guild scheduled event.
+
+.. autoclass:: discord.events.GuildScheduledEventUserAddEvent()
+
+
+``GUILD_SCHEDULED_EVENT_USER_REMOVE``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Received when a user has unsubscribed from a guild scheduled event.
+
+.. autoclass:: discord.events.GuildScheduledEventUserRemoveEvent()
+
+
+``GUILD_SOUNDBOARD_SOUND_CREATE``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Received when a guild soundboard sound is created. The inner payload is a :class:`~discord.objects.SoundboardSound` object.
+
+
+``GUILD_SOUNDBOARD_SOUND_DELETE``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Received when a guild soundboard sound is deleted.
+
+.. autoclass:: discord.events.GuildSoundboardSoundDeleteEvent()
+
+
+``GUILD_SOUNDBOARD_SOUND_UPDATE``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Received when a guild soundboard sound is updated. The inner payload is a :class:`~discord.objects.SoundboardSound` object.
+
+
+``GUILD_SOUNDBOARD_SOUNDS_UPDATE``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Received when multiple guild soundboard sounds are updated.
+
+.. autoclass:: discord.events.GuildSoundboardSoundsUpdateEvent()
+
+
+``GUILD_STICKERS_UPDATE``
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Received when a guild's stickers have been updated.
+
+.. autoclass:: discord.events.GuildStickersUpdateEvent()
+
+
+``GUILD_UPDATE``
+~~~~~~~~~~~~~~~~
+
+Received when a guild is updated. The inner payload is a :class:`~discord.objects.Guild` object.
+
+
 ``READY``
 ~~~~~~~~~
 
 Dispatched when the client has completed the initial handshake with the gateway (for new sessions).
 
 .. autoclass:: discord.events.ReadyEvent()
+
+
+``SOUNDBOARD_SOUNDS``
+~~~~~~~~~~~~~~~~~~~~~
+
+Includes a guild's list of soundboard sounds. Received in response to ``Request Soundboard Sounds``.
+
+.. autoclass:: discord.events.SoundboardSoundsEvent()
 
 
 ``THREAD_CREATE``
