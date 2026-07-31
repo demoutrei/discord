@@ -1,10 +1,11 @@
+from .._dataclass import dataclass
 from ..enums import MembershipState, TeamMemberRole
 from ..snowflake import Snowflake
-from ._base import BaseObject
 from .user import User
 
 
-class TeamMember(BaseObject):
+@dataclass
+class TeamMember:
   membership_state: MembershipState
   """User's membership state on the team"""
 

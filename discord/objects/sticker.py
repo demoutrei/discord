@@ -1,11 +1,12 @@
+from .._dataclass import dataclass
 from ..enums import StickerFormatType, StickerType
 from ..snowflake import Snowflake
 from ..utils import Nullable, Optional
-from ._base import BaseObject
 from .user import User
 
 
-class Sticker(BaseObject):
+@dataclass
+class Sticker:
   """Represents a sticker that can be sent in messages."""
 
   available: Optional[bool]

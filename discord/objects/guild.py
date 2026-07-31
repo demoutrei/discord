@@ -1,8 +1,8 @@
+from .._dataclass import dataclass
 from ..enums import DefaultMessageNotificationLevel, ExplicitContentFilterLevel, GuildAgeRestrictionLevel, GuildFeature, Locale, MFALevel, PremiumTier, VerificationLevel
 from ..flags import PermissionFlag, SystemChannelFlag
 from ..snowflake import Snowflake
 from ..utils import Nullable, Optional
-from ._base import BaseObject
 from .emoji import Emoji
 from .incidents_data import IncidentsData
 from .role import Role
@@ -10,7 +10,8 @@ from .sticker import Sticker
 from .welcome_screen import WelcomeScreen
 
 
-class Guild(BaseObject):
+@dataclass
+class Guild:
   """Represents an isolated collection of users and channels, and are often referred to as "servers" in the UI."""
 
   afk_channel_id: Nullable[Snowflake]

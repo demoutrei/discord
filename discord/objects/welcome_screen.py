@@ -1,9 +1,10 @@
+from .._dataclass import dataclass
 from ..utils import Nullable
-from ._base import BaseObject
 from .welcome_screen_channel import WelcomeScreenChannel
 
 
-class WelcomeScreen(BaseObject):
+@dataclass
+class WelcomeScreen:
   description: Nullable[str]
   """The server description shown in the welcome screen"""
 

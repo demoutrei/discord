@@ -25,6 +25,7 @@ from .role import Role
 from .role_colors import RoleColors
 from .role_tags import RoleTags
 from .session_start_limit import SessionStartLimit
+from .soundboard_sound import SoundboardSound
 from .sticker import Sticker
 from .team import Team
 from .team_member import TeamMember

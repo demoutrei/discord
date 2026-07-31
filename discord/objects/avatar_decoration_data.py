@@ -1,8 +1,9 @@
+from .._dataclass import dataclass
 from ..snowflake import Snowflake
-from ._base import BaseObject
 
 
-class AvatarDecorationData(BaseObject):
+@dataclass
+class AvatarDecorationData:
   """The data for the user's avatar decoration"""
 
   asset: str

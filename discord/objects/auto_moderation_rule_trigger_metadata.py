@@ -1,8 +1,9 @@
+from .._dataclass import dataclass
 from ..enums import AutoModerationRuleKeywordPresetType
-from ._base import BaseObject
 
 
-class AutoModerationRuleTriggerMetadata(BaseObject):
+@dataclass
+class AutoModerationRuleTriggerMetadata:
   """Additional data used to determine whether a rule should be triggered. Different fields are relevant based on the value of ``trigger_type``."""
 
   allow_list: list[str]

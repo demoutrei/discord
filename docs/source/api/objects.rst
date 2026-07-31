@@ -56,6 +56,8 @@ Discord Objects
   
 .. autoclass:: discord.Snowflake()
 
+.. autoclass:: discord.objects.SoundboardSound()
+
 .. autoclass:: discord.objects.Sticker()
 
 .. autoclass:: discord.objects.Team()

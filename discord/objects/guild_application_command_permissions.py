@@ -1,9 +1,10 @@
+from .._dataclass import dataclass
 from ..snowflake import Snowflake
-from ._base import BaseObject
 from .application_command_permissions import ApplicationCommandPermissions
 
 
-class GuildApplicationCommandPermissions(BaseObject):
+@dataclass
+class GuildApplicationCommandPermissions:
   """Returned when fetching the permissions for an app's command(s) in a guild.
 
   When the :attr:`~.id` field is the application ID instead of a command ID, the permissions apply to all commands that do not contain explicit overwrites.

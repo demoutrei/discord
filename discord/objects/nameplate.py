@@ -1,9 +1,10 @@
+from .._dataclass import dataclass
 from ..enums import NameplatePalette
 from ..snowflake import Snowflake
-from ._base import BaseObject
 
 
-class Nameplate(BaseObject):
+@dataclass
+class Nameplate:
   """The nameplate the user has."""
   
   asset: str

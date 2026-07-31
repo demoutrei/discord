@@ -1,9 +1,10 @@
+from .._dataclass import dataclass
 from ..enums import ApplicationCommandPermissionType
 from ..snowflake import Snowflake
-from ._base import BaseObject
 
 
-class ApplicationCommandPermissions(BaseObject):
+@dataclass
+class ApplicationCommandPermissions:
   """Application command permissions allow you to enable or disable commands for specific users, roles, or channels within a guild."""
 
   id: Snowflake

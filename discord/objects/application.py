@@ -1,8 +1,8 @@
+from .._dataclass import dataclass
 from ..enums import ApplicationEventWebhookStatus, ApplicationIntegrationType, WebhookEventType
 from ..flags import ApplicationFlag
 from ..snowflake import Snowflake
 from ..utils import Nullable, Optional
-from ._base import BaseObject
 from .application_integration_type_configuration import ApplicationIntegrationTypeConfiguration
 from .guild import Guild
 from .install_params import InstallParams
@@ -10,7 +10,8 @@ from .team import Team
 from .user import User
 
 
-class Application(BaseObject):
+@dataclass
+class Application:
   approximate_guild_count: Optional[int]
   """Approximate count of guilds the app has been added to"""
 

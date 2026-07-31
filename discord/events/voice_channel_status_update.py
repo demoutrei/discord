@@ -1,9 +1,10 @@
+from .._dataclass import dataclass
 from ..snowflake import Snowflake
 from ..utils import Nullable
-from ._base import DispatchEvent
 
 
-class VoiceChannelStatusUpdateEvent(DispatchEvent):
+@dataclass
+class VoiceChannelStatusUpdateEvent:
   guild_id: Snowflake
   """The guild ID."""
   

@@ -1,9 +1,10 @@
+from .._dataclass import dataclass
 from ..utils import Optional
-from ._base import BaseObject
 from .nameplate import Nameplate
 
 
-class Collectible(BaseObject):
+@dataclass
+class Collectible:
   """The collectibles the user has, excluding Avatar Decorations and Profile Effects."""
   
   nameplate: Optional[Nameplate]

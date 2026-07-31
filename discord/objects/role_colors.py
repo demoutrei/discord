@@ -1,8 +1,9 @@
+from .._dataclass import dataclass
 from ..utils import Nullable
-from ._base import BaseObject
 
 
-class RoleColors(BaseObject):
+@dataclass
+class RoleColors:
   primary_color: int
   """The primary color for the role"""
 

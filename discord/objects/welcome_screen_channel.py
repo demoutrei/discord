@@ -1,9 +1,10 @@
+from .._dataclass import dataclass
 from ..snowflake import Snowflake
 from ..utils import Nullable
-from ._base import BaseObject
 
 
-class WelcomeScreenChannel(BaseObject):
+@dataclass
+class WelcomeScreenChannel:
   channel_id: Snowflake
   """The channels' ID"""
 

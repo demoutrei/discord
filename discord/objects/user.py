@@ -1,14 +1,15 @@
+from .._dataclass import dataclass
 from ..enums import PremiumType
 from ..flags import UserFlag
 from ..snowflake import Snowflake
 from ..utils import Nullable, Optional
-from ._base import BaseObject
 from .avatar_decoration_data import AvatarDecorationData
 from .collectible import Collectible
 from .user_primary_guild import UserPrimaryGuild
 
 
-class User(BaseObject):
+@dataclass
+class User:
   """Represents a Discord user"""
   
   accent_color: Optional[Nullable[int]]

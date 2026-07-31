@@ -1,11 +1,12 @@
+from .._dataclass import dataclass
 from ..enums import AutoModerationRuleTriggerType
 from ..objects import AutoModerationAction
 from ..snowflake import Snowflake
 from ..utils import Nullable, Optional
-from ._base import DispatchEvent
 
 
-class AutoModerationActionExecutionEvent(DispatchEvent):
+@dataclass
+class AutoModerationActionExecutionEvent:
   """Received when a rule is triggered and an action is executed (e.g. when a message is blocked)."""
 
   action: AutoModerationAction

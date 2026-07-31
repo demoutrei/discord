@@ -1,12 +1,13 @@
+from .._dataclass import dataclass
 from ..flags import PermissionFlag, RoleFlag
 from ..snowflake import Snowflake
 from ..utils import Nullable, Optional
-from ._base import BaseObject
 from .role_colors import RoleColors
 from .role_tags import RoleTags
 
 
-class Role(BaseObject):
+@dataclass
+class Role:
   """Roles represent a set of permissions attached to a group of users."""
 
   color: int

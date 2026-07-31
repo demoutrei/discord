@@ -1,9 +1,10 @@
+from .._dataclass import dataclass
 from ..snowflake import Snowflake
 from ..utils import Optional
-from ._base import BaseObject
 
 
-class RoleTags(BaseObject):
+@dataclass
+class RoleTags:
   """
   .. note::
       Tags with type ``None`` represent booleans. They will be present and set to ``None`` if they are "true", and will be not present if they are "false".

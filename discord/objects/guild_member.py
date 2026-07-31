@@ -1,13 +1,14 @@
+from .._dataclass import dataclass
 from ..flags import GuildMemberFlag, PermissionFlag
 from ..snowflake import Snowflake
 from ..utils import ISO8601Timestamp, Nullable, Optional
-from ._base import BaseObject
 from .avatar_decoration_data import AvatarDecorationData
 from .collectible import Collectible
 from .user import User
 
 
-class GuildMember(BaseObject):
+@dataclass
+class GuildMember:
   """
   .. note::
       The field :attr:`~.user` won't be included in the member object attached to ``MESSAGE_CREATE`` and ``MESSAGE_UPDATE`` gateway events.

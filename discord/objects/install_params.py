@@ -1,8 +1,9 @@
+from .._dataclass import dataclass
 from ..flags import PermissionFlag
-from ._base import BaseObject
 
 
-class InstallParams(BaseObject):
+@dataclass
+class InstallParams:
   permissions: PermissionFlag
   """Permissions to request for the bot role"""
   

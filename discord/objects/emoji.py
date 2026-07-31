@@ -1,9 +1,10 @@
+from .._dataclass import dataclass
 from ..snowflake import Snowflake
 from ..utils import Nullable, Optional
-from ._base import BaseObject
 
 
-class Emoji(BaseObject):
+@dataclass
+class Emoji:
   animated: Optional[bool]
   """Whether this emoji is animated"""
 

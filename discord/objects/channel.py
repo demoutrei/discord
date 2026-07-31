@@ -1,8 +1,8 @@
+from .._dataclass import dataclass
 from ..enums import ChannelType, DefaultSortOrderType, ForumLayoutType, VideoQualityMode
 from ..flags import ChannelFlag, PermissionFlag
 from ..snowflake import Snowflake
 from ..utils import ISO8601Timestamp, Nullable, Optional
-from ._base import BaseObject
 from .default_reaction import DefaultReaction
 from .forum_tag import ForumTag
 from .permission_overwrite import PermissionOverwrite
@@ -11,7 +11,8 @@ from .thread_metadata import ThreadMetadata
 from .user import User
 
 
-class Channel(BaseObject):
+@dataclass
+class Channel:
   """Represents a guild or DM channel within Discord."""
 
   application_id: Optional[Snowflake]

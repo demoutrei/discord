@@ -1,9 +1,10 @@
+from .._dataclass import dataclass
 from ..snowflake import Snowflake
 from ..utils import ISO8601Timestamp, Nullable, Optional
-from ._base import DispatchEvent
 
 
-class ChannelPinsUpdateEvent(DispatchEvent):
+@dataclass
+class ChannelPinsUpdateEvent:
   channel_id: Snowflake
   """ID of the channel."""
   

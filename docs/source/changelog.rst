@@ -2,12 +2,13 @@ Changelog
 =========
 
 
-v26.1.9-dev0
+v26.1.9-dev1
 ------------
 
 **Added Changes**
 
 - Receive all guild-related gateway events.
+- Added :class:`~discord.objects.SoundboardSound` object.
 
 
 **Documentation Changes**
