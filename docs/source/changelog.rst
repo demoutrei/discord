@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-v26.1.9-dev2
+v26.1.9-dev3
 ------------
 
 **Added Changes**
@@ -10,6 +10,7 @@ v26.1.9-dev2
 - Receive all guild-related gateway events.
 - Added :class:`~discord.objects.SoundboardSound` object.
 - Added :class:`~discord.objects.GuildScheduledEvent` object.
+- Added :class:`~discord.objects.GuildScheduledEventRecurrenceRule` object.
 
 
 **Documentation Changes**
