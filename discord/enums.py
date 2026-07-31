@@ -346,6 +346,17 @@ class GuildScheduledEventRecurrenceRuleMonth(IntEnum):
 
 
 @unique
+class GuildScheduledEventRecurrenceRuleWeekday(IntEnum):
+  MONDAY: int = 0
+  TUESDAY: int = 1
+  WEDNESDAY: int = 2
+  THURSDAY: int = 3
+  FRIDAY: int = 4
+  SATURDAY: int = 5
+  SUNDAY: int = 6
+
+
+@unique
 class Locale(StrEnum):
   BULGARIAN: str = "bg"
   CHINESE_CHINA: str = "zh-CN"

@@ -42,6 +42,8 @@ Enumerations
 
 .. autoclass:: discord.enums.GuildScheduledEventRecurrenceRuleMonth()
 
+.. autoclass:: discord.enums.GuildScheduledEventRecurrenceRuleWeekday()
+
 .. autoclass:: discord.enums.Locale()
 
 .. autoclass:: discord.enums.MembershipState()
