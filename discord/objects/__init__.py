@@ -18,6 +18,7 @@ from .guild import Guild
 from .guild_application_command_permissions import GuildApplicationCommandPermissions
 from .guild_member import GuildMember
 from .guild_scheduled_event import GuildScheduledEvent
+from .guild_scheduled_event_entity_metadata import GuildScheduledEventEntityMetadata
 from .guild_scheduled_event_recurrence_rule import GuildScheduledEventRecurrenceRule
 from .guild_scheduled_event_recurrence_rule_n_weekday import GuildScheduledEventRecurrenceRuleNWeekday
 from .incidents_data import IncidentsData

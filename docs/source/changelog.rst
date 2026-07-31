@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-v26.1.9-dev7
+v26.1.9-dev8
 ------------
 
 **Added Changes**
@@ -15,6 +15,7 @@ v26.1.9-dev7
 - Added :class:`~discord.objects.GuildScheduledEventRecurrenceRuleNWeekday` object.
 - Added :class:`~discord.enums.GuildScheduledEventRecurrenceRuleWeekday` enum.
 - Added :class:`~discord.enums.GuildScheduledEventRecurrenceRuleFrequency` enum.
+- Added :class:`~discord.objects.GuildScheduledEventEntityMetadata` object.
 
 
 **Documentation Changes**
