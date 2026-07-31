@@ -372,6 +372,14 @@ class GuildScheduledEventRecurrenceRuleWeekday(IntEnum):
 
 
 @unique
+class GuildScheduledEventStatus(IntEnum):
+  SCHEDULED: int = 1
+  ACTIVE: int = 2
+  COMPLETED: int = 3
+  CANCELED: int = 4
+
+
+@unique
 class Locale(StrEnum):
   BULGARIAN: str = "bg"
   CHINESE_CHINA: str = "zh-CN"
