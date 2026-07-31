@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-v26.1.9-dev11
+v26.1.9-dev12
 -------------
 
 **Added Changes**
@@ -19,6 +19,7 @@ v26.1.9-dev11
 - Added :class:`~discord.enums.GuildScheduledEventEntityType` enum.
 - Added :class:`~discord.enums.GuildScheduledEventStatus` enum.
 - Added :class:`~discord.enums.GuildScheduledEventPrivacyLevel` enum.
+- Added :class:`~discord.objects.AuditLogEntry` object.
 
 
 **Documentation Changes**

@@ -11,6 +11,9 @@ Discord Objects
 .. autoclass:: discord.objects.ApplicationIntegrationTypeConfiguration()
 
 
+.. autoclass:: discord.objects.AuditLogEntry()
+
+
 .. autoclass:: discord.objects.AutoModerationAction()
 
   .. note::
