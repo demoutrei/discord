@@ -2,10 +2,10 @@ from .._dataclass import dataclass
 from ..enums import (
   GuildScheduledEventRecurrenceRuleFrequency,
   GuildScheduledEventRecurrenceRuleMonth,
-  GuildScheduledEventRecurrenceRuleNWeekday,
   GuildScheduledEventRecurrenceRuleWeekday
 )
 from ..utils import ISO8601Timestamp, Nullable
+from .guild_scheduled_event_recurrence_rule_n_weekday import GuildScheduledEventRecurrenceRuleNWeekday
 
 
 @dataclass

@@ -153,6 +153,9 @@ The following table shows field requirements based on current entity type.
     - Due to the limitations placed on :attr:`~discord.objects.GuildScheduledEventRecurrenceRule.by_weekday`, this means that if you wish to use "every-other week" functionality you can only do so for a single day.
 
 
+.. autoclass:: discord.objects.GuildScheduledEventRecurrenceRuleNWeekday()
+
+
 .. autoclass:: discord.objects.IncidentsData()
 
 
