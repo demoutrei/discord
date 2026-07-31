@@ -330,6 +330,13 @@ class GuildFeature(StrEnum):
 
 
 @unique
+class GuildScheduledEventEntityType(IntEnum):
+  STAGE_INSTANCE: int = 1
+  VOICE: int = 2
+  EXTERNAL: int = 3
+
+
+@unique
 class GuildScheduledEventRecurrenceRuleFrequency(IntEnum):
   YEARLY: int = 0
   MONTHLY: int = 1
