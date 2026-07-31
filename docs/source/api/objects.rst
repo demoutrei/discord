@@ -171,6 +171,9 @@ The following table shows field requirements based on current entity type.
 .. autoclass:: discord.objects.Nameplate()
 
 
+.. autoclass:: discord.objects.OptionalAuditEntryInfo()
+
+
 .. autoclass:: discord.objects.PermissionOverwrite()
 
 
