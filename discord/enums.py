@@ -34,6 +34,368 @@ class ApplicationIntegrationType(StrEnum):
 
 
 @unique
+class AuditLogEvent(IntEnum):
+  """The **Object Changed** notes which object's values may be included in the entry. Though there are exceptions, possible keys in the :attr:`~discord.objects.AuditLogEntry.changes` array typically correspond to the object's fields. The descriptions and types for those fields can be found in the linked documentation for the object.
+
+  If no object is noted, there won't be a :attr:`~discord.objects.AuditLogEntry.changes` array in the entry, though other fields like the :attr:`~discord.objects.AuditLogEntry.target_id` still exist and many have fields in the :attr:`~discord.objects.AuditLogEntry.options` object.
+
+  .. hint::
+      You should assume that your app may run into any field for the changed object, though none are guaranteed to be present. In most cases only a subset of the object's fields will be in the :attr:`~discord.objects.AuditLogEntry.changes` array.
+  """
+
+  GUILD_UPDATE: int = 1
+  """Server settings were updated.
+
+  **Object Changed**: :class:`~discord.objects.Guild`
+  """
+
+  CHANNEL_CREATE: int = 10
+  """Channel was created.
+
+  **Object Changed**: :class:`~discord.objects.Channel`
+  """
+
+  CHANNEL_UPDATE: int = 11
+  """Channel settings were updated.
+
+  **Object Changed**: :class:`~discord.objects.Channel`
+  """
+
+  CHANNEL_DELETE: int = 12
+  """Channel was deleted.
+
+  **Object Changed**: :class:`~discord.objects.Channel`
+  """
+
+  CHANNEL_OVERWRITE_CREATE: int = 13
+  """Permission overwrite was added to a channel.
+
+  **Object Changed**: :class:`~discord.objects.PermissionOverwrite`
+  """
+
+  CHANNEL_OVERWRITE_UPDATE: int = 14
+  """Permission overwrite was updated for a channel.
+
+  **Object Changed**: :class:`~discord.objects.PermissionOverwrite`
+  """
+
+  CHANNEL_OVERWRITE_DELETE: int = 15
+  """Permission overwrite was deleted from a channel.
+
+  **Object Changed**: :class:`~discord.objects.PermissionOverwrite`
+  """
+
+  MEMBER_KICK: int = 20
+  """Member was removed from server."""
+
+  MEMBER_PRUNE: int = 21
+  """Members was pruned from server."""
+
+  MEMBER_BAN_ADD: int = 22
+  """Member was banned from server."""
+
+  MEMBER_BAN_REMOVE: int = 23
+  """Server ban was lifted for a member."""
+
+  MEMBER_UPDATE: int = 24
+  """Member was updated in a server.
+
+  **Object Changed**: :class:`~discord.objects.GuildMember`
+  """
+
+  MEMBER_ROLE_UPDATE: int = 25
+  """Member was added or removed from a role.
+
+  **Object Changed**: :class:`~discord.objects.Role`
+  """
+
+  MEMBER_MOVE: int = 26
+  """Member was moved to a different voice channel."""
+
+  MEMBER_DISCONNECT: int = 27
+  """Member was disconnected from a voice channel."""
+
+  BOT_ADD: int = 28
+  """Bot user was added to server."""
+
+  ROLE_CREATE: int = 30
+  """Role was created.
+
+  **Object Changed**: :class:`~discord.objects.Role`
+  """
+
+  ROLE_UPDATE: int = 31
+  """Role was edited.
+
+  **Object Changed**: :class:`~discord.objects.Role`
+  """
+
+  ROLE_DELETE: int = 32
+  """Role was deleted.
+
+  **Object Changed**: :class:`~discord.objects.Role`
+  """
+
+  INVITE_CREATE: int = 40
+  """Server invite was created.
+
+  **Object Changed**: :class:`~discord.objects.Invite` and :class:`~discord.objects.InviteMetadata`
+  """
+
+  INVITE_UPDATE: int = 41
+  """Server invite was updated.
+
+  **Object Changed**: :class:`~discord.objects.Invite` and :class:`~discord.objects.InviteMetadata`
+  """
+
+  INVITE_DELETE: int = 42
+  """Server invite was deleted.
+
+  **Object Changed**: :class:`~discord.objects.Invite` and :class:`~discord.objects.InviteMetadata`
+  """
+
+  WEBHOOK_CREATE: int = 50
+  """Webhook was created.
+
+  **Object Changed**: :class:`~discord.objects.Webhook`
+  """
+
+  WEBHOOK_UPDATE: int = 51
+  """Webhook properties or channel were updated.
+
+  **Object Changed**: :class:`~discord.objects.Webhook`
+  """
+
+  WEBHOOK_DELETE: int = 52
+  """Webhook was deleted.
+
+  **Object Changed**: :class:`~discord.objects.Webhook`
+  """
+
+  EMOJI_CREATE: int = 60
+  """Emoji was created.
+
+  **Object Changed**: :class:`~discord.objects.Emoji`
+  """
+
+  EMOJI_UPDATE: int = 61
+  """Emoji name was updated.
+
+  **Object Changed**: :class:`~discord.objects.Emoji`
+  """
+
+  EMOJI_DELETE: int = 62
+  """Emoji was deleted.
+
+  **Object Changed**: :class:`~discord.objects.Emoji`
+  """
+
+  MESSAGE_DELETE: int = 72
+  """Single message was deleted."""
+
+  MESSAGE_BULK_DELETE: int = 73
+  """Multiple messages were deleted."""
+
+  MESSAGE_PIN: int = 74
+  """Message was pinned to a channel."""
+
+  MESSAGE_UNPIN: int = 75
+  """Message was unpinned to a channel."""
+
+  INTEGRATION_CREATE: int = 80
+  """App was added to server.
+
+  **Object Changed**: :class:`~discord.objects.Integration`
+  """
+
+  INTEGRATION_UPDATE: int = 81
+  """App was updated (as an example, its scopes were updated).
+
+  **Object Changed**: :class:`~discord.objects.Integration`
+  """
+
+  INTEGRATION_DELETE: int = 82
+  """App was removed from server.
+
+  **Object Changed**: :class:`~discord.objects.Integration`
+  """
+
+  STAGE_INSTANCE_CREATE: int = 83
+  """Stage instance was created (stage channel becomes live).
+
+  **Object Changed**: :class:`~discord.objects.StageInstance`
+  """
+
+  STAGE_INSTANCE_UPDATE: int = 84
+  """Stage instance details were updated.
+
+  **Object Changed**: :class:`~discord.objects.StageInstance`
+  """
+
+  STAGE_INSTANCE_DELETE: int = 85
+  """Stage instance was deleted (stage channel no longer live).
+
+  **Object Changed**: :class:`~discord.objects.StageInstance`
+  """
+
+  STICKER_CREATE: int = 90
+  """Sticker was created.
+
+  **Object Changed**: :class:`~discord.objects.Sticker`
+  """
+
+  STICKER_UPDATE: int = 91
+  """STicker details were updated.
+
+  **Object Changed**: :class:`~discord.objects.Sticker`
+  """
+
+  STICKER_DELETE: int = 92
+  """Sticker was deleted.
+  
+  **Object Changed**: :class:`~discord.objects.Sticker`
+  """
+
+  GUILD_SCHEDULED_EVENT_CREATE: int = 100
+  """Event was created.
+
+  **Object Changed**: :class:`~discord.objects.GuildScheduledEvent`
+  """
+
+  GUILD_SCHEDULED_EVENT_UPDATE: int = 101
+  """Event was updated.
+
+  **Object Changed**: :class:`~discord.objects.GuildScheduledEvent`
+  """
+
+  GUILD_SCHEDULED_EVENT_DELETE: int = 102
+  """Event was cancelled.
+
+  **Object Changed**: :class:`~discord.objects.GuildScheduledEvent`
+  """
+
+  THREAD_CREATE: int = 110
+  """Thread was created in a channel.
+
+  **Object Changed**: :class:`~discord.objects.ThreadMetadata`
+  """
+
+  THREAD_UPDATE: int = 111
+  """Thread was updated.
+
+  **Object Changed**: :class:`~discord.objects.ThreadMetadata`
+  """
+
+  THREAD_DELETE: int = 112
+  """Thread was deleted.
+
+  **Object Changed**: :class:`~discord.objects.ThreadMetadata`
+  """
+
+  APPLICATION_COMMAND_PERMISSION_UPDATE: int = 121
+  """Permissions were updated for a command.
+
+  **Object Changed**: :class:`~discord.objects.ApplicationCommandPermissions`
+  """
+
+  SOUNDBOARD_SOUND_CREATE: int = 130
+  """Soundboard sound was created.
+
+  **Object Changed**: :class:`~discord.objects.SoundboardSound`
+  """
+
+  SOUNDBOARD_SOUND_UPDATE: int = 131
+  """Soundboard sound was updated.
+
+  **Object Changed**: :class:`~discord.objects.SoundboardSound`
+  """
+
+  SOUNDBOARD_SOUND_DELETE: int = 132
+  """Soundboard sound was deleted.
+
+  **Object Changed**: :class:`~discord.objects.SoundboardSound`
+  """
+
+  AUTO_MODERATION_RULE_CREATE: int = 140
+  """Auto Moderation rule was created.
+
+  **Object Changed**: :class:`~discord.objects.AutoModerationRule`
+  """
+
+  AUTO_MODERATION_RULE_UPDATE: int = 141
+  """Auto Moderation rule was updated.
+
+  **Object Changed**: :class:`~discord.objects.AutoModerationRule`
+  """
+
+  AUTO_MODERATION_RULE_DELETE: int = 142
+  """Auto Moderation rule was deleted.
+
+  **Object Changed**: :class:`~discord.objects.AutoModerationRule`
+  """
+
+  AUTO_MODERATION_BLOCK_MESSAGE: int = 143
+  """Message was blocked by Auto Moderation."""
+
+  AUTO_MODERATION_FLAG_TO_CHANNEL: int = 144
+  """Message was flagged by Auto Moderation."""
+
+  AUTO_MODERATION_USER_COMMUNICATION_DISABLED: int = 145
+  """Member was timed out by Auto Moderation."""
+
+  AUTO_MODERATION_QUARANTINE_USER: int = 146
+  """Member was quarantined by Auto Moderation."""
+
+  CREATOR_MONETIZATION_REQUEST_CREATED: int = 150
+  """Creator monetization request was created."""
+
+  CREATOR_MONETIZATION_TERMS_ACCEPTED: int = 151
+  """Creator monetization terms were accepted."""
+
+  ONBOARDING_PROMPT_CREATE: int = 163
+  """Guild Onboarding Question was created.
+
+  **Object Changed**: :class:`~discord.objects.OnboardingPrompt`
+  """
+
+  ONBOARDING_PROMPT_UPDATE: int = 164
+  """Guild Onboarding Question was updated.
+
+  **Object Changed**: :class:`~discord.objects.OnboardingPrompt`
+  """
+
+  ONBOARDING_PROMPT_DELETE: int = 165
+  """Guild Onboarding Question was deleted.
+
+  **Object Changed**: :class:`~discord.objects.OnboardingPrompt`
+  """
+
+  ONBOARDING_CREATE: int = 166
+  """Guild Onboarding was created.
+
+  **Object Changed**: :class:`~discord.objects.GuildOnboarding`
+  """
+
+  ONBOARDING_UPDATE: int = 167
+  """Guild Onboarding was updated.
+
+  **Object Changed**: :class:`~discord.objects.GuildOnboarding`
+  """
+
+  HOME_SETTINGS_CREATE: int = 190
+  """Guild Server Guide was created."""
+
+  HOME_SETTINGS_UPDATE: int = 191
+  """Guild Server Guide was updated."""
+
+  VOICE_CHANNEL_STATUS_CREATE: int = 192
+  """A voice channel status was set by a user."""
+
+  VOICE_CHANNEL_STATUS_DELETE: int = 193
+  """A voice channel status was deleted by a user."""
+
+
+@unique
 class AutoModerationActionType(IntEnum):
   BLOCK_MESSAGE: int = 1
   """Blocks a member's message and prevents it from being posted. A custom explanation can be specified and shown to members whenever their message is blocked."""

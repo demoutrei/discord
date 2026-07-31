@@ -14,6 +14,9 @@ Enumerations
 .. autoclass:: discord.enums.ApplicationIntegrationType()
 
 
+.. autoclass:: discord.enums.AuditLogEvent()
+
+
 .. autoclass:: discord.enums.AutoModerationActionType()
 
 
