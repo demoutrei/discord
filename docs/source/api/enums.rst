@@ -62,6 +62,9 @@ Enumerations
 .. autoclass:: discord.enums.GuildScheduledEventEntityType()
 
 
+.. autoclass:: discord.enums.GuildScheduledEventPrivacyLevel()
+
+
 .. autoclass:: discord.enums.GuildScheduledEventRecurrenceRuleFrequency()
 
 

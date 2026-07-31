@@ -337,6 +337,12 @@ class GuildScheduledEventEntityType(IntEnum):
 
 
 @unique
+class GuildScheduledEventPrivacyLevel(IntEnum):
+  GUILD_ONLY: int = 2
+  """The scheduled event is only accessible to guild members."""
+
+
+@unique
 class GuildScheduledEventRecurrenceRuleFrequency(IntEnum):
   YEARLY: int = 0
   MONTHLY: int = 1

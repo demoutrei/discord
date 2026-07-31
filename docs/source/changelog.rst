@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-v26.1.9-dev10
+v26.1.9-dev11
 -------------
 
 **Added Changes**
@@ -18,6 +18,7 @@ v26.1.9-dev10
 - Added :class:`~discord.objects.GuildScheduledEventEntityMetadata` object.
 - Added :class:`~discord.enums.GuildScheduledEventEntityType` enum.
 - Added :class:`~discord.enums.GuildScheduledEventStatus` enum.
+- Added :class:`~discord.enums.GuildScheduledEventPrivacyLevel` enum.
 
 
 **Documentation Changes**
