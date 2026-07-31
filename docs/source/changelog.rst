@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-v26.1.9-dev3
+v26.1.9-dev4
 ------------
 
 **Added Changes**
@@ -11,6 +11,7 @@ v26.1.9-dev3
 - Added :class:`~discord.objects.SoundboardSound` object.
 - Added :class:`~discord.objects.GuildScheduledEvent` object.
 - Added :class:`~discord.objects.GuildScheduledEventRecurrenceRule` object.
+- Added :class:`~discord.enums.GuildScheduledEventRecurrenceRuleMonth` enum.
 
 
 **Documentation Changes**
