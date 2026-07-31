@@ -330,6 +330,14 @@ class GuildFeature(StrEnum):
 
 
 @unique
+class GuildScheduledEventRecurrenceRuleFrequency(IntEnum):
+  YEARLY: int = 0
+  MONTHLY: int = 1
+  WEEKLY: int = 2
+  DAILY: int = 3
+
+
+@unique
 class GuildScheduledEventRecurrenceRuleMonth(IntEnum):
   JANUARY: int = 1
   FEBRUARY: int = 2

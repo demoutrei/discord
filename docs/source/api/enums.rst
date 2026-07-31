@@ -40,6 +40,8 @@ Enumerations
 
 .. autoclass:: discord.flags.GuildMemberFlag()
 
+.. autoclass:: discord.enums.GuildScheduledEventRecurrenceRuleFrequency()
+
 .. autoclass:: discord.enums.GuildScheduledEventRecurrenceRuleMonth()
 
 .. autoclass:: discord.enums.GuildScheduledEventRecurrenceRuleWeekday()
