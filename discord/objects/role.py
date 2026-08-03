@@ -1,5 +1,5 @@
 from .._dataclass import dataclass
-from ..flags import PermissionFlag, RoleFlag
+from ..flags import PermissionFlags, RoleFlags
 from ..snowflake import Snowflake
 from ..utils import Nullable, Optional
 from .role_colors import RoleColors
@@ -20,7 +20,7 @@ class Role:
   colors: RoleColors
   """The role's colors"""
 
-  flags: RoleFlag
+  flags: RoleFlags
   """Role flags combined as a bitfield"""
 
   hoist: bool
@@ -41,7 +41,7 @@ class Role:
   name: str
   """Role name"""
 
-  permissions: PermissionFlag
+  permissions: PermissionFlags
   """Permission bit set"""
 
   position: int

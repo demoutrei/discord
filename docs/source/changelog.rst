@@ -129,14 +129,14 @@ v26.1.6
 - Added :class:`~discord.enums.DefaultSortOrderType` enum.
 - Added :class:`~discord.objects.DefaultReaction` object.
 - Added :class:`~discord.objects.ForumTag` object.
-- Added :class:`~discord.flags.ChannelFlag` flag.
+- Added :class:`~discord.flags.ChannelFlags` flag.
 - Added :class:`~discord.objects.ThreadMember` object.
 - Added :class:`~discord.objects.ThreadMetadata` object.
 - Added :class:`~discord.enums.VideoQualityMode` enum.
 - Added :class:`~discord.objects.PermissionOverwrite` object.
 - Added :class:`~discord.enums.ChannelType` enum.
 - Added :class:`~discord.objects.GuildMember` object.
-- Added :class:`~discord.flags.GuildMemberFlag` flag.
+- Added :class:`~discord.flags.GuildMemberFlags` flag.
 
 
 **Documentation Changes**

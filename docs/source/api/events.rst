@@ -107,7 +107,7 @@ For subscription entitlements, this event is triggered only when a user's subscr
 ``GUILD_AUDIT_LOG_ENTRY_CREATE``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Received when a guild audit log entry is created. The inner payload is an :class:`~discord.events.GuildAuditLogEntryCreateEvent` object. This event is only sent to bots with the :attr:`~discord.flags.PermissionFlag.VIEW_AUDIT_LOG` permission.
+Received when a guild audit log entry is created. The inner payload is an :class:`~discord.events.GuildAuditLogEntryCreateEvent` object. This event is only sent to bots with the :attr:`~discord.flags.PermissionFlags.VIEW_AUDIT_LOG` permission.
 
 .. autoclass:: discord.events.GuildAuditLogEntryCreateEvent()
 
@@ -115,7 +115,7 @@ Received when a guild audit log entry is created. The inner payload is an :class
 ``GUILD_BAN_ADD``
 ~~~~~~~~~~~~~~~~~
 
-Received when a user is banned from a guild. This event is only sent to bots with the :attr:`~discord.flags.PermissionFlag.BAN_MEMBERS` or :attr:`~discord.flags.PermissionFlag.VIEW_AUDIT_LOG` permission.
+Received when a user is banned from a guild. This event is only sent to bots with the :attr:`~discord.flags.PermissionFlags.BAN_MEMBERS` or :attr:`~discord.flags.PermissionFlags.VIEW_AUDIT_LOG` permission.
 
 .. autoclass:: discord.events.GuildBanAddEvent()
 
@@ -123,7 +123,7 @@ Received when a user is banned from a guild. This event is only sent to bots wit
 ``GUILD_BAN_REMOVE``
 ~~~~~~~~~~~~~~~~~~~~
 
-Received when a user is unbanned from a guild. This event is only sent to bots with the :attr:`~discord.flags.PermissionFlag.BAN_MEMBERS` or :attr:`~discord.flags.PermissionFlag.VIEW_AUDIT_LOG` permission.
+Received when a user is unbanned from a guild. This event is only sent to bots with the :attr:`~discord.flags.PermissionFlag.BAN_MEMBERS` or :attr:`~discord.flags.PermissionFlags.VIEW_AUDIT_LOG` permission.
 
 .. autoclass:: discord.events.GuildBanRemoveEvent()
 
@@ -141,7 +141,7 @@ This event can be received in three different scenarios:
     During an outage, the guild object in scenarios 1 and 3 may be marked as unavailable.
 
 .. warning::
-    If your bot does not have the :attr:`~discord.flags.GatewayIntent.GUILD_PRESENCES`, or if the guild has over 75k members, members and presences returned in this event will only contain your bot and users in voice channels.
+    If your bot does not have the :attr:`~discord.flags.GatewayIntents.GUILD_PRESENCES`, or if the guild has over 75k members, members and presences returned in this event will only contain your bot and users in voice channels.
 
 .. autoclass:: discord.events.GuildCreateEvent()
 
@@ -174,7 +174,7 @@ Received when a guild integration is updated.
 Received when a user joins a guild. This event may also be sent for users who are already members of the guild.
 
 .. important::
-    If using gateway intents, the :attr:`~discord.flags.GatewayIntent.GUILD_MEMBERS` intent will be required to receive this event.
+    If using gateway intents, the :attr:`~discord.flags.GatewayIntents.GUILD_MEMBERS` intent will be required to receive this event.
 
 .. autoclass:: discord.events.GuildMemberAddEvent()
 
@@ -185,7 +185,7 @@ Received when a user joins a guild. This event may also be sent for users who ar
 Received when a user is removed from a guild (leave/kick/ban).
 
 .. important::
-    If using gateway intents, the :attr:`~discord.flags.GatewayIntent.GUILD_MEMBERS` intent will be required to receive this event.
+    If using gateway intents, the :attr:`~discord.flags.GatewayIntents.GUILD_MEMBERS` intent will be required to receive this event.
 
 .. autoclass:: discord.events.GuildMemberRemoveEvent()
 
@@ -312,7 +312,7 @@ Received when a guild is updated. The inner payload is a :class:`~discord.object
 A user's presence is their current state on a guild. This event is sent when a user's presence or info, such as name or avatar, is updated.
 
 .. important::
-    If you are using Gateway Intents, you *must* specify the :attr:`~discord.flags.GatewayIntent.GUILD_PRESENCES` intent in order to receive the Presence Update events.
+    If you are using Gateway Intents, you *must* specify the :attr:`~discord.flags.GatewayIntents.GUILD_PRESENCES` intent in order to receive the Presence Update events.
 
 .. important::
     The user object within this event can be partial, the only field which must be sent is the :attr:`~.discord.objects.User.id`, everything else is optional. Along with this limitation, no fields are required, and the types of the fields are not validated. Your client should expect any combination of fields and types within this event.
@@ -367,7 +367,7 @@ Received when the current user *gains* access to a channel.
 ``THREAD_MEMBERS_UPDATE``
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Received when anyone is added to or removed from a thread. If the current user does not have the :attr:`~discord.flags.GatewayIntent.GUILD_MEMBERS` gateway intent, then this event will only be sent if the current user was added to or removed from the thread.
+Received when anyone is added to or removed from a thread. If the current user does not have the :attr:`~discord.flags.GatewayIntents.GUILD_MEMBERS` gateway intent, then this event will only be sent if the current user was added to or removed from the thread.
 
 .. autoclass:: discord.events.ThreadMembersUpdateEvent()
 

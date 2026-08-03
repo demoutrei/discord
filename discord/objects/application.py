@@ -1,6 +1,6 @@
 from .._dataclass import dataclass
 from ..enums import ApplicationEventWebhookStatus, ApplicationIntegrationType, WebhookEventType
-from ..flags import ApplicationFlag
+from ..flags import ApplicationFlags
 from ..snowflake import Snowflake
 from ..utils import Nullable, Optional
 from .application_integration_type_configuration import ApplicationIntegrationTypeConfiguration
@@ -48,7 +48,7 @@ class Application:
   event_webhooks_url: Optional[Nullable[str]]
   """Event webhooks URL for the app to receive webhook events"""
 
-  flags: Optional[ApplicationFlag]
+  flags: Optional[ApplicationFlags]
   """App's public flags"""
   
   guild: Optional[Guild]

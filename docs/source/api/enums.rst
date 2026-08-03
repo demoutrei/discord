@@ -14,7 +14,7 @@ Enumerations
 .. autoclass:: discord.enums.ApplicationEventWebhookStatus()
 
 
-.. autoclass:: discord.flags.ApplicationFlag()
+.. autoclass:: discord.flags.ApplicationFlags()
 
 
 .. autoclass:: discord.enums.ApplicationIntegrationType()
@@ -35,7 +35,7 @@ Enumerations
 .. autoclass:: discord.enums.AutoModerationRuleTriggerType()
 
 
-.. autoclass:: discord.flags.ChannelFlag()
+.. autoclass:: discord.flags.ChannelFlags()
 
 
 .. autoclass:: discord.enums.ChannelType()
@@ -56,7 +56,7 @@ Enumerations
 .. autoclass:: discord.enums.ForumLayoutType()
 
 
-.. autoclass:: discord.flags.GatewayIntent()
+.. autoclass:: discord.flags.GatewayIntents()
 
 
 .. autoclass:: discord.enums.GuildAgeRestrictionLevel()
@@ -68,7 +68,7 @@ Enumerations
 .. autoclass:: discord.flags.GuildInviteFlags()
 
 
-.. autoclass:: discord.flags.GuildMemberFlag()
+.. autoclass:: discord.flags.GuildMemberFlags()
 
 
 .. autoclass:: discord.enums.GuildScheduledEventEntityType()
@@ -92,8 +92,11 @@ Enumerations
       Once :attr:`~discord.objects.GuildScheduledEvent.status` is set to :attr:`~discord.enums.GuildScheduledEventStatus.COMPLETED` or :attr:`~discord.enums.GuildScheduledEventStatus.CANCELED`, the :attr:`~discord.objects.GuildScheduledEvent.status` can no longer be updated.
 
   .. admonition:: Valid Guild Scheduled Event Status Transitions
+    
       SCHEDULED --> ACTIVE
+      
       ACTIVE -----> COMPLETED
+      
       SCHEDULED --> CANCELED
 
 
@@ -127,7 +130,7 @@ Enumerations
 .. autoclass:: discord.enums.OpCode()
 
 
-.. autoclass:: discord.flags.PermissionFlag
+.. autoclass:: discord.flags.PermissionFlags
 
 
 .. autoclass:: discord.enums.PremiumTier()
@@ -136,7 +139,7 @@ Enumerations
 .. autoclass:: discord.enums.PremiumType()
 
 
-.. autoclass:: discord.flags.RoleFlag()
+.. autoclass:: discord.flags.RoleFlags()
 
 
 .. autoclass:: discord.enums.StageInstancePrivacyLevel()
@@ -151,13 +154,13 @@ Enumerations
 .. autoclass:: discord.enums.StickerType()
 
 
-.. autoclass:: discord.flags.SystemChannelFlag()
+.. autoclass:: discord.flags.SystemChannelFlags()
 
 
 .. autoclass:: discord.enums.TeamMemberRole()
 
 
-.. autoclass:: discord.flags.UserFlag()
+.. autoclass:: discord.flags.UserFlags()
 
 
 .. autoclass:: discord.enums.VerificationLevel()
