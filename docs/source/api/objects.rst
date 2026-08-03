@@ -5,6 +5,24 @@ Discord Objects
 .. autoclass:: discord.objects.Activity()
 
 
+.. autoclass:: discord.objects.ActivityAssets()
+
+Activity Asset Image
+--------------------
+
+Activity asset images are arbitrary strings which usually contain snowflake IDs or prefixed image IDs. Treat data within this field carefully, as it is user-specifiable and not sanitized.
+
+To use an external iamge via media proxy, specify the URL as the field's value when sending. You will only receive the ``mp:`` prefix via the gateway.
+
++-------------------+----------------------------+---------------------------------------------+
+| Type              | Format                     | Image URL                                   |
++===================+============================+=============================================+
+| Application Asset | ``{application_asset_id}`` | See `Application Asset Image Formatting`_   |
++-------------------+----------------------------+---------------------------------------------+
+| Media Proxy Image | ``mp:{image_id}``          | ``https://media.discordapp.net/{image_id}`` |
++-------------------+----------------------------+---------------------------------------------+
+
+
 .. autoclass:: discord.objects.ActivityButton()
 
 
@@ -282,3 +300,6 @@ The following table shows field requirements based on current entity type.
 
 
 .. autoclass:: discord.objects.WelcomeScreenChannel()
+
+
+.. _Application Asset Image Formatting: https://docs.discord.com/developers/reference#image-formatting

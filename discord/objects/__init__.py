@@ -1,4 +1,5 @@
 from .activity import Activity
+from .activity_assets import ActivityAssets
 from .activity_button import ActivityButton
 from .activity_secrets import ActivitySecrets
 from .application import Application

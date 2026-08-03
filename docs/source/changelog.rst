@@ -66,6 +66,7 @@ v26.1.9-dev
 - Added :class:`~discord.objects.ActivityButton` object.
 - Added :class:`~discord.flags.ActivityFlags` flag.
 - Added :class:`~discord.objects.ActivitySecrets` object.
+- Added :class:`~discord.objects.ActivityAssets` object.
 
 
 **Documentation Changes**
