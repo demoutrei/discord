@@ -123,8 +123,8 @@ class DispatchEvent:
         from .guild_stickers_update import GuildStickersUpdateEvent
         return GuildStickersUpdateEvent
       case "GUILD_UPDATE":
-        from .guild_update import GuildUpdateEvent
-        return GuildUpdateEvent
+        from ..objects import Guild
+        return Guild
       case "READY":
         from .ready import ReadyEvent
         return ReadyEvent
