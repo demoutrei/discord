@@ -1,10 +1,11 @@
+from .._dataclass import dataclass
 from ..objects import ThreadMember
 from ..snowflake import Snowflake
 from ..utils import Optional
-from ._base import DispatchEvent
 
 
-class ThreadMembersUpdateEvent(DispatchEvent):
+@dataclass
+class ThreadMembersUpdateEvent:
   added_members: Optional[list[ThreadMember]]
   """Users who were added to the thread.
 

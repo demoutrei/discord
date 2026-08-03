@@ -1,13 +1,14 @@
-from ..flags import GuildMemberFlag, PermissionFlag
+from .._dataclass import dataclass
+from ..flags import GuildMemberFlags, PermissionFlags
 from ..snowflake import Snowflake
 from ..utils import ISO8601Timestamp, Nullable, Optional
-from ._base import BaseObject
 from .avatar_decoration_data import AvatarDecorationData
 from .collectible import Collectible
 from .user import User
 
 
-class GuildMember(BaseObject):
+@dataclass
+class GuildMember:
   """
   .. note::
       The field :attr:`~.user` won't be included in the member object attached to ``MESSAGE_CREATE`` and ``MESSAGE_UPDATE`` gateway events.
@@ -37,7 +38,7 @@ class GuildMember(BaseObject):
   deaf: bool
   """Whether the user is deafened in voice channels."""
 
-  flags: GuildMemberFlag
+  flags: GuildMemberFlags
   """Guild member flags represented as a bit set, defaults to ``0``."""
 
   joined_at: Optional[ISO8601Timestamp]
@@ -52,7 +53,7 @@ class GuildMember(BaseObject):
   pending: Optional[bool]
   """Whether the user has not yet passed the guild's Membership Screening requirements."""
 
-  permissions: Optional[PermissionFlag]
+  permissions: Optional[PermissionFlags]
   """Total permissions of the member in the channel, including overwrites, returned when in the interaction object."""
 
   premium_since: Optional[Nullable[ISO8601Timestamp]]

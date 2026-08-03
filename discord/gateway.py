@@ -1,7 +1,7 @@
 from ._logging import Logger
 from .enums import OpCode
 from .events import DispatchEvent
-from .flags import GatewayIntent
+from .flags import GatewayIntents
 from .utils import MISSING, Nullable, Optional
 from aiohttp import ClientWebSocketResponse, WSMessage, WSMsgType
 from typing import Any, Self, TYPE_CHECKING
@@ -68,7 +68,7 @@ class GatewayEvent:
     return cls(op = OpCode.HEARTBEAT.value, d = sequence)
 
   @classmethod
-  def IDENTIFY(cls, *, token: str, intents: GatewayIntent) -> Self:
+  def IDENTIFY(cls, *, token: str, intents: GatewayIntents) -> Self:
     """Generate an :attr:`~discord.enums.OpCode.IDENTIFY` event.
 
     :param token: Authentication token
@@ -76,8 +76,8 @@ class GatewayEvent:
     """
     if not isinstance(token, str):
       raise TypeError(f"token: Must be an instance of {str}; not {token.__class__}")
-    if not isinstance(intents, GatewayIntent):
-      raise TypeError(f"intents: Must be an instance of {GatewayIntent}; not {intents.__class__}")
+    if not isinstance(intents, GatewayIntents):
+      raise TypeError(f"intents: Must be an instance of {GatewayIntents}; not {intents.__class__}")
     return cls(
       op = OpCode.IDENTIFY.value,
       d = {
@@ -278,8 +278,8 @@ class DiscordWebSocket:
       raise TypeError(f"event: Must be an instance of {GatewayEvent}; not {event.__class__}")
     if event.op is not OpCode.DISPATCH:
       raise ValueError(f"event.op: Must be {OpCode.DISPATCH}; not {event.op}")
-    event_cls: Nullable[type[DispatchEvent]] = DispatchEvent[event.t]
-    if event_cls is not None:
+    event_cls: Optional[type[DispatchEvent]] = DispatchEvent[event.t]
+    if event_cls:
       dispatch_event: DispatchEvent = event_cls(**event.d)
       if event.t.strip().upper() == "READY":
         self.__resume_gateway_url: str = dispatch_event.resume_gateway_url

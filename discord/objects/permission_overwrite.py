@@ -1,13 +1,14 @@
-from ..flags import PermissionFlag
+from .._dataclass import dataclass
+from ..flags import PermissionFlags
 from ..snowflake import Snowflake
-from ._base import BaseObject
 
 
-class PermissionOverwrite(BaseObject):
-  allow: PermissionFlag
+@dataclass
+class PermissionOverwrite:
+  allow: PermissionFlags
   """Permission bit set to allow"""
 
-  deny: PermissionFlag
+  deny: PermissionFlags
   """Permission bit set to deny"""
   
   id: Snowflake

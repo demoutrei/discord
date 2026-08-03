@@ -1,9 +1,10 @@
+from .._dataclass import dataclass
 from ..snowflake import Snowflake
 from ..utils import Nullable
-from ._base import BaseObject
 
 
-class ForumTag(BaseObject):
+@dataclass
+class ForumTag:
   """Represents a tag that is able to be applied to a thread in a :attr:`~discord.enums.ChannelType.GUILD_FORUM` or :attr:`~discord.enums.ChannelType.GUILD_MEDIA` channel.
 
   .. important::

@@ -1,8 +1,9 @@
+from .._dataclass import dataclass
 from ..utils import ISO8601Timestamp, Nullable, Optional
-from ._base import BaseObject
 
 
-class IncidentsData(BaseObject):
+@dataclass
+class IncidentsData:
   dms_disabled_until: Nullable[ISO8601Timestamp]
   """When direct messages get enabled again"""
 

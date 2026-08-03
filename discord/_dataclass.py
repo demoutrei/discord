@@ -1,4 +1,4 @@
-from .flags import PermissionFlag
+from .flags import PermissionFlags
 from .snowflake import Snowflake
 from .utils import ISO8601Timestamp, Match, MISSING, Nullable, Optional
 from annotationlib import get_annotations
@@ -33,7 +33,7 @@ def dataclass[T](cls: T) -> T:
     if is_dataclass(annotation): return self.__parse_dataclass(annotation, value, data = data)
     if annotation is Snowflake and value not in (MISSING, None, Ellipsis): return Snowflake(value)
     if issubclass(annotation, Enum) and value not in (MISSING, None, Ellipsis):
-      if annotation is PermissionFlag:
+      if annotation is PermissionFlags:
         value: int = int(value)
       return annotation(value)
     if annotation is ISO8601Timestamp and value not in (MISSING, None, Ellipsis):
@@ -89,7 +89,7 @@ def dataclass[T](cls: T) -> T:
       elif is_dataclass(value.__class__):
         value: dict[str, Any] = value._to_dict()
       elif isinstance(value, Enum):
-        if isinstance(value, PermissionFlag):
+        if isinstance(value, PermissionFlags):
           value: str = str(value.value)
         else:
           value: Any = value.value

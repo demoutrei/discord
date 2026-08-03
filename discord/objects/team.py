@@ -1,10 +1,11 @@
+from .._dataclass import dataclass
 from ..snowflake import Snowflake
 from ..utils import Nullable
-from ._base import BaseObject
 from .team_member import TeamMember
 
 
-class Team(BaseObject):
+@dataclass
+class Team:
   icon: Nullable[str]
   """Hash of the image of the team's icon"""
 

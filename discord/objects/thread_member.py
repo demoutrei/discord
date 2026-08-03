@@ -1,11 +1,15 @@
-# from ..events import PresenceUpdateEvent
+from .._dataclass import dataclass
 from ..snowflake import Snowflake
 from ..utils import ISO8601Timestamp, Nullable, Optional
-from ._base import BaseObject
 from .guild_member import GuildMember
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+  from ..events import PresenceUpdateEvent
 
 
-class ThreadMember(BaseObject):
+@dataclass
+class ThreadMember:
   """Contains information about a user that has joined a thread."""
 
   flags: int

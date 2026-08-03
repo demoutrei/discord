@@ -1,8 +1,8 @@
+from .._dataclass import dataclass
 from ..enums import ChannelType, DefaultSortOrderType, ForumLayoutType, VideoQualityMode
-from ..flags import ChannelFlag, PermissionFlag
+from ..flags import ChannelFlags, PermissionFlags
 from ..snowflake import Snowflake
 from ..utils import ISO8601Timestamp, Nullable, Optional
-from ._base import BaseObject
 from .default_reaction import DefaultReaction
 from .forum_tag import ForumTag
 from .permission_overwrite import PermissionOverwrite
@@ -11,7 +11,8 @@ from .thread_metadata import ThreadMetadata
 from .user import User
 
 
-class Channel(BaseObject):
+@dataclass
+class Channel:
   """Represents a guild or DM channel within Discord."""
 
   application_id: Optional[Snowflake]
@@ -20,7 +21,7 @@ class Channel(BaseObject):
   applied_tags: Optional[list[Snowflake]]
   """The IDs of the set of tags that have been applied to a thread in a :attr:`~discord.enums.ChannelType.GUILD_FORUM` or a :attr:`~discord.enums.ChannelType.GUILD_MEDIA` channel"""
 
-  app_permissions: Optional[PermissionFlag]
+  app_permissions: Optional[PermissionFlags]
   """Computed permissions for the bot user in the channel, including overwrites, only included when part of the ``resolved`` data received on an interaction. This does not include implicit permissions, which may need to be checked separately"""
 
   available_tags: Optional[list[ForumTag]]
@@ -44,7 +45,7 @@ class Channel(BaseObject):
   default_thread_rate_limit_per_user: Optional[int]
   """The initial :attr:`~.rate_limit_per_user` to set on newly created threads in a channel. This field is copied to the thread at creation time and does not live update"""
 
-  flags: Optional[ChannelFlag]
+  flags: Optional[ChannelFlags]
   """Channel flags combined as a bitfield"""
 
   guild_id: Optional[Snowflake]
@@ -90,7 +91,7 @@ class Channel(BaseObject):
   parent_id: Optional[Nullable[Snowflake]]
   """For guild channels: ID of the parent category for a channel (each parent category can contain up to 50 channels), for threads: ID of the text channel this thread was created"""
 
-  permissions: Optional[PermissionFlag]
+  permissions: Optional[PermissionFlags]
   """Computed permissions for the invoking user in the channel, including overwrites, only included when part of the ``resolved`` data received on an interaction. This does not include implicit permissions, which may need to be checked separately"""
 
   permission_overwrites: Optional[list[PermissionOverwrite]]

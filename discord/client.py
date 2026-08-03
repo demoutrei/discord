@@ -2,7 +2,7 @@ from ._http import HTTP
 from ._logging import Logger
 from .events import EventManager
 from .gateway import DiscordWebSocket
-from .flags import GatewayIntent
+from .flags import GatewayIntents
 from .utils import MISSING, Nullable, Optional
 from aiohttp import ClientSession
 from collections.abc import Coroutine, Callable
@@ -23,15 +23,15 @@ class Client:
   :meta private:
   """
 
-  def __new__(cls: type[Self], *, intents: GatewayIntent) -> Self:
+  def __new__(cls: type[Self], *, intents: GatewayIntents) -> Self:
     if not cls.__instance:
-      if not isinstance(intents, GatewayIntent):
-        raise TypeError(f"intents: Must be an instance of {GatewayIntent}; not {intents.__class__}")
+      if not isinstance(intents, GatewayIntents):
+        raise TypeError(f"intents: Must be an instance of {GatewayIntents}; not {intents.__class__}")
       instance: Self = super().__new__(cls)
       instance.__event_loop: Optional[asyncio.AbstractEventLoop] = MISSING
       instance.__event_manager: EventManager = EventManager(instance)
       instance.__http: HTTP = HTTP(instance)
-      instance.__intents: GatewayIntent = intents
+      instance.__intents: GatewayIntents = intents
       instance.__session: Nullable[ClientSession] = None
       instance.__socket: Nullable[DiscordWebSocket] = None
       instance.__token: Optional[str] = environ.get("APPLICATION_TOKEN")
@@ -101,7 +101,7 @@ class Client:
     return decorator
 
   @property
-  def intents(self) -> GatewayIntent:
+  def intents(self) -> GatewayIntents:
     """Set of Gateway intents to associate with the client."""
     return self.__intents
 

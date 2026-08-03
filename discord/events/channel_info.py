@@ -1,9 +1,10 @@
+from .._dataclass import dataclass
 from ..snowflake import Snowflake
 from ..objects import ChannelInfoChannel
-from ._base import DispatchEvent
 
 
-class ChannelInfoEvent(DispatchEvent):
+@dataclass
+class ChannelInfoEvent:
   channels: list[ChannelInfoChannel]
   """Ephemeral data for channels in the guild."""
   

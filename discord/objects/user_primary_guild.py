@@ -1,9 +1,10 @@
+from .._dataclass import dataclass
 from ..snowflake import Snowflake
 from ..utils import Nullable
-from ._base import BaseObject
 
 
-class UserPrimaryGuild(BaseObject):
+@dataclass
+class UserPrimaryGuild:
   badge: Nullable[str]
   """The server tag badge hash"""
   

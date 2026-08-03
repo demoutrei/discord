@@ -1,8 +1,8 @@
+from .._dataclass import dataclass
 from ..enums import DefaultMessageNotificationLevel, ExplicitContentFilterLevel, GuildAgeRestrictionLevel, GuildFeature, Locale, MFALevel, PremiumTier, VerificationLevel
-from ..flags import PermissionFlag, SystemChannelFlag
+from ..flags import PermissionFlags, SystemChannelFlags
 from ..snowflake import Snowflake
 from ..utils import Nullable, Optional
-from ._base import BaseObject
 from .emoji import Emoji
 from .incidents_data import IncidentsData
 from .role import Role
@@ -10,7 +10,8 @@ from .sticker import Sticker
 from .welcome_screen import WelcomeScreen
 
 
-class Guild(BaseObject):
+@dataclass
+class Guild:
   """Represents an isolated collection of users and channels, and are often referred to as "servers" in the UI."""
 
   afk_channel_id: Nullable[Snowflake]
@@ -92,7 +93,7 @@ class Guild(BaseObject):
      This field is only sent when using the :meth:`~discord._http.HTTP.get_current_user_guilds` endpoint and are relative to the requested user.
   """
 
-  permissions: Optional[PermissionFlag]
+  permissions: Optional[PermissionFlags]
   """Total permissiosn for the user in the guild (excludes overwrites and implicit permissions).
 
   .. note::
@@ -136,7 +137,7 @@ class Guild(BaseObject):
   stickers: Optional[list[Sticker]]
   """Custom guild stickers"""
 
-  system_channel_flags: SystemChannelFlag
+  system_channel_flags: SystemChannelFlags
   """System channel flags"""
 
   system_channel_id: Nullable[Snowflake]

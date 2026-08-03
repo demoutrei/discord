@@ -1,12 +1,13 @@
-from ..flags import PermissionFlag, RoleFlag
+from .._dataclass import dataclass
+from ..flags import PermissionFlags, RoleFlags
 from ..snowflake import Snowflake
 from ..utils import Nullable, Optional
-from ._base import BaseObject
 from .role_colors import RoleColors
 from .role_tags import RoleTags
 
 
-class Role(BaseObject):
+@dataclass
+class Role:
   """Roles represent a set of permissions attached to a group of users."""
 
   color: int
@@ -19,7 +20,7 @@ class Role(BaseObject):
   colors: RoleColors
   """The role's colors"""
 
-  flags: RoleFlag
+  flags: RoleFlags
   """Role flags combined as a bitfield"""
 
   hoist: bool
@@ -40,7 +41,7 @@ class Role(BaseObject):
   name: str
   """Role name"""
 
-  permissions: PermissionFlag
+  permissions: PermissionFlags
   """Permission bit set"""
 
   position: int

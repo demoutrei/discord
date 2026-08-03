@@ -1,6 +1,6 @@
 [project]
 name = "demoutrei.discord"
-version = "26.1.8"
+version = "26.1.9"
 dependencies = ["aiohttp", "python-dotenv"]
 
 

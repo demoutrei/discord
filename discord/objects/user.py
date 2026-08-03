@@ -1,14 +1,15 @@
+from .._dataclass import dataclass
 from ..enums import PremiumType
-from ..flags import UserFlag
+from ..flags import UserFlags
 from ..snowflake import Snowflake
 from ..utils import Nullable, Optional
-from ._base import BaseObject
 from .avatar_decoration_data import AvatarDecorationData
 from .collectible import Collectible
 from .user_primary_guild import UserPrimaryGuild
 
 
-class User(BaseObject):
+@dataclass
+class User:
   """Represents a Discord user"""
   
   accent_color: Optional[Nullable[int]]
@@ -35,7 +36,7 @@ class User(BaseObject):
   email: Optional[Nullable[str]]
   """The user's email"""
   
-  flags: Optional[UserFlag]
+  flags: Optional[UserFlags]
   """The flags on a user's account"""
   
   global_name: Nullable[str]
@@ -56,7 +57,7 @@ class User(BaseObject):
   primary_guild: Optional[Nullable[UserPrimaryGuild]]
   """The user's primary guild"""
 
-  public_flags: Optional[UserFlag]
+  public_flags: Optional[UserFlags]
   """The public flags on a user's account"""
 
   system: Optional[bool]

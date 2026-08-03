@@ -2,7 +2,20 @@ from enum import IntFlag, unique
 
 
 @unique
-class ApplicationFlag(IntFlag):
+class ActivityFlags(IntFlag):
+  INSTANCE: int = 1 << 0
+  JOIN: int = 1 << 1
+  SPECTATE: int = 1 << 2
+  JOIN_REQUEST: int = 1 << 3
+  SYNC: int = 1 << 4
+  PLAY: int = 1 << 5
+  PARTY_PRIVACY_FRIENDS: int = 1 << 6
+  PARTY_PRIVACY_VOICE_CHANNEL: int = 1 << 7
+  EMBEDDED: int = 1 << 8
+
+
+@unique
+class ApplicationFlags(IntFlag):
   APPLICATION_AUTO_MODERATION_RULE_CREATE_BADGE: int = 1 << 6
   """Indicates if an app uses the Auto Moderation API"""
 
@@ -35,7 +48,7 @@ class ApplicationFlag(IntFlag):
 
 
 @unique
-class ChannelFlag(IntFlag):
+class ChannelFlags(IntFlag):
    PINNED: int = 1 << 1
    """This thread is pinned to the top of its parent :attr:`~discord.enums.ChannelType.GUILD_FORUM` or :attr:`~discord.enums.ChannelType.GUILD_MEDIA` channel"""
 
@@ -50,7 +63,7 @@ class ChannelFlag(IntFlag):
 
 
 @unique
-class GatewayIntent(IntFlag):
+class GatewayIntents(IntFlag):
   """Represents a set of Gateway intents.
 
   .. note::
@@ -213,7 +226,13 @@ class GatewayIntent(IntFlag):
 
 
 @unique
-class GuildMemberFlag(IntFlag):
+class GuildInviteFlags(IntFlag):
+  IS_GUEST_INVITE: int = 1 << 0
+  """This invite is a guest invite for a voice channel."""
+
+
+@unique
+class GuildMemberFlags(IntFlag):
   DID_REJOIN: int = 1 << 0
   """Member has left and rejoined the guild.
 
@@ -279,7 +298,7 @@ class GuildMemberFlag(IntFlag):
 
 
 @unique
-class PermissionFlag(IntFlag):
+class PermissionFlags(IntFlag):
   """Represents a set of permission flags"""
 
   CREATE_INSTANT_INVITE: int = 1 << 0
@@ -484,13 +503,13 @@ class PermissionFlag(IntFlag):
 
 
 @unique
-class RoleFlag(IntFlag):
+class RoleFlags(IntFlag):
    IN_PROMPT: int = 1 << 0
    """Role can be selected by members in an onboarding prompt"""
 
 
 @unique
-class SystemChannelFlag(IntFlag):
+class SystemChannelFlags(IntFlag):
    SUPPRESS_JOIN_NOTIFICATIONS: int = 1 << 0
    """Suppress member join notifications"""
 
@@ -511,7 +530,7 @@ class SystemChannelFlag(IntFlag):
 
 
 @unique
-class UserFlag(IntFlag):
+class UserFlags(IntFlag):
    STAFF: int = 1 << 0
    """Discord Employee"""
 

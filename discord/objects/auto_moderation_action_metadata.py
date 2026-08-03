@@ -1,9 +1,10 @@
+from .._dataclass import dataclass
 from ..snowflake import Snowflake
 from ..utils import Optional
-from ._base import BaseObject
 
 
-class AutoModerationActionMetadata(BaseObject):
+@dataclass
+class AutoModerationActionMetadata:
   """Additional data used when an action is executed. Different fields are relevant based on the value of :attr:`action type <discord.objects.AutoModerationAction.type>`."""
 
   channel_id: Snowflake

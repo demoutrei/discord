@@ -1,10 +1,11 @@
+from .._dataclass import dataclass
 from ..enums import EntitlementType
 from ..snowflake import Snowflake
 from ..utils import ISO8601Timestamp, Nullable, Optional
-from ._base import BaseObject
 
 
-class Entitlement(BaseObject):
+@dataclass
+class Entitlement:
   application_id: Snowflake
   """ID of the parent application."""
   

@@ -1,8 +1,9 @@
+from .._dataclass import dataclass
 from ..utils import ISO8601Timestamp, Optional
-from ._base import BaseObject
 
 
-class ThreadMetadata(BaseObject):
+@dataclass
+class ThreadMetadata:
   """Contains number of thread-specific channel fields that are not needed by other channel types."""
 
   archive_timestamp: ISO8601Timestamp

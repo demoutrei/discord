@@ -1,13 +1,14 @@
+from .._dataclass import dataclass
 from ..objects import (
   Application,
   UnavailableGuild,
   User
 )
 from ..utils import Optional
-from ._base import DispatchEvent
 
 
-class ReadyEvent(DispatchEvent):
+@dataclass
+class ReadyEvent:
   application: Application
   """Contains :attr:`~discord.objects.Application.id` and :attr:`~discord.objects.Application.flags`"""
   

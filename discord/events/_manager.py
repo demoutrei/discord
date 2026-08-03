@@ -32,7 +32,5 @@ class EventManager:
     self.__listeners[event_cls].append(callback)
 
   async def dispatch(self, event: DispatchEvent) -> None:
-    if not isinstance(event, DispatchEvent):
-      raise TypeError(f"event: Must be an instance of {DispatchEvent}; not {event.__class__}")
     if event.__class__ not in self.__listeners: return
     await asyncio.gather(*[listener(event) for listener in self.__listeners[event.__class__]])
