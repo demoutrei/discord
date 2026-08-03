@@ -88,6 +88,9 @@ Enumerations
       SCHEDULED --> CANCELED
 
 
+.. autoclass:: discord.enums.IntegrationExpireBehavior()
+
+
 .. autoclass:: discord.enums.Locale()
 
 

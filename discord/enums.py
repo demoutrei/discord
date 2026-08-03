@@ -748,6 +748,12 @@ class GuildScheduledEventStatus(IntEnum):
 
 
 @unique
+class IntegrationExpireBehavior(IntEnum):
+  REMOVE_ROLE: int = 0
+  KICK: int = 1
+
+
+@unique
 class Locale(StrEnum):
   BULGARIAN: str = "bg"
   CHINESE_CHINA: str = "zh-CN"
