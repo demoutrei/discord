@@ -5,6 +5,9 @@ Enumerations
 .. autoclass:: discord.flags.ActivityFlags()
 
 
+.. autoclass:: discord.enums.ActivityType()
+
+
 .. autoclass:: discord.enums.ApplicationCommandPermissionType()
 
 

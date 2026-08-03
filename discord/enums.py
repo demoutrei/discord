@@ -2,6 +2,16 @@ from enum import auto, IntEnum, StrEnum, unique
 
 
 @unique
+class ActivityType(IntEnum):
+  PLAYING: int = 0
+  STREAMING: int = 1
+  LISTENING: int = 2
+  WATCHING: int = 3
+  CUSTOM: int = 4
+  COMPETING: int = 5
+
+
+@unique
 class ApplicationCommandPermissionType(IntEnum):
   ROLE: int = 1
   USER: int = 2
@@ -927,14 +937,14 @@ class StageInstancePrivacyLevel(IntEnum):
 
 
 @unique
-class StatusDisplayType(StrEnum):
-  NAME: str = "0"
+class StatusDisplayType(IntEnum):
+  NAME: int = 0
   """\"Listening to Spotify\"."""
 
-  STATE: str = "1"
+  STATE: int = 1
   """\"Listening to Rick Astley\""""
 
-  DETAILS: str = "2"
+  DETAILS: int = 2
   """\"Listening to Never Gonna Give You Up\""""
 
 
