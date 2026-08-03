@@ -68,6 +68,7 @@ v26.1.9-dev
 - Added :class:`~discord.objects.ActivitySecrets` object.
 - Added :class:`~discord.objects.ActivityAssets` object.
 - Added :class:`~discord.objects.ActivityParty` object.
+- Added :class:`~discord.enums.StatusDisplayType` enum.
 
 
 **Documentation Changes**

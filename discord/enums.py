@@ -927,6 +927,18 @@ class StageInstancePrivacyLevel(IntEnum):
 
 
 @unique
+class StatusDisplayType(StrEnum):
+  NAME: str = "0"
+  """\"Listening to Spotify\"."""
+
+  STATE: str = "1"
+  """\"Listening to Rick Astley\""""
+
+  DETAILS: str = "2"
+  """\"Listening to Never Gonna Give You Up\""""
+
+
+@unique
 class StickerFormatType(IntEnum):
   PNG: int = 1
   APNG: int = 2

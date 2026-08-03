@@ -139,6 +139,9 @@ Enumerations
 .. autoclass:: discord.enums.StageInstancePrivacyLevel()
 
 
+.. autoclass:: discord.enums.StatusDisplayType()
+
+
 .. autoclass:: discord.enums.StickerFormatType()
 
 
