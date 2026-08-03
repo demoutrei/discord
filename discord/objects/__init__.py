@@ -26,6 +26,7 @@ from .guild_scheduled_event_recurrence_rule_n_weekday import GuildScheduledEvent
 from .incidents_data import IncidentsData
 from .install_params import InstallParams
 from .integration import Integration
+from .integration_account import IntegrationAccount
 from .integration_application import IntegrationApplication
 from .nameplate import Nameplate
 from .onboarding_prompt import OnboardingPrompt
