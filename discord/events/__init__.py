@@ -11,6 +11,7 @@ from .guild_emojis_update import GuildEmojisUpdateEvent
 from .guild_integrations_update import GuildIntegrationsUpdateEvent
 from .guild_member_add import GuildMemberAddEvent
 from .guild_member_remove import GuildMemberRemoveEvent
+from .guild_member_update import GuildMemberUpdateEvent
 from .guild_stickers_update import GuildStickersUpdateEvent
 from .ready import ReadyEvent
 from .thread_create import ThreadCreateEvent
