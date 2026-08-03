@@ -140,6 +140,9 @@ This event can be received in three different scenarios:
 .. note::
     During an outage, the guild object in scenarios 1 and 3 may be marked as unavailable.
 
+.. warning::
+    If your bot does not have the :attr:`~discord.flags.GatewayIntent.GUILD_PRESENCES`, or if the guild has over 75k members, members and presences returned in this event will only contain your bot and users in voice channels.
+
 .. autoclass:: discord.events.GuildCreateEvent()
 
 

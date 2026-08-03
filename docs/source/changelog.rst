@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-v26.1.9-dev33
+v26.1.9-dev34
 -------------
 
 **Added Changes**
@@ -41,6 +41,7 @@ v26.1.9-dev33
 - Added :class:`~discord.enums.InviteTargetType` enum.
 - Added :class:`~discord.enums.InviteType` enum.
 - Added :class:`~discord.objects.AuditLogChange` object.
+- Added :class:`~discord.events.GuildCreateEvent` event.
 
 
 **Documentation Changes**
