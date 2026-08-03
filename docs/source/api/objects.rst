@@ -8,6 +8,9 @@ Discord Objects
 .. autoclass:: discord.objects.ActivityButton()
 
 
+.. autoclass:: discord.objects.ActivitySecrets()
+
+
 .. autoclass:: discord.objects.Application()
 
 

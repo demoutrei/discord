@@ -1,5 +1,6 @@
 from .activity import Activity
 from .activity_button import ActivityButton
+from .activity_secrets import ActivitySecrets
 from .application import Application
 from .application_command_permissions import ApplicationCommandPermissions
 from .application_integration_type_configuration import ApplicationIntegrationTypeConfiguration
