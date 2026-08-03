@@ -9,6 +9,7 @@ from .guild_ban_remove import GuildBanRemoveEvent
 from .guild_create import GuildCreateEvent
 from .guild_emojis_update import GuildEmojisUpdateEvent
 from .guild_integrations_update import GuildIntegrationsUpdateEvent
+from .guild_member_add import GuildMemberAddEvent
 from .guild_stickers_update import GuildStickersUpdateEvent
 from .ready import ReadyEvent
 from .thread_create import ThreadCreateEvent
