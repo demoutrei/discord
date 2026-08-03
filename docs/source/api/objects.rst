@@ -26,6 +26,9 @@ To use an external iamge via media proxy, specify the URL as the field's value w
 .. autoclass:: discord.objects.ActivityButton()
 
 
+.. autoclass:: discord.objects.ActivityParty()
+
+
 .. autoclass:: discord.objects.ActivitySecrets()
 
 
