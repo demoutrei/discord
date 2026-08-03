@@ -121,6 +121,9 @@ Enumerations
 .. autoclass:: discord.flags.RoleFlag()
 
 
+.. autoclass:: discord.enums.StageInstancePrivacyLevel()
+
+
 .. autoclass:: discord.enums.StickerFormatType()
 
 

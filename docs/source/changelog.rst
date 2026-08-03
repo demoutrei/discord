@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-v26.1.9-dev20
+v26.1.9-dev21
 -------------
 
 **Added Changes**
@@ -28,6 +28,7 @@ v26.1.9-dev20
 - Added :class:`~discord.objects.OnboardingPromptOption` object.
 - Added :class:`~discord.enums.OnboardingPromptType` enum.
 - Added :class:`~discord.objects.StageInstance` object.
+- Added :class:`~discord.enums.StageInstancePrivacyLevel` enum.
 
 
 **Documentation Changes**

@@ -898,6 +898,16 @@ class PremiumType(IntEnum):
 
 
 @unique
+class StageInstancePrivacyLevel(IntEnum):
+  PUBLIC: int = 1
+  """The Stage instance is visible publicly (deprecated)."""
+
+
+  GUILD_ONLY: int = 2
+  """The Stage isntance is visible to only guild members."""
+
+
+@unique
 class StickerFormatType(IntEnum):
   PNG: int = 1
   APNG: int = 2
