@@ -46,6 +46,16 @@ v26.1.9-dev
 - Added :class:`~discord.events.GuildBanAddEvent` event.
 - Added :class:`~discord.events.GuildBanRemoveEvent` event.
 - Added :class:`~discord.events.GuildEmojisUpdateEvent` event.
+- Added :class:`~discord.events.GuildStickersUpdateEvent` event.
+- Added :class:`~discord.events.IntegrationsUpdateEvent` event.
+- Added :class:`~discord.events.GuildMemberAddEvent` event.
+- Added :class:`~discord.events.GuildMemberRemoveEvent` event.
+- Added :class:`~discord.events.GuildMemberUpdateEvent` event.
+- Added :class:`~discord.events.GuildMembersChunkEvent` event.
+- Added :class:`~discord.events.GuildRoleCreateEvent` event.
+- Added :class:`~discord.events.GuildRoleUpdateEvent` event.
+- Added :class:`~discord.events.GuildRoleDeleteEvent` event.
+- Added :class:`~discord.events.GuildScheduledEventUserAddEvent` event.
 
 
 **Documentation Changes**
