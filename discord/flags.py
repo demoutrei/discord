@@ -2,6 +2,19 @@ from enum import IntFlag, unique
 
 
 @unique
+class ActivityFlags(IntFlag):
+  INSTANCE: int = 1 << 0
+  JOIN: int = 1 << 1
+  SPECTATE: int = 1 << 2
+  JOIN_REQUEST: int = 1 << 3
+  SYNC: int = 1 << 4
+  PLAY: int = 1 << 5
+  PARTY_PRIVACY_FRIENDS: int = 1 << 6
+  PARTY_PRIVACY_VOICE_CHANNEL: int = 1 << 7
+  EMBEDDED: int = 1 << 8
+
+
+@unique
 class ApplicationFlag(IntFlag):
   APPLICATION_AUTO_MODERATION_RULE_CREATE_BADGE: int = 1 << 6
   """Indicates if an app uses the Auto Moderation API"""

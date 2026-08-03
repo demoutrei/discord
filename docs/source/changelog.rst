@@ -64,6 +64,7 @@ v26.1.9-dev
 - Added :class:`~discord.objects.ClientStatus` object.
 - Added :class:`~discord.objects.Activity` object.
 - Added :class:`~discord.objects.ActivityButton` object.
+- Added :class:`~discord.flags.ActivityFlags` flag.
 
 
 **Documentation Changes**
