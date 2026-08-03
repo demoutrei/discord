@@ -3,6 +3,7 @@ from .activity_assets import ActivityAssets
 from .activity_button import ActivityButton
 from .activity_party import ActivityParty
 from .activity_secrets import ActivitySecrets
+from .activity_timestamps import ActivityTimestamps
 from .application import Application
 from .application_command_permissions import ApplicationCommandPermissions
 from .application_integration_type_configuration import ApplicationIntegrationTypeConfiguration

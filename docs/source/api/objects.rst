@@ -32,6 +32,9 @@ To use an external iamge via media proxy, specify the URL as the field's value w
 .. autoclass:: discord.objects.ActivitySecrets()
 
 
+.. autoclass:: discord.objects.ActivityTimestamps()
+
+
 .. autoclass:: discord.objects.Application()
 
 

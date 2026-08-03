@@ -70,6 +70,7 @@ v26.1.9-dev
 - Added :class:`~discord.objects.ActivityParty` object.
 - Added :class:`~discord.enums.StatusDisplayType` enum.
 - Added :class:`~discord.enums.ActivityType` enum.
+- Added :class:`~discord.objects.ActivityTimestamps` object.
 
 
 **Documentation Changes**
