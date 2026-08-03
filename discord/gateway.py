@@ -278,8 +278,8 @@ class DiscordWebSocket:
       raise TypeError(f"event: Must be an instance of {GatewayEvent}; not {event.__class__}")
     if event.op is not OpCode.DISPATCH:
       raise ValueError(f"event.op: Must be {OpCode.DISPATCH}; not {event.op}")
-    event_cls: Nullable[type[DispatchEvent]] = DispatchEvent[event.t]
-    if event_cls is not None:
+    event_cls: Optional[type[DispatchEvent]] = DispatchEvent[event.t]
+    if event_cls:
       dispatch_event: DispatchEvent = event_cls(**event.d)
       if event.t.strip().upper() == "READY":
         self.__resume_gateway_url: str = dispatch_event.resume_gateway_url
