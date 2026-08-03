@@ -171,6 +171,9 @@ The following table shows field requirements based on current entity type.
 .. autoclass:: discord.objects.InstallParams()
 
 
+.. autoclass:: discord.objects.Integration()
+
+
 .. autoclass:: discord.objects.Nameplate()
 
 
