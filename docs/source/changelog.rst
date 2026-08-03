@@ -71,6 +71,7 @@ v26.1.9-dev
 - Added :class:`~discord.enums.StatusDisplayType` enum.
 - Added :class:`~discord.enums.ActivityType` enum.
 - Added :class:`~discord.objects.ActivityTimestamps` object.
+- Added :class:`~discord.objects.VoiceState` object.
 
 
 **Documentation Changes**

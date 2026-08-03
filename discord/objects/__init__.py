@@ -56,6 +56,7 @@ from .thread_metadata import ThreadMetadata
 from .unavailable_guild import UnavailableGuild
 from .user import User
 from .user_primary_guild import UserPrimaryGuild
+from .voice_state import VoiceState
 from .webhook import Webhook
 from .welcome_screen import WelcomeScreen
 from .welcome_screen_channel import WelcomeScreenChannel
