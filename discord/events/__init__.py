@@ -4,6 +4,7 @@ from .auto_moderation_action_execution import AutoModerationActionExecutionEvent
 from .channel_info import ChannelInfoEvent
 from .channel_pins_update import ChannelPinsUpdateEvent
 from .guild_create import GuildCreateEvent
+from .guild_audit_log_entry_create import GuildAuditLogEntryCreateEvent
 from .ready import ReadyEvent
 from .thread_create import ThreadCreateEvent
 from .thread_list_sync import ThreadListSyncEvent
