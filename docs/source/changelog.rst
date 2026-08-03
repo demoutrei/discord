@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-v26.1.9-dev22
+v26.1.9-dev23
 -------------
 
 **Added Changes**
@@ -30,6 +30,7 @@ v26.1.9-dev22
 - Added :class:`~discord.objects.StageInstance` object.
 - Added :class:`~discord.enums.StageInstancePrivacyLevel` enum.
 - Added :class:`~discord.objects.Integration` object.
+- Added :class:`~discord.objects.IntegrationApplication` object.
 
 
 **Documentation Changes**
