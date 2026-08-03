@@ -97,6 +97,9 @@ Enumerations
 .. autoclass:: discord.enums.InviteTargetType()
 
 
+.. autoclass:: discord.enums.InviteType()
+
+
 .. autoclass:: discord.enums.Locale()
 
 

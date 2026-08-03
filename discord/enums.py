@@ -760,6 +760,13 @@ class InviteTargetType(IntEnum):
 
 
 @unique
+class InviteType(IntEnum):
+  GUILD: int = 0
+  GROUP_DM: int = 1
+  FRIEND: int = 2
+
+
+@unique
 class Locale(StrEnum):
   BULGARIAN: str = "bg"
   CHINESE_CHINA: str = "zh-CN"
