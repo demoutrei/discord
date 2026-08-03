@@ -1,7 +1,7 @@
 from .._dataclass import dataclass
 from ..enums import OnboardingMode
 from ..snowflake import Snowflake
-from ..onboarding_prompt import OnboardingPrompt
+from .onboarding_prompt import OnboardingPrompt
 
 
 @dataclass

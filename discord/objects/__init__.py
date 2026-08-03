@@ -1,4 +1,3 @@
-from ._base import BaseObject
 from .application import Application
 from .application_command_permissions import ApplicationCommandPermissions
 from .application_integration_type_configuration import ApplicationIntegrationTypeConfiguration
