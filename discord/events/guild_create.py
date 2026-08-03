@@ -1,5 +1,5 @@
 from ..objects import Channel, Guild, GuildMember, GuildScheduledEvent, SoundboardSound, StageInstance, UnavailableGuild, VoiceState
-from ..utils import ISO8601Timestamp
+from ..utils import ISO8601Timestamp, Optional
 from .presence_update import PresenceUpdateEvent
 
 

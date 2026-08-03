@@ -1,8 +1,11 @@
-from ..events import PresenceUpdateEvent
 from .._dataclass import dataclass
 from ..snowflake import Snowflake
 from ..utils import ISO8601Timestamp, Nullable, Optional
 from .guild_member import GuildMember
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+  from ..events import PresenceUpdateEvent
 
 
 @dataclass
@@ -29,7 +32,7 @@ class ThreadMember:
       Only present when ``with_member`` is set to ``True`` when calling :meth:`~discord._http.HTTP.list_thread_members` or :meth:`~discord._http.HTTP.get_thread_member`.
   """
 
-  presence: Optional[Nullable[PresenceUpdateEvent]]
+  presence: Optional[Nullable["PresenceUpdateEvent"]]
 
   user_id: Optional[Snowflake]
   """ID of the user.

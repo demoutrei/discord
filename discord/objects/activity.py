@@ -39,7 +39,7 @@ class Activity:
   """Emoji used for a custom status."""
 
   flags: Optional[ActivityFlags]
-  """Activity flags ``OR``d together, describes what the payload includes."""
+  """Activity flags ``OR`` together, describes what the payload includes."""
 
   instance: Optional[bool]
   """Whether or not the activity is an instanced game session."""

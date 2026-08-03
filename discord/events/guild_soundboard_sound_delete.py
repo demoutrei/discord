@@ -1,5 +1,5 @@
 from .._dataclass import dataclass
-from ..snowflake import snowflake
+from ..snowflake import Snowflake
 
 
 @dataclass
