@@ -62,6 +62,7 @@ v26.1.9-dev
 - Added :class:`~discord.events.SoundboardSoundsEvent` event.
 - Added :class:`~discord.events.PresenceUpdateEvent` event.
 - Added :class:`~discord.objects.ClientStatus` object.
+- Added :class:`~discord.objects.Activity` object.
 
 
 **Documentation Changes**

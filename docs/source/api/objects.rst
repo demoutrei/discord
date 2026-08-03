@@ -2,6 +2,9 @@ Discord Objects
 ===============
 
 
+.. autoclass:: discord.objects.Activity()
+
+
 .. autoclass:: discord.objects.Application()
 
 
