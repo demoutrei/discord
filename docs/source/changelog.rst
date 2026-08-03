@@ -58,6 +58,7 @@ v26.1.9-dev
 - Added :class:`~discord.events.GuildScheduledEventUserAddEvent` event.
 - Added :class:`~discord.events.GuildScheduledEVentUserRemoveEvent` event.
 - Added :class:`~discord.events.GuildSoundboardSoundDeleteEvent` event.
+- Added :class:`~discord.events.GuildSoundboardSoundsUpdateEvent` event.
 
 
 **Documentation Changes**
