@@ -17,6 +17,7 @@ from .guild_role_create import GuildRoleCreateEvent
 from .guild_role_delete import GuildRoleDeleteEvent
 from .guild_role_update import GuildRoleUpdateEvent
 from .guild_scheduled_event_user_add import GuildScheduledEventUserAddEvent
+from .guild_scheduled_event_user_remove import GuildScheduledEventUserRemoveEvent
 from .guild_stickers_update import GuildStickersUpdateEvent
 from .ready import ReadyEvent
 from .thread_create import ThreadCreateEvent

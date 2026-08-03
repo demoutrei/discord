@@ -56,6 +56,7 @@ v26.1.9-dev
 - Added :class:`~discord.events.GuildRoleUpdateEvent` event.
 - Added :class:`~discord.events.GuildRoleDeleteEvent` event.
 - Added :class:`~discord.events.GuildScheduledEventUserAddEvent` event.
+- Added :class:`~dsicord.events.GuildScheduledEVentUserRemoveEvent` event.
 
 
 **Documentation Changes**
