@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-v26.1.9-dev26
+v26.1.9-dev27
 -------------
 
 **Added Changes**
@@ -34,6 +34,7 @@ v26.1.9-dev26
 - Added :class:`~discord.objects.IntegrationAccount` object.
 - Added :class:`~discord.enums.IntegrationExpireBehavior` enum.
 - Added :class:`~discord.objects.Webhook` object.
+- Added :class:`~discord.enums.WebhookType` enum.
 
 
 **Documentation Changes**

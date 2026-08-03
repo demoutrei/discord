@@ -149,3 +149,6 @@ Enumerations
 
 
 .. autoclass:: discord.enums.WebhookEventType()
+
+
+.. autoclass:: discord.enums.WebhookType()

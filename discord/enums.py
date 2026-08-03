@@ -1009,3 +1009,20 @@ class WebhookEventType(StrEnum):
 
   GAME_DIRECT_MESSAGE_DELETE: str = "GAME_DIRECT_MESSAGE_DELETE"
   """Sent when a direct message is deleted during an active Social SDK session"""
+
+
+@unique
+class WebhookType(IntEnum):
+  """
+  .. tip::
+      These types don't include webhook events, which are outgoing webhooks sent to your app by Discord.
+  """
+
+  INCOMING: int = 1
+  """Incoming Webhooks can post messages to channels with a generated token."""
+
+  CHANNEL_FOLLOWER: int = 2
+  """Channel Follower Webhooks are internal webhooks used with Channel Following to post new messages into channels."""
+
+  APPLICATION: int = 3
+  """Application webhooks are webhooks used with Interactions."""
