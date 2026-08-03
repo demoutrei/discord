@@ -61,6 +61,7 @@ v26.1.9-dev
 - Added :class:`~discord.events.GuildSoundboardSoundsUpdateEvent` event.
 - Added :class:`~discord.events.SoundboardSoundsEvent` event.
 - Added :class:`~discord.events.PresenceUpdateEvent` event.
+- Added :class:`~discord.objects.ClientStatus` object.
 
 
 **Documentation Changes**

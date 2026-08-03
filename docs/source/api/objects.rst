@@ -61,6 +61,9 @@ For most objects, the change keys may be any field on the changed object. The fo
 .. autoclass:: discord.objects.ChannelInfoChannel()
 
 
+.. autoclass:: discord.objects.ClientStatus()
+
+
 .. autoclass:: discord.objects.Collectible()
 
 
