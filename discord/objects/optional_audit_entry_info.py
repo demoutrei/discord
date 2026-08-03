@@ -80,5 +80,5 @@ class OptionalAuditEntryInfo:
   type: Optional[str]
   """Type of overwritten entity - role (``"0"``) or member (``"1"``).
 
-  **Event types**: :attr:`~discord.enums.AuditLogEvent.CHANNEL_OVERWRITE_CREATE`` & :attr:`~discord.enums.AuditLogEvent.CHANNEL_OVERWRITE_UPDATE` & :attr:`~discord.enums.AuditLogEvent.CHANNEL_OVERWRITE_DELETE`
+  **Event types**: :attr:`~discord.enums.AuditLogEvent.CHANNEL_OVERWRITE_CREATE` & :attr:`~discord.enums.AuditLogEvent.CHANNEL_OVERWRITE_UPDATE` & :attr:`~discord.enums.AuditLogEvent.CHANNEL_OVERWRITE_DELETE`
   """

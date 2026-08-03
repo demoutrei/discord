@@ -7,8 +7,7 @@ Discord Objects
 
 .. autoclass:: discord.objects.ActivityAssets()
 
-Activity Asset Image
---------------------
+**Activity Asset Image**
 
 Activity asset images are arbitrary strings which usually contain snowflake IDs or prefixed image IDs. Treat data within this field carefully, as it is user-specifiable and not sanitized.
 
@@ -49,8 +48,7 @@ To use an external iamge via media proxy, specify the URL as the field's value w
 
 .. autoclass:: discord.objects.AuditLogChange()
 
-Audit Log Change Exceptions
----------------------------
+**Audit Log Change Exceptions**
 
 For most objects, the change keys may be any field on the changed object. The following table details the execptions to this pattern.
 
@@ -129,8 +127,7 @@ For most objects, the change keys may be any field on the changed object. The fo
 
 .. autoclass:: discord.objects.GuildScheduledEvent()
 
-Field Requirements By Entity Type
----------------------------------
+**Field Requirements By Entity Type**
 
 The following table shows field requirements based on current entity type.
 
@@ -140,15 +137,15 @@ The following table shows field requirements based on current entity type.
 
 ``-``: No strict requirements.
 
-+-------------------------------------------------------------+------------+-----------------+--------------------+
-| Entity Type                                                 | channel_id | entity_metadata | scheduled_end_time |
-+=============================================================+============+=================+====================+
-| ~discord.enums.GuildScheduledEventEntityType.STAGE_INSTANCE | value      | null            | -                  |
-+-------------------------------------------------------------+------------+-----------------+--------------------+
-| ~discord.enums.GuildScheduledEventEntityType.VOICE          | value      | null            | -                  |
-+-------------------------------------------------------------+------------+-----------------+--------------------+
-| ~discord.enums.GuildScheduledEventEntityType.EXTERNAL       | null       | value \*        | value              |
-+-------------------------------------------------------------+------------+-----------------+--------------------+
++----------------+------------+-----------------+--------------------+
+| Entity Type    | channel_id | entity_metadata | scheduled_end_time |
++================+============+=================+====================+
+| STAGE_INSTANCE | value      | null            | -                  |
++----------------+------------+-----------------+--------------------+
+| VOICE          | value      | null            | -                  |
++----------------+------------+-----------------+--------------------+
+| EXTERNAL       | null       | value \*        | value              |
++----------------+------------+-----------------+--------------------+
 
 \* :attr:`~discord.objects.GuildScheduledEvent.entity_metadata` with a non-null :attr:`~discord.objects.GuildScheduledEventEntityMetadata.location` must be provided.
 
