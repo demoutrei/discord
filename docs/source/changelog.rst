@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-v26.1.9-dev16
+v26.1.9-dev17
 -------------
 
 **Added Changes**
@@ -24,6 +24,7 @@ v26.1.9-dev16
 - Added :class:`~discord.enums.AuditLogEvent` enum.
 - Added :class:`~discord.objects.GuildOnboarding` object.
 - Added :class:`~discord.enums.OnboardingMode` enum.
+- Added :class:`~discord.objects.OnboardingPrompt` object.
 
 
 **Documentation Changes**
