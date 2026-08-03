@@ -198,6 +198,9 @@ The following table shows field requirements based on current entity type.
 .. autoclass:: discord.objects.SoundboardSound()
 
 
+.. autoclass:: discord.objects.StageInstance()
+
+
 .. autoclass:: discord.objects.Sticker()
 
 
