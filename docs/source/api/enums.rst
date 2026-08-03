@@ -59,6 +59,9 @@ Enumerations
 .. autoclass:: discord.enums.GuildFeature()
 
 
+.. autoclass:: discord.flags.GuildInviteFlags()
+
+
 .. autoclass:: discord.flags.GuildMemberFlag()
 
 

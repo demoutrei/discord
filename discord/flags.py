@@ -213,6 +213,12 @@ class GatewayIntent(IntFlag):
 
 
 @unique
+class GuildInviteFlags(IntFlag):
+  IS_GUEST_INVITE: int = 1 << 0
+  """This invite is a guest invite for a voice channel."""
+
+
+@unique
 class GuildMemberFlag(IntFlag):
   DID_REJOIN: int = 1 << 0
   """Member has left and rejoined the guild.
