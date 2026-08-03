@@ -5,6 +5,9 @@ Discord Objects
 .. autoclass:: discord.objects.Activity()
 
 
+.. autoclass:: discord.objects.ActivityButton()
+
+
 .. autoclass:: discord.objects.Application()
 
 
