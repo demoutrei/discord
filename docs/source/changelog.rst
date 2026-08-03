@@ -60,6 +60,7 @@ v26.1.9-dev
 - Added :class:`~discord.events.GuildSoundboardSoundDeleteEvent` event.
 - Added :class:`~discord.events.GuildSoundboardSoundsUpdateEvent` event.
 - Added :class:`~discord.events.SoundboardSoundsEvent` event.
+- Added :class:`~discord.events.PresenceUpdateEvent` event.
 
 
 **Documentation Changes**

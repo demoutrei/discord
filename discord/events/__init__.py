@@ -21,6 +21,7 @@ from .guild_scheduled_event_user_remove import GuildScheduledEventUserRemoveEven
 from .guild_soundboard_sound_delete import GuildSoundboardSoundDeleteEvent
 from .guild_soundboard_sounds_update import GuildSoundboardSoundsUpdateEvent
 from .guild_stickers_update import GuildStickersUpdateEvent
+from .presence_update import PresenceUpdateEvent
 from .ready import ReadyEvent
 from .soundboard_sounds import SoundboardSoundsEvent
 from .thread_create import ThreadCreateEvent

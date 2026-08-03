@@ -306,6 +306,20 @@ Received when a guild's stickers have been updated.
 Received when a guild is updated. The inner payload is a :class:`~discord.objects.Guild` object.
 
 
+``PRESENCE_UPDATE``
+~~~~~~~~~~~~~~~~~~~
+
+A user's presence is their current state on a guild. This event is sent when a user's presence or info, such as name or avatar, is updated.
+
+.. important::
+    If you are using Gateway Intents, you *must* specify the :attr:`~discord.flags.GatewayIntent.GUILD_PRESENCES` intent in order to receive the Presence Update events.
+
+.. important::
+    The user object within this event can be partial, the only field which must be sent is the :attr:`~.discord.objects.User.id`, everything else is optional. Along with this limitation, no fields are required, and the types of the fields are not validated. Your client should expect any combination of fields and types within this event.
+
+.. autoclass:: discord.events.PresenceUpdateEvent()
+
+
 ``READY``
 ~~~~~~~~~
 
