@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-v26.1.9-dev35
+v26.1.9-dev36
 -------------
 
 **Added Changes**
@@ -43,6 +43,7 @@ v26.1.9-dev35
 - Added :class:`~discord.objects.AuditLogChange` object.
 - Added :class:`~discord.events.GuildCreateEvent` event.
 - Added :class:`~discord.events.GuildAuditLogEntryCreateEvent` event.
+- Added :class:`~discord.events.GuildBanAddEvent` event.
 
 
 **Documentation Changes**
