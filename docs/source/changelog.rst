@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-v26.1.9-dev18
+v26.1.9-dev19
 -------------
 
 **Added Changes**
@@ -26,6 +26,7 @@ v26.1.9-dev18
 - Added :class:`~discord.enums.OnboardingMode` enum.
 - Added :class:`~discord.objects.OnboardingPrompt` object.
 - Added :class:`~discord.objects.OnboardingPromptOption` object.
+- Added :class:`~discord.enums.OnboardingPromptType` enum.
 
 
 **Documentation Changes**

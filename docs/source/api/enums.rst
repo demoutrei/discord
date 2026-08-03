@@ -103,6 +103,9 @@ Enumerations
 .. autoclass:: discord.enums.OnboardingMode()
 
 
+.. autoclass:: discord.enums.OnboardingPromptType()
+
+
 .. autoclass:: discord.enums.OpCode()
 
 

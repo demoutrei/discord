@@ -825,6 +825,12 @@ class OnboardingMode(IntEnum):
 
 
 @unique
+class OnboardingPromptType(IntEnum):
+  MULTIPLE_CHOICE: int = 0
+  DROPDOWN: int = 1
+
+
+@unique
 class OpCode(IntEnum):
   DISPATCH: int = 0
   """An event was dispatched."""
