@@ -3,6 +3,7 @@ from .application import Application
 from .application_command_permissions import ApplicationCommandPermissions
 from .application_integration_type_configuration import ApplicationIntegrationTypeConfiguration
 from .audit_log_entry import AuditLogEntry
+from .audit_log_change import AuditLogChange
 from .auto_moderation_action import AutoModerationAction
 from .auto_moderation_action_metadata import AutoModerationActionMetadata
 from .auto_moderation_rule import AutoModerationRule

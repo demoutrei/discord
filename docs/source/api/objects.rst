@@ -14,6 +14,29 @@ Discord Objects
 .. autoclass:: discord.objects.AuditLogEntry()
 
 
+.. autoclass:: discord.objects.AuditLogChange()
+
+Audit Log Change Exceptions
+---------------------------
+
+For most objects, the change keys may be any field on the changed object. The following table details the execptions to this pattern.
+
++---------------------------------------------------------+------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+
+| Object Changed                                          | Change Key Exceptions                                                                    | Change Object Exceptions                                                                                                     |
++=========================================================+==========================================================================================+==============================================================================================================================+
+| :class:`~discord.objects.ApplicationCommandPermissions` | Snowflake as key                                                                         | The :attr:`~discord.objects.AuditLogEntry.changes` array contains objects with a ``key`` field representing the entity whose |
+|                                                         |                                                                                          | command was affected (role, channel, or user ID), a previous permissions object (with an ``old_value`` key), and an updated  |
+|                                                         |                                                                                          | permissions object (with a ``new_value`` key).                                                                               |
++---------------------------------------------------------+------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+
+| :class:`~discord.objects.Invite` and                    | Additional ``channel_id`` key (instead of object's :class:`~discord.objects.Channel.id`) |                                                                                                                              |
+| :class:`~discord.objects.InviteMetadata`                |                                                                                          |                                                                                                                              |
++---------------------------------------------------------+------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+
+| :class:`~discord.objects.Role`                          | ``$add`` and ``$remove`` as keys                                                         | ``new_value`` is an array of objects that contain the role ``id`` and ``name``                                               |
++---------------------------------------------------------+------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+
+| :class:`~discord.objects.Webhook`                       | ``avatar_hash`` key (instead of ``avatar``)                                              |                                                                                                                              |
++---------------------------------------------------------+------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------+
+
+
 .. autoclass:: discord.objects.AutoModerationAction()
 
   .. note::

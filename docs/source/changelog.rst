@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-v26.1.9-dev32
+v26.1.9-dev33
 -------------
 
 **Added Changes**
@@ -40,6 +40,7 @@ v26.1.9-dev32
 - Added :class:`~discord.flags.GuildInviteFlags` flag.
 - Added :class:`~discord.enums.InviteTargetType` enum.
 - Added :class:`~discord.enums.InviteType` enum.
+- Added :class:`~discord.objects.AuditLogChange` object.
 
 
 **Documentation Changes**
