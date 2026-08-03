@@ -814,6 +814,17 @@ class NameplatePalette(StrEnum):
 
 
 @unique
+class OnboardingMode(IntEnum):
+  """Defines the criteria used to satisfy Onboarding constraints that are required for enabled."""
+
+  ONBOARDING_DEFAULT: int = 0
+  """Counts only Default Channels towards constraints."""
+
+  ONBOARDING_ADVANCED: int = 1
+  """Counts Default Channels and Questions towards constraints."""
+
+
+@unique
 class OpCode(IntEnum):
   DISPATCH: int = 0
   """An event was dispatched."""

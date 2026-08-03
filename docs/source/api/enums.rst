@@ -100,6 +100,9 @@ Enumerations
 .. autoclass:: discord.enums.NameplatePalette()
 
 
+.. autoclass:: discord.enums.OnboardingMode()
+
+
 .. autoclass:: discord.enums.OpCode()
 
 
