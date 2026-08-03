@@ -234,6 +234,9 @@ The following table shows field requirements based on current entity type.
 .. autoclass:: discord.objects.UserPrimaryGuild()
 
 
+.. autoclass:: discord.objects.Webhook()
+
+
 .. autoclass:: discord.objects.WelcomeScreen()
 
 
