@@ -7,6 +7,7 @@ from .guild_audit_log_entry_create import GuildAuditLogEntryCreateEvent
 from .guild_ban_add import GuildBanAddEvent
 from .guild_ban_remove import GuildBanRemoveEvent
 from .guild_create import GuildCreateEvent
+from .guild_emojis_update import GuildEmojisUpdateEvent
 from .ready import ReadyEvent
 from .thread_create import ThreadCreateEvent
 from .thread_list_sync import ThreadListSyncEvent

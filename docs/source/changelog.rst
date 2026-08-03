@@ -2,8 +2,8 @@ Changelog
 =========
 
 
-v26.1.9-dev37
--------------
+v26.1.9-dev
+-----------
 
 **Added Changes**
 
@@ -45,6 +45,7 @@ v26.1.9-dev37
 - Added :class:`~discord.events.GuildAuditLogEntryCreateEvent` event.
 - Added :class:`~discord.events.GuildBanAddEvent` event.
 - Added :class:`~discord.events.GuildBanRemoveEvent` event.
+- Added :class:`~discord.events.GuildEmojisUpdateEvent` event.
 
 
 **Documentation Changes**
