@@ -5,6 +5,7 @@ from .channel_info import ChannelInfoEvent
 from .channel_pins_update import ChannelPinsUpdateEvent
 from .guild_audit_log_entry_create import GuildAuditLogEntryCreateEvent
 from .guild_ban_add import GuildBanAddEvent
+from .guild_ban_remove import GuildBanRemoveEvent
 from .guild_create import GuildCreateEvent
 from .ready import ReadyEvent
 from .thread_create import ThreadCreateEvent
