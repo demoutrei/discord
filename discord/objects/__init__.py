@@ -18,6 +18,7 @@ from .forum_tag import ForumTag
 from .guild import Guild
 from .guild_application_command_permissions import GuildApplicationCommandPermissions
 from .guild_member import GuildMember
+from .guild_onboarding import GuildOnboarding
 from .guild_scheduled_event import GuildScheduledEvent
 from .guild_scheduled_event_entity_metadata import GuildScheduledEventEntityMetadata
 from .guild_scheduled_event_recurrence_rule import GuildScheduledEventRecurrenceRule

@@ -65,6 +65,9 @@ Discord Objects
 .. autoclass:: discord.objects.GuildMember()
 
 
+.. autoclass:: discord.objects.GuildOnboarding()
+
+
 .. autoclass:: discord.objects.GuildScheduledEvent()
 
 Field Requirements By Entity Type
