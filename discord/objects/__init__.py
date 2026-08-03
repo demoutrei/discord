@@ -27,6 +27,7 @@ from .incidents_data import IncidentsData
 from .install_params import InstallParams
 from .nameplate import Nameplate
 from .onboarding_prompt import OnboardingPrompt
+from .onboarding_prompt_option import OnboardingPromptOption
 from .optional_audit_entry_info import OptionalAuditEntryInfo
 from .permission_overwrite import PermissionOverwrite
 from .role import Role
