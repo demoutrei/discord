@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-v26.1.9-dev30
+v26.1.9-dev31
 -------------
 
 **Added Changes**
@@ -37,7 +37,8 @@ v26.1.9-dev30
 - Added :class:`~discord.enums.WebhookType` enum.
 - Added :class:`~discord.objects.InviteMetadata` object.
 - Added :class:`~discord.objects.Invite` object.
-- Added :class:`~discord.flags.GuildInviteFlags` object.
+- Added :class:`~discord.flags.GuildInviteFlags` flag.
+- Added :class:`~discord.enums.InviteTargetType` enum.
 
 
 **Documentation Changes**

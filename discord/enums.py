@@ -754,6 +754,12 @@ class IntegrationExpireBehavior(IntEnum):
 
 
 @unique
+class InviteTargetType(IntEnum):
+  STREAM: int = 1
+  EMBEDDED_APPLICATION: int = 2
+
+
+@unique
 class Locale(StrEnum):
   BULGARIAN: str = "bg"
   CHINESE_CHINA: str = "zh-CN"
