@@ -140,6 +140,30 @@ class DispatchEvent:
       case "INVITE_DELETE":
         from .invite_delete import InviteDeleteEvent
         return InviteDeleteEvent
+      case "MESSAGE_CREATE":
+        from .message_create import MessageCreateEvent
+        return MessageCreateEvent
+      case "MESSAGE_DELETE":
+        from .message_delete import MessageDeleteEvent
+        return MessageDeleteEvent
+      case "MESSAGE_DELETE_BULK":
+        from .message_delete_bulk import MessageDeleteBulkEvent
+        return MessageDeleteBulkEvent
+      case "MESSAGE_REACTION_ADD":
+        from .message_reaction_add import MessageReactionAddEvent
+        return MessageReactionAddEvent
+      case "MESSAGE_REACTION_REMOVE":
+        from .message_reaction_remove import MessageReactionRemoveEvent
+        return MessageReactionRemoveEvent
+      case "MESSAGE_REACTION_REMOVE_ALL":
+        from .message_reaction_remove_all import MessageReactionRemoveAllEvent
+        return MessageReactionRemoveAllEvent
+      case "MESSAGE_REACTION_REMOVE_EMOIJ":
+        from .message_reaction_remove_emoji import MessageReactionRemoveEmojiEvent
+        return MessageReactionRemoveEmojiEvent
+      case "MESSAGE_UPDATE":
+        from .message_update import MessageUpdateEvent
+        return MessageUpdateEvent
       case "READY":
         from .ready import ReadyEvent
         return ReadyEvent

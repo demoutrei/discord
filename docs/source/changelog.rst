@@ -2,6 +2,14 @@ Changelog
 =========
 
 
+v26.1.12-dev
+------------
+
+**Added Changes**
+
+- Receive all message-related gateway events.
+
+
 v26.1.11
 --------
 
