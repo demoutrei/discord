@@ -306,6 +306,14 @@ Received when a guild's stickers have been updated.
 Received when a guild is updated. The inner payload is a :class:`~discord.objects.Guild` object.
 
 
+``INTEGRATION_CREATE``
+~~~~~~~~~~~~~~~~~~~~~~
+
+Received when an integration is created. The inner payload is an :class:`~discord.objects.Integration` object with :attr:`~discord.objects.Integration.user` omitted and an additional :attr:`~discord.events.IntegrationCreateEvent.guild_id` key:
+
+.. autoclass:: discord.events.IntegrationCreateEvent()
+
+
 ``INTEGRATION_DELETE``
 ~~~~~~~~~~~~~~~~~~~~~~
 

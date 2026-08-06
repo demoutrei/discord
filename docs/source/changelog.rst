@@ -11,6 +11,8 @@ v26.1.10-dev
 - Receive all integration-related gateway events.
 - :attr:`~discord.objects.Channel.application_id` is now also :attr:`~discord.utils.Nullable`.
 - Added :class:`~discord.events.IntegrationDeleteEvent` event.
+- Added :class:`~discord.events.IntegrationUpdateEvent` event.
+- Added :class:`~discord.events.IntegrationCreateEvent` event.
 
 
 **Documentation Changes**
