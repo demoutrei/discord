@@ -314,6 +314,14 @@ Received when an integration is deleted.
 .. autoclass:: discord.events.IntegrationDeleteEvent()
 
 
+``INTEGRATION_UPDATE``
+~~~~~~~~~~~~~~~~~~~~~~
+
+Received when an integration is updated. The inner payload is an :class:`~discord.objects.Integration` object with :attr:`~discord.objects.Integration.user` omitted and an additional :attr:`~discord.events.IntegrationUpdateEvent.guild_id` key:
+
+.. autoclass:: discord.events.IntegrationUpdateEvent()
+
+
 ``PRESENCE_UPDATE``
 ~~~~~~~~~~~~~~~~~~~
 

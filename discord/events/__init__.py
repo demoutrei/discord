@@ -22,6 +22,7 @@ from .guild_soundboard_sound_delete import GuildSoundboardSoundDeleteEvent
 from .guild_soundboard_sounds_update import GuildSoundboardSoundsUpdateEvent
 from .guild_stickers_update import GuildStickersUpdateEvent
 from .integration_delete import IntegrationDeleteEvent
+from .integration_update import IntegrationUpdateEvent
 from .presence_update import PresenceUpdateEvent
 from .ready import ReadyEvent
 from .soundboard_sounds import SoundboardSoundsEvent
