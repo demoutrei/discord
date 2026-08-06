@@ -8,7 +8,8 @@ v26.1.11-dev
 **Added Changes**
 
 - Receive all invite-related gateway events.
-- Added :class:`~dsicord.events.InviteDeleteEvent` event.
+- Added :class:`~discord.events.InviteDeleteEvent` event.
+- Added :class:`~discord.events.InviteCreateEvent` event.
 
 
 v26.1.10

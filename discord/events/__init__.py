@@ -24,6 +24,7 @@ from .guild_stickers_update import GuildStickersUpdateEvent
 from .integration_create import IntegrationCreateEvent
 from .integration_delete import IntegrationDeleteEvent
 from .integration_update import IntegrationUpdateEvent
+from .invite_create import InviteCreateEvent
 from .invite_delete import InviteDeleteEvent
 from .presence_update import PresenceUpdateEvent
 from .ready import ReadyEvent
