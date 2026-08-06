@@ -306,6 +306,14 @@ Received when a guild's stickers have been updated.
 Received when a guild is updated. The inner payload is a :class:`~discord.objects.Guild` object.
 
 
+``INTEGRATION_DELETE``
+~~~~~~~~~~~~~~~~~~~~~~
+
+Received when an integration is deleted.
+
+.. autoclass:: discord.events.IntegrationDeleteEvent()
+
+
 ``PRESENCE_UPDATE``
 ~~~~~~~~~~~~~~~~~~~
 
