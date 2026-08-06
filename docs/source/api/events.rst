@@ -330,6 +330,28 @@ Received when an integration is updated. The inner payload is an :class:`~discor
 .. autoclass:: discord.events.IntegrationUpdateEvent()
 
 
+``INVITE_CREATE``
+~~~~~~~~~~~~~~~~~
+
+Received when a new invite to a channel is created.
+
+.. note::
+    Only received to bot users with the :attr:`~discord.flags.PermissionFlags.MANAGE_CHANNELS` permission on the channel.
+
+.. autoclass:: discord.events.InviteCreateEvent()
+
+
+``INVITE_DELETE``
+~~~~~~~~~~~~~~~~~
+
+Received when an invite is deleted.
+
+.. note::
+    Only received to bot users with the :attr:`~discord.flags.PermissionFlags.MANAGE_CHANNELS` permission on the channel.
+
+.. autoclass:: discord.events.InviteDeleteEvent()
+
+
 ``PRESENCE_UPDATE``
 ~~~~~~~~~~~~~~~~~~~
 

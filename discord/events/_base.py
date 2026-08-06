@@ -134,6 +134,12 @@ class DispatchEvent:
       case "INTEGRATION_UPDATE":
         from .integration_update import IntegrationUpdateEvent
         return IntegrationUpdateEvent
+      case "INVITE_CREATE":
+        from .invite_create import InviteCreateEvent
+        return InviteCreateEvent
+      case "INVITE_DELETE":
+        from .invite_delete import InviteDeleteEvent
+        return InviteDeleteEvent
       case "READY":
         from .ready import ReadyEvent
         return ReadyEvent
