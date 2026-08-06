@@ -5,6 +5,13 @@ Changelog
 v26.1.10-dev
 ------------
 
+
+**Added Changes**
+
+- Receive all integration-related gateway events.
+- :attr:`~discord.objects.Channel.application_id` is now also :attr:`~discord.utils.Nullable`.
+
+
 **Documentation Changes**
 
 - Fixed typos

@@ -15,7 +15,7 @@ from .user import User
 class Channel:
   """Represents a guild or DM channel within Discord."""
 
-  application_id: Optional[Snowflake]
+  application_id: Optional[Nullable[Snowflake]]
   """Application ID of the group DM creator if it is bot-created"""
 
   applied_tags: Optional[list[Snowflake]]
