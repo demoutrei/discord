@@ -2,9 +2,8 @@ Changelog
 =========
 
 
-v26.1.10-dev
-------------
-
+v26.1.10
+--------
 
 **Added Changes**
 
@@ -13,7 +12,6 @@ v26.1.10-dev
 - Added :class:`~discord.events.IntegrationDeleteEvent` event.
 - Added :class:`~discord.events.IntegrationUpdateEvent` event.
 - Added :class:`~discord.events.IntegrationCreateEvent` event.
-
 
 **Documentation Changes**
 
