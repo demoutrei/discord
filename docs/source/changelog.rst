@@ -2,6 +2,22 @@ Changelog
 =========
 
 
+v26.1.10
+--------
+
+**Added Changes**
+
+- Receive all integration-related gateway events.
+- :attr:`~discord.objects.Channel.application_id` is now also :attr:`~discord.utils.Nullable`.
+- Added :class:`~discord.events.IntegrationDeleteEvent` event.
+- Added :class:`~discord.events.IntegrationUpdateEvent` event.
+- Added :class:`~discord.events.IntegrationCreateEvent` event.
+
+**Documentation Changes**
+
+- Fixed typos
+
+
 v26.1.9
 -------
 
@@ -47,7 +63,7 @@ v26.1.9
 - Added :class:`~discord.events.GuildBanRemoveEvent` event.
 - Added :class:`~discord.events.GuildEmojisUpdateEvent` event.
 - Added :class:`~discord.events.GuildStickersUpdateEvent` event.
-- Added :class:`~discord.events.IntegrationsUpdateEvent` event.
+- Added :class:`~discord.events.GuildIntegrationsUpdateEvent` event.
 - Added :class:`~discord.events.GuildMemberAddEvent` event.
 - Added :class:`~discord.events.GuildMemberRemoveEvent` event.
 - Added :class:`~discord.events.GuildMemberUpdateEvent` event.
@@ -56,7 +72,7 @@ v26.1.9
 - Added :class:`~discord.events.GuildRoleUpdateEvent` event.
 - Added :class:`~discord.events.GuildRoleDeleteEvent` event.
 - Added :class:`~discord.events.GuildScheduledEventUserAddEvent` event.
-- Added :class:`~discord.events.GuildScheduledEVentUserRemoveEvent` event.
+- Added :class:`~discord.events.GuildScheduledEventUserRemoveEvent` event.
 - Added :class:`~discord.events.GuildSoundboardSoundDeleteEvent` event.
 - Added :class:`~discord.events.GuildSoundboardSoundsUpdateEvent` event.
 - Added :class:`~discord.events.SoundboardSoundsEvent` event.

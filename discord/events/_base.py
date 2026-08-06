@@ -125,6 +125,15 @@ class DispatchEvent:
       case "GUILD_UPDATE":
         from ..objects import Guild
         return Guild
+      case "INTEGRATION_CREATE":
+        from .integration_create import IntegrationCreateEvent
+        return IntegrationCreateEvent
+      case "INTEGRATION_DELETE":
+        from .integration_delete import IntegrationDeleteEvent
+        return IntegrationDeleteEvent
+      case "INTEGRATION_UPDATE":
+        from .integration_update import IntegrationUpdateEvent
+        return IntegrationUpdateEvent
       case "READY":
         from .ready import ReadyEvent
         return ReadyEvent
