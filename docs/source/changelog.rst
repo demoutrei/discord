@@ -2,6 +2,14 @@ Changelog
 =========
 
 
+v26.1.11-dev
+------------
+
+**Added Changes**
+
+- Receive all invite-related gateway events.
+
+
 v26.1.10
 --------
 
