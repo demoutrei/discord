@@ -4,6 +4,7 @@ from ..snowflake import Snowflake
 from ..utils import ISO8601Timestamp, Optional
 from .integration_account import IntegrationAccount
 from .integration_application import IntegrationApplication
+from .user import User
 
 
 @dataclass
