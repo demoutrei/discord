@@ -26,6 +26,7 @@ from .integration_delete import IntegrationDeleteEvent
 from .integration_update import IntegrationUpdateEvent
 from .invite_create import InviteCreateEvent
 from .invite_delete import InviteDeleteEvent
+from .message_reaction_remove import MessageReactionRemoveEvent
 from .message_reaction_remove_all import MessageReactionRemoveAllEvent
 from .message_reaction_remove_emoji import MessageReactionRemoveEmojiEvent
 from .presence_update import PresenceUpdateEvent
