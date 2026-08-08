@@ -352,6 +352,14 @@ Received when an invite is deleted.
 .. autoclass:: discord.events.InviteDeleteEvent()
 
 
+``MESSAGE_DELETE``
+~~~~~~~~~~~~~~~~~~
+
+Received when a message is deleted.
+
+.. autoclass:: discord.events.MessageDeleteEvent()
+
+
 ``MESSAGE_DELETE_BULK``
 ~~~~~~~~~~~~~~~~~~~~~~~
 

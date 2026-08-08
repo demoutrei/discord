@@ -14,6 +14,7 @@ v26.1.12-dev
 - Added :class:`~discord.enums.ReactionType` enum.
 - Added :class:`~discord.events.MessageReactionAddEvent` event.
 - Added :class:`~discord.events.MessageDeleteBulkEvent` event.
+- Added :class:`~discord.events.MessageDeleteEvent` event.
 
 
 v26.1.11
