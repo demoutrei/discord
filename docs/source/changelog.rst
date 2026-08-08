@@ -8,6 +8,7 @@ v26.1.12-dev
 **Added Changes**
 
 - Receive all message-related gateway events.
+- Added :class:`~discord.events.MessageReactionRemoveEmojiEvent` event.
 
 
 v26.1.11

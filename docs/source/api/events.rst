@@ -352,6 +352,14 @@ Received when an invite is deleted.
 .. autoclass:: discord.events.InviteDeleteEvent()
 
 
+``MESSAGE_REACTION_REMOVE_EMOJI``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Received when a bot removes all instances of a given emoji from the reactions of a message.
+
+.. autoclass:: discord.events.MessageReactionRemoveEmojiEvent()
+
+
 ``PRESENCE_UPDATE``
 ~~~~~~~~~~~~~~~~~~~
 
