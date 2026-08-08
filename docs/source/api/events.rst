@@ -352,6 +352,14 @@ Received when an invite is deleted.
 .. autoclass:: discord.events.InviteDeleteEvent()
 
 
+``MESSAGE_REACTION_ADD``
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Received when a user adds a reaction to a message.
+
+.. autoclass:: discord.events.MessageReactionAddEvent()
+
+
 ``MESSAGE_REACTION_REMOVE``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
