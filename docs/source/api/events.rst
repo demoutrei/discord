@@ -352,6 +352,14 @@ Received when an invite is deleted.
 .. autoclass:: discord.events.InviteDeleteEvent()
 
 
+``MESSAGE_REACTION_REMOVE_ALL``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Received when a user explicitly removes all reactions from a message.
+
+.. autoclass:: discord.events.MessageReactionRemoveAllEvent()
+
+
 ``MESSAGE_REACTION_REMOVE_EMOJI``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
