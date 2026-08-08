@@ -11,6 +11,7 @@ v26.1.12-dev
 - Added :class:`~discord.events.MessageReactionRemoveEmojiEvent` event.
 - Added :class:`~discord.events.MessageReactionRemoveAllEvent` event.
 - Added :class:`~discord.events.MessageReactionRemoveEvent` event.
+- Added :class:`~discord.enums.ReactionType` enum.
 
 
 v26.1.11

@@ -139,6 +139,9 @@ Enumerations
 .. autoclass:: discord.enums.PremiumType()
 
 
+.. autoclass:: discord.enums.ReactionType()
+
+
 .. autoclass:: discord.flags.RoleFlags()
 
 

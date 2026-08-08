@@ -927,6 +927,12 @@ class PremiumType(IntEnum):
 
 
 @unique
+class ReactionType(IntEnum):
+  NORMAL: int = 0
+  BURST: int = 1
+
+
+@unique
 class StageInstancePrivacyLevel(IntEnum):
   PUBLIC: int = 1
   """The Stage instance is visible publicly (deprecated)."""
