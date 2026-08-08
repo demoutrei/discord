@@ -32,6 +32,7 @@ from .message_reaction_add import MessageReactionAddEvent
 from .message_reaction_remove import MessageReactionRemoveEvent
 from .message_reaction_remove_all import MessageReactionRemoveAllEvent
 from .message_reaction_remove_emoji import MessageReactionRemoveEmojiEvent
+from .message_update import MessageUpdateEvent
 from .presence_update import PresenceUpdateEvent
 from .ready import ReadyEvent
 from .soundboard_sounds import SoundboardSoundsEvent

@@ -400,6 +400,14 @@ Received when a bot removes all instances of a given emoji from the reactions of
 .. autoclass:: discord.events.MessageReactionRemoveEmojiEvent()
 
 
+``MESSAGE_UPDATE``
+~~~~~~~~~~~~~~~~~~
+
+Received when a message is updated. The inner payload is a :class:`~discord.objects.Message` object with the following extra fields:
+
+.. autoclass:: discord.events.MessageUpdateEvent()
+
+
 ``PRESENCE_UPDATE``
 ~~~~~~~~~~~~~~~~~~~
 
