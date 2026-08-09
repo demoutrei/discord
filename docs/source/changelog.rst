@@ -21,6 +21,7 @@ v26.1.12-dev
 - Added :class:`~discord.objects.BaseThemeType` object.
 - Added :class:`~discord.objects.MessageCall` object.
 - Added :class:`~discord.objects.Poll` object.
+- Added :class:`~discord.objects.PollResults` object.
 
 
 v26.1.11

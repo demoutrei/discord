@@ -266,6 +266,9 @@ The following table shows field requirements based on current entity type.
 .. autoclass:: discord.objects.Poll()
 
 
+.. autoclass:: discord.objects.PollResults()
+
+
 .. autoclass:: discord.objects.Role()
 
 
