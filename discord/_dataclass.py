@@ -23,9 +23,9 @@ def dataclass[T](cls: T) -> T:
     for base in subclass.__bases__:
       subclass.__annotations__.update(get_annotations(base))
 
-  def __parse(self, annotation: Union[GenericAlias, type, Self[T]], value: Union[Any, Ellipsis], *, data: dict[str, Any]) -> Optional[Nullable[T]]:
+  def __parse(self, annotation: Union[GenericAlias, type, Self[T]], /, value: Union[Any, Ellipsis], *, data: dict[str, Any]) -> Optional[Nullable[T]]:
     if isinstance(annotation, GenericAlias):
-      if annotation.__origin__ is dict: return self.__parse_dict(annotation.__args__[1], value, data = data)
+      if annotation.__origin__ is dict: return self.__parse_dict(annotation.__args__[0], annotation.__args__[1], value, data = data)
       if annotation.__origin__ is list: return self.__parse_list(annotation.__args__[0], value, data = data)
       if annotation.__origin__ is Match: return self.__parse_match(annotation.__args__[1:], annotation.__args__[0], value, data = data)
       if annotation.__origin__ is Nullable: return self.__parse_nullable(annotation.__args__[0], value, data = data)
@@ -45,9 +45,9 @@ def dataclass[T](cls: T) -> T:
     if value is Ellipsis: return MISSING
     return annotation(**value)
 
-  def __parse_dict(self, annotation: Union[GenericAlias, Self[T], type], values: Union[dict[str, Any], Ellipsis], *, data: dict[str, Any]) -> Optional[dict[str, T]]:
+  def __parse_dict(self, key_annotation: Union[GenericAlias, Self[T], type], value_annotation: Union[GenericAlias, Self[T], type], /, values: Union[dict[str, Any], Ellipsis], *, data: dict[str, Any]) -> Optional[dict[str, T]]:
     if values is Ellipsis: return MISSING
-    return {key: self.__parse(annotation, value, data = data) for key, value in values.items()}
+    return {self.__parse(key_annotation, key, data = data): self.__parse(value_annotation, value, data = data) for key, value in values.items()}
 
   def __parse_match(self, annotations: tuple[tuple[Union[int, str], Union[GenericAlias, Self[T], type]], ...], field: str, value: Union[Any, Ellipsis], *, data: dict[str, Any]) -> Optional[T]:
     if value is Ellipsis: return MISSING
