@@ -484,6 +484,19 @@ class AutoModerationRuleTriggerType(IntEnum):
 
 
 @unique
+class BaseThemeType(IntEnum):
+  UNSET: int = 0
+  """.. hint::
+      Equivalent to the :attr:`~.DARK` type.
+  """
+
+  DARK: int = 1
+  LIGHT: int = 2
+  DARKER: int = 3
+  MIDNIGHT: int = 4
+
+
+@unique
 class ChannelType(IntEnum):
   GUILD_TEXT: int = 0
   """A text channel within a server."""

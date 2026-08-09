@@ -35,6 +35,9 @@ Enumerations
 .. autoclass:: discord.enums.AutoModerationRuleTriggerType()
 
 
+.. autoclass:: discord.enums.BaseThemeType()
+
+
 .. autoclass:: discord.flags.ChannelFlags()
 
 
