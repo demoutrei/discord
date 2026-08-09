@@ -47,6 +47,7 @@ from .permission_overwrite import PermissionOverwrite
 from .poll import Poll
 from .poll_answer import PollAnswer
 from .poll_answer_count import PollAnswerCount
+from .poll_media import PollMedia
 from .poll_results import PollResults
 from .role import Role
 from .role_colors import RoleColors

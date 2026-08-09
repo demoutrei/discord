@@ -272,6 +272,9 @@ The following table shows field requirements based on current entity type.
 .. autoclass:: discord.objects.PollAnswerCount()
 
 
+.. autoclass:: discord.objects.PollMedia()
+
+
 .. autoclass:: discord.objects.PollResults()
 
 
