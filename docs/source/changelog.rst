@@ -22,6 +22,7 @@ v26.1.12-dev
 - Added :class:`~discord.objects.MessageCall` object.
 - Added :class:`~discord.objects.Poll` object.
 - Added :class:`~discord.objects.PollResults` object.
+- Added :class:`~discord.objects.PollAnswerCount` object.
 
 
 v26.1.11
