@@ -47,6 +47,7 @@ from .role import Role
 from .role_colors import RoleColors
 from .role_tags import RoleTags
 from .session_start_limit import SessionStartLimit
+from .shared_client_theme import SharedClientTheme
 from .soundboard_sound import SoundboardSound
 from .stage_instance import StageInstance
 from .sticker import Sticker

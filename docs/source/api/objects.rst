@@ -266,6 +266,9 @@ The following table shows field requirements based on current entity type.
 .. autoclass:: discord.objects.SessionStartLimit()
   
 
+.. autoclass:: discord.objects.SharedClientTheme()
+
+
 .. autoclass:: discord.Snowflake()
 
 

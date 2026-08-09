@@ -17,6 +17,7 @@ v26.1.12-dev
 - Added :class:`~discord.events.MessageDeleteEvent` event.
 - Added :class:`~discord.events.MessageUpdateEvent` event.
 - Added :class:`~discord.objects.Message` object.
+- Added :class:`~discord.objects.SharedClientTheme` object.
 
 
 v26.1.11
