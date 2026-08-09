@@ -44,6 +44,7 @@ from .onboarding_prompt import OnboardingPrompt
 from .onboarding_prompt_option import OnboardingPromptOption
 from .optional_audit_entry_info import OptionalAuditEntryInfo
 from .permission_overwrite import PermissionOverwrite
+from .poll import Poll
 from .role import Role
 from .role_colors import RoleColors
 from .role_tags import RoleTags

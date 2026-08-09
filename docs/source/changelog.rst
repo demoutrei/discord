@@ -20,6 +20,7 @@ v26.1.12-dev
 - Added :class:`~discord.objects.SharedClientTheme` object.
 - Added :class:`~discord.objects.BaseThemeType` object.
 - Added :class:`~discord.objects.MessageCall` object.
+- Added :class:`~discord.objects.Poll` object.
 
 
 v26.1.11
