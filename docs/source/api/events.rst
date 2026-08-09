@@ -405,6 +405,9 @@ Received when a bot removes all instances of a given emoji from the reactions of
 
 Received when a message is updated. The inner payload is a :class:`~discord.objects.Message` object with the following extra fields:
 
+.. hint::
+    The value for :class:`~discord.objects.Message.tts` will always be ``False`` in message updates.
+
 .. autoclass:: discord.events.MessageUpdateEvent()
 
 

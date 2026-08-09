@@ -16,6 +16,7 @@ v26.1.12-dev
 - Added :class:`~discord.events.MessageDeleteBulkEvent` event.
 - Added :class:`~discord.events.MessageDeleteEvent` event.
 - Added :class:`~discord.events.MessageUpdateEvent` event.
+- Added :class:`~discord.objects.Message` object.
 
 
 v26.1.11
