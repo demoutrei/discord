@@ -28,6 +28,10 @@ v26.1.12-dev
 - Added :class:`~discord.objects.PollMedia` object.
 - Added :class:`~discord.objects.ResolvedData` object.
 
+**Documentation Changes**
+
+- Added missing documentations
+
 
 v26.1.11
 --------

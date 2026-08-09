@@ -218,6 +218,9 @@ The following table shows field requirements based on current entity type.
 .. autoclass:: discord.objects.GuildScheduledEventEntityMetadata()
 
 
+.. autoclass:: discord.objects.GuildScheduledEventRecurrenceRule()
+
+
 .. autoclass:: discord.objects.GuildScheduledEventRecurrenceRuleNWeekday()
 
 
@@ -282,6 +285,12 @@ The following table shows field requirements based on current entity type.
 
 
 .. autoclass:: discord.objects.Role()
+
+
+.. autoclass:: discord.objects.RoleColors()
+
+
+.. autoclass:: discord.objects.RoleTags()
 
 
 .. autoclass:: discord.objects.SessionStartLimit()
