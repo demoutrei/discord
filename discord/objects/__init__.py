@@ -38,6 +38,7 @@ from .integration_application import IntegrationApplication
 from .invite import Invite
 from .invite_metadata import InviteMetadata
 from .message import Message
+from .message_call import MessageCall
 from .nameplate import Nameplate
 from .onboarding_prompt import OnboardingPrompt
 from .onboarding_prompt_option import OnboardingPromptOption
