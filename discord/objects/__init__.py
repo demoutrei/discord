@@ -45,6 +45,7 @@ from .onboarding_prompt_option import OnboardingPromptOption
 from .optional_audit_entry_info import OptionalAuditEntryInfo
 from .permission_overwrite import PermissionOverwrite
 from .poll import Poll
+from .poll_answer import PollAnswer
 from .poll_answer_count import PollAnswerCount
 from .poll_results import PollResults
 from .role import Role
