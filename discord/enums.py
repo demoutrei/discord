@@ -915,6 +915,12 @@ class OpCode(IntEnum):
 
 
 @unique
+class PollLayoutType(IntEnum):
+  DEFAULT: int = 1
+  """Default layout type."""
+
+
+@unique
 class PremiumTier(IntEnum):
   NONE: int = 0
   """Guild has not unlocked any Server Boost perks"""

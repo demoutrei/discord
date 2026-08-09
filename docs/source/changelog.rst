@@ -23,6 +23,7 @@ v26.1.12-dev
 - Added :class:`~discord.objects.Poll` object.
 - Added :class:`~discord.objects.PollResults` object.
 - Added :class:`~discord.objects.PollAnswerCount` object.
+- Added :class:`~discord.enums.PollLayoutType` enum.
 
 
 v26.1.11

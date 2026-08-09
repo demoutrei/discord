@@ -133,6 +133,9 @@ Enumerations
 .. autoclass:: discord.enums.OpCode()
 
 
+.. autoclass:: discord.enums.PollLayoutType()
+
+
 .. autoclass:: discord.flags.PermissionFlags
 
 
