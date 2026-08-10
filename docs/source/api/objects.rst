@@ -293,6 +293,9 @@ The following table shows field requirements based on current entity type.
 .. autoclass:: discord.objects.RoleColors()
 
 
+.. autoclass:: discord.objects.RoleSubscriptionData()
+
+
 .. autoclass:: discord.objects.RoleTags()
 
 

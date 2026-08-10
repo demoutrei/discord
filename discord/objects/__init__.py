@@ -53,6 +53,7 @@ from .poll_results import PollResults
 from .resolved_data import ResolvedData
 from .role import Role
 from .role_colors import RoleColors
+from .role_subscription_data import RoleSubscriptionData
 from .role_tags import RoleTags
 from .session_start_limit import SessionStartLimit
 from .shared_client_theme import SharedClientTheme
