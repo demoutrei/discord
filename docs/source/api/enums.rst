@@ -47,6 +47,9 @@ Enumerations
 .. autoclass:: discord.enums.ChannelType()
 
 
+.. autoclass:: discord.enums.ComponentType()
+
+
 .. autoclass:: discord.enums.DefaultMessageNotificationLevel()
 
 

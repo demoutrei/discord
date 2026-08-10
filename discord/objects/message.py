@@ -7,7 +7,7 @@ from .application import Application
 from .attachment import Attachment
 from .channel import Channel
 from .channel_mention import ChannelMention
-from .components import Component
+from .components._base import Component
 from .embed import Embed
 from .message_activity import MessageActivity
 from .message_call import MessageCall

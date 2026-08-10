@@ -539,6 +539,149 @@ class ChannelType(IntEnum):
 
 
 @unique
+class ComponentType(IntEnum):
+  ACTION_ROW: int = 1
+  """Container to display a row of interactive components.
+
+  **Style**: Layout
+  **Usage**: Message
+  """
+
+  BUTTON: int = 2
+  """Button object.
+
+  **Style**: Interactive
+  **Usage**: Message
+  """
+
+  STRING_SELECT: int = 3
+  """Select menu for pickign from defined text options.
+
+  **Style**: Interactive
+  **Usage**: Message, Modal
+  """
+
+  TEXT_INPUT: int = 4
+  """Text input object.
+
+  **Style**: Interactive
+  **Usage**: Modal
+  """
+
+  USER_SELECT: int = 5
+  """Select menu for users.
+
+  **Style**: Interactive
+  **Usage**: Message, Modal
+  """
+
+  ROLE_SELECT: int = 6
+  """Select menu for roles.
+
+  **Style**: Interactive
+  **Usage**: Message, Modal
+  """
+
+  MENTIONABLE_SELECT: int = 7
+  """Select menu for mentionables (users *and* roles).
+
+  **Style**: Interactive
+  **Usage**: Message, Modal
+  """
+
+  CHANNEL_SELECT: int = 8
+  """Select menu for channels.
+
+  **Style**: Interactive
+  **Usage**: Message, Modal
+  """
+
+  SECTION: int = 9
+  """Container to display text alongside an accessory component.
+
+  **Style**: Layout
+  **Usage**: Message
+  """
+
+  TEXT_DISPLAY: int = 10
+  """Markdown text.
+
+  **Style**: Content
+  **Usage**: Message, Modal
+  """
+
+  THUMBNAIL: int = 11
+  """Small image that can be used as an accessory.
+
+  **Style**: Content
+  **Usage**: Message
+  """
+
+  MEDIA_GALLERY: int = 12
+  """Display images and other media.
+
+  **Style**: Content
+  **Usage**: Message
+  """
+
+  FILE: int = 13
+  """Displays an attached file.
+
+  **Style**: Content
+  **Usage**: Message
+  """
+
+  SEPARATOR: int = 14
+  """Component to add vertical padding between other components.
+
+  **Style**: Layout
+  **Usage**: Message
+  """
+
+  CONTAINER: int = 17
+  """Container that visually groups a set of components.
+
+  **Style**: Layout
+  **Usage**: Message
+  """
+
+  LABEL: int = 18
+  """Container associating a label and description with a component.
+
+  **Style**: Layout
+  **Usage**: Modal
+  """
+
+  FILE_UPLOAD: int = 19
+  """Component for uploading files.
+
+  **Style**: Interactive
+  **Usage**: Modal
+  """
+
+  RADIO_GROUP: int = 21
+  """Single-choice set of options.
+
+  **Style**: Interactive
+  **Usage**: Modal
+  """
+
+  CHECKBOX_GROUP: int = 22
+  """Multi-selectable group of checkboxes.
+
+  **Style**: Interactive
+  **Usage**: Modal
+  """
+
+  CHECKBOX: int = 23
+  """Single checkbox for yes/no choice.
+
+  **Style**: Interactive
+  **Usage**: Modal
+  """
+
+
+@unique
 class DefaultMessageNotificationLevel(IntEnum):
   ALL_MESSAGES: int = 0
   """Members will receive notifications for all messages by default"""

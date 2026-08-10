@@ -31,10 +31,12 @@ v26.1.12-dev
 - Added :class:`~discord.flags.AttachmentFlags` flag.
 - Added :class:`~discord.objects.RoleSubscriptionData` object.
 - Added :class:`~discord.objects.StickerItem` object.
+- Added :class:`~discord.enums.ComponentType` enum.
 
 **Documentation Changes**
 
 - Added missing documentations
+- Added "Components" reference
 
 
 v26.1.11

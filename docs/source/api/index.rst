@@ -9,6 +9,7 @@ API Reference
   core
   events
   objects
+  components
   enums
   utilities
   http
