@@ -51,3 +51,5 @@ Radio Group
 ^^^^^^^^^^^
 
 .. autoclass:: discord.objects.components.RadioGroupComponent()
+
+.. autoclass:: discord.objects.components.RadioGroupOption()
