@@ -21,10 +21,6 @@ autodoc_default_options = {
   "undoc-members": True
 }
 
-intersphinx_mapping = {
-  "python": ("https://docs.python.org/3", None)
-}
-
 toc_object_entries_show_parents = "hide"
 
 templates_path = ['_templates']

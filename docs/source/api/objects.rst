@@ -43,6 +43,9 @@ To use an external iamge via media proxy, specify the URL as the field's value w
 .. autoclass:: discord.objects.ApplicationIntegrationTypeConfiguration()
 
 
+.. autoclass:: discord.objects.Attachment()
+
+
 .. autoclass:: discord.objects.AuditLogEntry()
 
 

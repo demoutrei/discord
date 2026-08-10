@@ -7,6 +7,7 @@ from .activity_timestamps import ActivityTimestamps
 from .application import Application
 from .application_command_permissions import ApplicationCommandPermissions
 from .application_integration_type_configuration import ApplicationIntegrationTypeConfiguration
+from .attachment import Attachment
 from .audit_log_entry import AuditLogEntry
 from .audit_log_change import AuditLogChange
 from .auto_moderation_action import AutoModerationAction
