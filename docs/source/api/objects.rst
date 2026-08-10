@@ -317,6 +317,9 @@ The following table shows field requirements based on current entity type.
 .. autoclass:: discord.objects.Sticker()
 
 
+.. autoclass:: discord.objects.StickerItem()
+
+
 .. autoclass:: discord.objects.Team()
 
 

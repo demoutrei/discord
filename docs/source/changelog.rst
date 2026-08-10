@@ -30,6 +30,7 @@ v26.1.12-dev
 - Added :class:`~discord.objects.Attachment` object.
 - Added :class:`~discord.flags.AttachmentFlags` flag.
 - Added :class:`~discord.objects.RoleSubscriptionData` object.
+- Added :class:`~discord.objects.StickerItem` object.
 
 **Documentation Changes**
 

@@ -60,6 +60,7 @@ from .shared_client_theme import SharedClientTheme
 from .soundboard_sound import SoundboardSound
 from .stage_instance import StageInstance
 from .sticker import Sticker
+from .sticker_item import StickerItem
 from .team import Team
 from .team_member import TeamMember
 from .thread_member import ThreadMember
