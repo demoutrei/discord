@@ -48,6 +48,24 @@ class ApplicationFlags(IntFlag):
 
 
 @unique
+class AttachmentFlags(IntFlag):
+  IS_CLIP: int = 1 << 0
+  """This attachment is a Clip from a stream."""
+
+  IS_THUMBNAIL: int = 1 << 1
+  """This attachment is the thumbnail of a thread in a media channel, displayed in the grid but not on the message."""
+
+  IS_REMIX: int = 1 << 2
+  """This attachment has been edited using the remix feature on mobile (deprecated)."""
+
+  IS_SPOILER: int = 1 << 3
+  """This attachment was marked as a spoiler and is blurred until clicked."""
+
+  IS_ANIMATED: int = 1 << 5
+  """This attachment is an animated image."""
+
+
+@unique
 class ChannelFlags(IntFlag):
    PINNED: int = 1 << 1
    """This thread is pinned to the top of its parent :attr:`~discord.enums.ChannelType.GUILD_FORUM` or :attr:`~discord.enums.ChannelType.GUILD_MEDIA` channel"""

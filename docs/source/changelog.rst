@@ -28,6 +28,7 @@ v26.1.12-dev
 - Added :class:`~discord.objects.PollMedia` object.
 - Added :class:`~discord.objects.ResolvedData` object.
 - Added :class:`~discord.objects.Attachment` object.
+- Added :class:`~discord.flags.AttachmentFlags` flag.
 
 **Documentation Changes**
 

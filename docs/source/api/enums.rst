@@ -20,6 +20,9 @@ Enumerations
 .. autoclass:: discord.enums.ApplicationIntegrationType()
 
 
+.. autoclass:: discord.flags.AttachmentFlags()
+
+
 .. autoclass:: discord.enums.AuditLogEvent()
 
 
