@@ -33,6 +33,7 @@ v26.1.12-dev
 - Added :class:`~discord.objects.StickerItem` object.
 - Added :class:`~discord.enums.ComponentType` enum.
 - Added :class:`~discord.flags.MessageFlags` flag.
+- Added :class:`~discord.objects.components.CheckboxComponent` component.
 
 **Documentation Changes**
 

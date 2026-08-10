@@ -17,14 +17,12 @@ To use these components, you need to send the :attr:`~discord.flags.MessageFlags
 - Messages allow up to 40 total components.
 
 
-Components
-^^^^^^^^^^
+**Components**
 
 Components allow you to style and structure your messages, modals, and interactions. They are interactive elements that can create rich user experiences in your Discord applications.
 
 
-Anatomy of a Component
-~~~~~~~~~~~~~~~~~~~~~~
+**Anatomy of a Component**
 
 All components have the following fields:
 
@@ -37,3 +35,6 @@ The ``id`` field is optional and is used to identify components in the response 
 Additionally, interactive components like buttons and selects must have a ``custom_id`` field. The developer defines this field when sending the component payload, and it is returned in the interaction payload sent when a user interactions with the component. ``custom_id`` is only available on interactive components and must be unique per component. Multiple components on the same message must not share the same ``custom_id``
 
 .. autoattribute:: discord.objects.components._base.InteractiveComponent.custom_id
+
+
+.. autoclass:: discord.objects.components.CheckboxComponent()
