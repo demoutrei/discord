@@ -1,4 +1,4 @@
-from ..utils import Optional
+from ...utils import Optional
 from ._base import Component, InteractiveComponent
 from .checkbox_group_option import CheckboxGroupOption
 

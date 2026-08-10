@@ -41,3 +41,6 @@ Additionally, interactive components like buttons and selects must have a ``cust
 
 
 .. autoclass:: discord.objects.components.CheckboxGroupComponent()
+
+
+.. autoclass:: discord.objects.components.CheckboxGroupOption()
