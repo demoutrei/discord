@@ -1,1 +1,2 @@
 from .checkbox import CheckboxComponent
+from .checkbox_group import CheckboxGroupComponent
