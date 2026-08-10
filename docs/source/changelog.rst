@@ -32,6 +32,7 @@ v26.1.12-dev
 - Added :class:`~discord.objects.RoleSubscriptionData` object.
 - Added :class:`~discord.objects.StickerItem` object.
 - Added :class:`~discord.enums.ComponentType` enum.
+- Added :class:`~discord.flags.MessageFlags` flag.
 
 **Documentation Changes**
 

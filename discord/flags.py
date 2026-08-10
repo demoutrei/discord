@@ -316,6 +316,52 @@ class GuildMemberFlags(IntFlag):
 
 
 @unique
+class MessageFlags(IntFlag):
+  CROSSPOSTED: int = 1 << 0
+  """This message has been published to subscribed channels (via Channel Following)."""
+
+  IS_CROSSPOST: int = 1 << 1
+  """This message originated from a message in another channel (via Channel Following)."""
+
+  SUPPRESS_EMBEDS: int = 1 << 2
+  """Do not include any embeds when serializing this message."""
+
+  SOURCE_MESSAGE_DELETED: int = 1 << 3
+  """The source message for this crosspost has been deleted (via Channel Following)."""
+
+  URGENT: int = 1 << 4
+  """This message came from the urgent message system."""
+
+  HAS_THREAD: int = 1 << 5
+  """This message has an associated thread, with the same ID as the message."""
+
+  EPHEMERAL: int = 1 << 6
+  """This message is only visible to the user who invoked the Interaction."""
+
+  LOADING: int = 1 << 7
+  """This message is an Interaction REsponse and the bot is "thinking"."""
+
+  FAILED_TO_MENTION_SOME_ROLES_IN_THREAD: int = 1 << 8
+  """This message failed to mention some roles and add their members to the thread."""s
+
+  SUPPRESS_NOTIFICATIONS: int = 1 << 12
+  """This message will not trigger push and desktop notifications."""
+
+  IS_VOICE_MESSAGE: int = 1 << 13
+  """This message is a voice message."""
+
+  HAS_SNAPSHOT: int = 1 << 14
+  """This message has a snapshot (via Message Forwarding)."""
+
+  IS_COMPONENTS_V2: int = 1 << 15
+  """Allows you to create fully component-driven messages.
+
+  .. attention::
+      Once a message has been sent with this flag, it can't be removed from that message.
+  """
+
+
+@unique
 class PermissionFlags(IntFlag):
   """Represents a set of permission flags"""
 

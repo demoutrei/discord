@@ -124,6 +124,9 @@ Enumerations
 .. autoclass:: discord.enums.MembershipState()
 
 
+.. autoclass:: discord.flags.MessageFlags()
+
+
 .. autoclass:: discord.enums.MFALevel()
 
 
