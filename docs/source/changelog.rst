@@ -36,6 +36,7 @@ v26.1.12-dev
 - Added :class:`~discord.objects.components.CheckboxComponent` component.
 - Added :class:`~discord.objects.components.CheckboxGroupComponent` component.
 - Added :class:`~discord.objects.components.CheckboxGroupOption` object.
+- Added :class:`~discord.objects.components.RadioGroupComponent` component.
 
 **Documentation Changes**
 
