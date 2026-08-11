@@ -47,6 +47,22 @@ Checkbox and Checkbox Group
 .. autoclass:: discord.components.CheckboxGroupOption()
 
 
+Container
+^^^^^^^^^
+
+.. autoclass:: discord.components.ContainerComponent()
+
+.. admonition:: Container Child Components
+    :collapsible:
+
+    :class:`~discord.components.ActionRowComponent`
+    :class:`~discord.components.TextDisplayComponent`
+    :class:`~discord.components.SectionComponent`
+    :class:`~discord.components.MediaGalleryComponent`
+    :class:`~discord.components.SeparatorComponent`
+    :class:`~discord.components.FileComponent`
+
+
 File Upload
 ^^^^^^^^^^^
 

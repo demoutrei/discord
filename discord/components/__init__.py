@@ -1,6 +1,7 @@
 from .checkbox import CheckboxComponent
 from .checkbox_group import CheckboxGroupComponent
 from .checkbox_group_option import CheckboxGroupOption
+from .container import ContainerComponent
 from .file_upload import FileUploadComponent
 from .label import LabelComponent
 from .radio_group import RadioGroupComponent

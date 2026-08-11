@@ -14,6 +14,7 @@ class Component[T]:
   
   def __new__(cls, **data: dict[str, Any]) -> Optional[T]:
     """:meta private:"""
+    component_cls: Optional[T] = MISSING
     match data["type"]:
       case ComponentType.ACTION_ROW:
         from .action_row import ActionRowComponent
@@ -75,7 +76,32 @@ class Component[T]:
       case ComponentType.CHECKBOX:
         from .checkbox import CheckboxComponent
         component_cls: T = CheckboxComponent
+    return super().__new__(component_cls) if component_cls else MISSING
+
+
+class ContainerChildComponent[T]:
+  def __new__(cls, **data: dict[str, Any]) -> Optional[T]:
+    """:meta private:"""
     component_cls: Optional[T] = MISSING
+    match data["type"]:
+      case ComponentType.ACTION_ROW:
+        from .action_row import ActionRowComponent
+        component_cls: T = ActionRowComponent
+      case ComponentType.TEXT_DISPLAY:
+        from .text_display import TextDisplayComponent
+        component_cls: T = TextDisplayComponent
+      case ComponentType.SECTION:
+        from .section import SectionComponent
+        component_cls: T = SectionComponent
+      case ComponentType.MEDIA_GALLERY:
+        from .media_gallery import MediaGalleryComponent
+        component_cls: T = MediaGalleryComponent
+      case ComponentType.SEPARATOR:
+        from .separator import SeparatorComponent
+        component_cls: T = SeparatorComponent
+      case ComponentType.FILE:
+        from .file import FileComponent
+        component_cls: T = FileComponent
     return super().__new__(component_cls) if component_cls else MISSING
 
 
@@ -88,6 +114,7 @@ class InteractiveComponent:
 class LabelChildComponent[T]:
   def __new__(cls, **data: dict[str, Any]) -> Optional[T]:
     """:meta private:"""
+    component_cls: Optional[T] = MISSING
     match data["type"]:
       case ComponentType.TEXT_INPUT:
         from .text_input import TextInputComponent
@@ -119,5 +146,4 @@ class LabelChildComponent[T]:
       case ComponentType.CHECKBOX:
         from .checkbox import CheckboxComponent
         component_cls: T = CheckboxComponent
-    component_cls: Optional[T] = MISSING
     return super().__new__(component_cls) if component_cls else MISSING

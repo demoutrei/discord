@@ -41,6 +41,7 @@ v26.1.12-dev
 - Added :class:`~discord.components.FileUploadComponent` component.
 - Added :class:`~discord.components.LabelComponent` component.
 - Moved components from ``objects`` module to ``discord`` apex module.
+- Added :class:`~discord.components.ContainerComponent` component.
 
 **Documentation Changes**
 
