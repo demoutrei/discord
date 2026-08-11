@@ -95,3 +95,9 @@ Radio Group
 .. autoclass:: discord.components.RadioGroupComponent()
 
 .. autoclass:: discord.components.RadioGroupOption()
+
+
+Separator
+^^^^^^^^^
+
+.. autoclass:: discord.components.SeparatorComponent()
