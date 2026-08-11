@@ -39,6 +39,7 @@ v26.1.12-dev
 - Added :class:`~discord.objects.components.RadioGroupComponent` component.
 - Added :class:`~discord.objects.components.RadioGroupOption` object.
 - Added :class:`~discord.objects.components.FileUploadComponent` component.
+- Added :class:`~discord.objects.components.LabelComponent` component.
 
 **Documentation Changes**
 

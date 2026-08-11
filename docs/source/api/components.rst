@@ -53,6 +53,26 @@ File Upload
 .. autoclass:: discord.objects.components.FileUploadComponent()
 
 
+Label
+^^^^^
+
+.. autoclass:: discord.objects.components.LabelComponent()
+
+.. admonition:: Label Child Components
+    :collapsible:
+
+    :class:`~discord.objects.components.TextInputComponent`
+    :class:`~discord.objects.components.StringSelectComponent`
+    :class:`~discord.objects.components.UserSelectComponent`
+    :class:`~discord.objects.components.RoleSelectComponent`
+    :class:`~discord.objects.components.MentionableSelectComponent`
+    :class:`~discord.objects.components.ChannelSelectComponent`
+    :class:`~discord.objects.components.FileUploadComponent`
+    :class:`~discord.objects.components.RadioGroupComponent`
+    :class:`~discord.objects.components.CheckboxGroupComponent`
+    :class:`~discord.objects.components.CheckboxComponent`
+
+
 Radio Group
 ^^^^^^^^^^^
 

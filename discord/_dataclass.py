@@ -1,5 +1,5 @@
 from .flags import PermissionFlags
-from .objects.components._base import Component
+from .objects.components._base import Component, LabelChildComponent
 from .snowflake import Snowflake
 from .utils import ISO8601Timestamp, Match, MISSING, Nullable, Optional
 from annotationlib import get_annotations
@@ -21,6 +21,8 @@ def dataclass[T](cls: T) -> T:
 
   def __init_subclass__(subclass, **kwargs) -> None:
     super(subclass).__init_subclass__(**kwargs)
+    if subclass in (Component, LabelChildComponent):
+      subclass.__new__ = object.__new__
     for base in subclass.__bases__:
       subclass.__annotations__.update(get_annotations(base))
 
@@ -31,7 +33,7 @@ def dataclass[T](cls: T) -> T:
       if annotation.__origin__ is Match: return self.__parse_match(annotation.__args__[1:], annotation.__args__[0], value, data = data)
       if annotation.__origin__ is Nullable: return self.__parse_nullable(annotation.__args__[0], value, data = data)
       if annotation.__origin__ is Optional: return self.__parse_optional(annotation.__args__[0], value, data = data)
-    if annotation is Component: return Component[value["type"]](**value)
+    if annotation in (Component, LabelChildComponent): return annotation(**value)
     if is_dataclass(annotation): return self.__parse_dataclass(annotation, value, data = data)
     if annotation is Snowflake and value not in (MISSING, None, Ellipsis): return Snowflake(value)
     if issubclass(annotation, Enum) and value not in (MISSING, None, Ellipsis):
