@@ -1,5 +1,5 @@
-from ..._dataclass import dataclass
-from ...utils import Optional
+from .._dataclass import dataclass
+from ..utils import Optional
 
 
 @dataclass

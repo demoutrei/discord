@@ -1,6 +1,6 @@
-from ..._dataclass import dataclass
-from ...enums import ComponentType
-from ...utils import MISSING, Optional
+from .._dataclass import dataclass
+from ..enums import ComponentType
+from ..utils import MISSING, Optional
 from typing import Any
 
 

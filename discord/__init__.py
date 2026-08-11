@@ -1,5 +1,5 @@
 __all__ = (
-  "Client",
+  "Client", "components",
   "enums", "exceptions",
   "flags",
   "Logger",
@@ -24,4 +24,4 @@ DISCORD_EPOCH: int = 1420070400000
 from ._logging import Logger
 from .client import Client
 from .snowflake import Snowflake
-from . import enums, exceptions, flags, objects, utils
+from . import components, enums, exceptions, flags, objects, utils

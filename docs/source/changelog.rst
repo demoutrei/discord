@@ -33,13 +33,14 @@ v26.1.12-dev
 - Added :class:`~discord.objects.StickerItem` object.
 - Added :class:`~discord.enums.ComponentType` enum.
 - Added :class:`~discord.flags.MessageFlags` flag.
-- Added :class:`~discord.objects.components.CheckboxComponent` component.
-- Added :class:`~discord.objects.components.CheckboxGroupComponent` component.
-- Added :class:`~discord.objects.components.CheckboxGroupOption` object.
-- Added :class:`~discord.objects.components.RadioGroupComponent` component.
-- Added :class:`~discord.objects.components.RadioGroupOption` object.
-- Added :class:`~discord.objects.components.FileUploadComponent` component.
-- Added :class:`~discord.objects.components.LabelComponent` component.
+- Added :class:`~discord.components.CheckboxComponent` component.
+- Added :class:`~discord.components.CheckboxGroupComponent` component.
+- Added :class:`~discord.components.CheckboxGroupOption` object.
+- Added :class:`~discord.components.RadioGroupComponent` component.
+- Added :class:`~discord.components.RadioGroupOption` object.
+- Added :class:`~discord.components.FileUploadComponent` component.
+- Added :class:`~discord.components.LabelComponent` component.
+- Moved components from ``objects`` module to ``discord`` apex module.
 
 **Documentation Changes**
 
