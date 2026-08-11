@@ -47,6 +47,12 @@ Checkbox and Checkbox Group
 .. autoclass:: discord.objects.components.CheckboxGroupOption()
 
 
+File Upload
+^^^^^^^^^^^
+
+.. autoclass:: discord.objects.components.FileUploadComponent()
+
+
 Radio Group
 ^^^^^^^^^^^
 
