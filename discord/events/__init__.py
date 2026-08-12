@@ -26,6 +26,13 @@ from .integration_delete import IntegrationDeleteEvent
 from .integration_update import IntegrationUpdateEvent
 from .invite_create import InviteCreateEvent
 from .invite_delete import InviteDeleteEvent
+from .message_delete import MessageDeleteEvent
+from .message_delete_bulk import MessageDeleteBulkEvent
+from .message_reaction_add import MessageReactionAddEvent
+from .message_reaction_remove import MessageReactionRemoveEvent
+from .message_reaction_remove_all import MessageReactionRemoveAllEvent
+from .message_reaction_remove_emoji import MessageReactionRemoveEmojiEvent
+from .message_update import MessageUpdateEvent
 from .presence_update import PresenceUpdateEvent
 from .ready import ReadyEvent
 from .soundboard_sounds import SoundboardSoundsEvent

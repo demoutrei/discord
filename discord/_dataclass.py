@@ -1,4 +1,5 @@
 from .flags import PermissionFlags
+from .objects.components._base import Component, ContainerChildComponent, LabelChildComponent
 from .snowflake import Snowflake
 from .utils import ISO8601Timestamp, Match, MISSING, Nullable, Optional
 from annotationlib import get_annotations
@@ -20,16 +21,19 @@ def dataclass[T](cls: T) -> T:
 
   def __init_subclass__(subclass, **kwargs) -> None:
     super(subclass).__init_subclass__(**kwargs)
+    if subclass in (Component, LabelChildComponent):
+      subclass.__new__ = object.__new__
     for base in subclass.__bases__:
       subclass.__annotations__.update(get_annotations(base))
 
-  def __parse(self, annotation: Union[GenericAlias, type, Self[T]], value: Union[Any, Ellipsis], *, data: dict[str, Any]) -> Optional[Nullable[T]]:
+  def __parse(self, annotation: Union[GenericAlias, type, Self[T]], /, value: Union[Any, Ellipsis], *, data: dict[str, Any]) -> Optional[Nullable[T]]:
     if isinstance(annotation, GenericAlias):
-      if annotation.__origin__ is dict: return self.__parse_dict(annotation.__args__[1], value, data = data)
+      if annotation.__origin__ is dict: return self.__parse_dict(annotation.__args__[0], annotation.__args__[1], value, data = data)
       if annotation.__origin__ is list: return self.__parse_list(annotation.__args__[0], value, data = data)
       if annotation.__origin__ is Match: return self.__parse_match(annotation.__args__[1:], annotation.__args__[0], value, data = data)
       if annotation.__origin__ is Nullable: return self.__parse_nullable(annotation.__args__[0], value, data = data)
       if annotation.__origin__ is Optional: return self.__parse_optional(annotation.__args__[0], value, data = data)
+    if annotation in (Component, ContainerChildComponent, LabelChildComponent): return annotation(**value)
     if is_dataclass(annotation): return self.__parse_dataclass(annotation, value, data = data)
     if annotation is Snowflake and value not in (MISSING, None, Ellipsis): return Snowflake(value)
     if issubclass(annotation, Enum) and value not in (MISSING, None, Ellipsis):
@@ -45,9 +49,9 @@ def dataclass[T](cls: T) -> T:
     if value is Ellipsis: return MISSING
     return annotation(**value)
 
-  def __parse_dict(self, annotation: Union[GenericAlias, Self[T], type], values: Union[dict[str, Any], Ellipsis], *, data: dict[str, Any]) -> Optional[dict[str, T]]:
+  def __parse_dict(self, key_annotation: Union[GenericAlias, Self[T], type], value_annotation: Union[GenericAlias, Self[T], type], /, values: Union[dict[str, Any], Ellipsis], *, data: dict[str, Any]) -> Optional[dict[str, T]]:
     if values is Ellipsis: return MISSING
-    return {key: self.__parse(annotation, value, data = data) for key, value in values.items()}
+    return {self.__parse(key_annotation, key, data = data): self.__parse(value_annotation, value, data = data) for key, value in values.items()}
 
   def __parse_match(self, annotations: tuple[tuple[Union[int, str], Union[GenericAlias, Self[T], type]], ...], field: str, value: Union[Any, Ellipsis], *, data: dict[str, Any]) -> Optional[T]:
     if value is Ellipsis: return MISSING

@@ -20,6 +20,9 @@ Enumerations
 .. autoclass:: discord.enums.ApplicationIntegrationType()
 
 
+.. autoclass:: discord.flags.AttachmentFlags()
+
+
 .. autoclass:: discord.enums.AuditLogEvent()
 
 
@@ -35,10 +38,16 @@ Enumerations
 .. autoclass:: discord.enums.AutoModerationRuleTriggerType()
 
 
+.. autoclass:: discord.enums.BaseThemeType()
+
+
 .. autoclass:: discord.flags.ChannelFlags()
 
 
 .. autoclass:: discord.enums.ChannelType()
+
+
+.. autoclass:: discord.enums.ComponentType()
 
 
 .. autoclass:: discord.enums.DefaultMessageNotificationLevel()
@@ -115,6 +124,9 @@ Enumerations
 .. autoclass:: discord.enums.MembershipState()
 
 
+.. autoclass:: discord.flags.MessageFlags()
+
+
 .. autoclass:: discord.enums.MFALevel()
 
 
@@ -130,6 +142,9 @@ Enumerations
 .. autoclass:: discord.enums.OpCode()
 
 
+.. autoclass:: discord.enums.PollLayoutType()
+
+
 .. autoclass:: discord.flags.PermissionFlags
 
 
@@ -137,6 +152,9 @@ Enumerations
 
 
 .. autoclass:: discord.enums.PremiumType()
+
+
+.. autoclass:: discord.enums.ReactionType()
 
 
 .. autoclass:: discord.flags.RoleFlags()

@@ -33,7 +33,7 @@ class _MissingSentinel:
 
 
 type ISO8601Timestamp = str
-"""Represents an ISO8601 timestamp. When parsed, this becomes a :class:`datetime.datetime` object."""
+"""Represents an ISO8601 timestamp. When parsed, this becomes a py:class:`datetime.datetime` object."""
 
 type Match[V, T] = tuple[str, tuple[V, T], ...]
 """Represents a match-case data type"""

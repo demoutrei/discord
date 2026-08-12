@@ -1,5 +1,5 @@
 __all__ = (
-  "Client",
+  "Client", "components",
   "enums", "exceptions",
   "flags",
   "Logger",
@@ -13,7 +13,7 @@ __author__: str = "demoutrei"
 __copyright__: str = "Copyright 2026-present demoutrei"
 __license__: str = "MIT"
 __title__: str = "demoutrei.discord"
-__version__: str = "26.1.11"
+__version__: str = "26.1.12-dev"
 """``demoutrei.discord`` package version"""
 
 
@@ -24,4 +24,4 @@ DISCORD_EPOCH: int = 1420070400000
 from ._logging import Logger
 from .client import Client
 from .snowflake import Snowflake
-from . import enums, exceptions, flags, objects, utils
+from . import components, enums, exceptions, flags, objects, utils

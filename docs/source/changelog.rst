@@ -2,6 +2,54 @@ Changelog
 =========
 
 
+v26.1.12-dev
+------------
+
+**Added Changes**
+
+- Receive all message-related gateway events.
+- Added :class:`~discord.events.MessageReactionRemoveEmojiEvent` event.
+- Added :class:`~discord.events.MessageReactionRemoveAllEvent` event.
+- Added :class:`~discord.events.MessageReactionRemoveEvent` event.
+- Added :class:`~discord.enums.ReactionType` enum.
+- Added :class:`~discord.events.MessageReactionAddEvent` event.
+- Added :class:`~discord.events.MessageDeleteBulkEvent` event.
+- Added :class:`~discord.events.MessageDeleteEvent` event.
+- Added :class:`~discord.events.MessageUpdateEvent` event.
+- Added :class:`~discord.objects.Message` object.
+- Added :class:`~discord.objects.SharedClientTheme` object.
+- Added :class:`~discord.objects.BaseThemeType` object.
+- Added :class:`~discord.objects.MessageCall` object.
+- Added :class:`~discord.objects.Poll` object.
+- Added :class:`~discord.objects.PollResults` object.
+- Added :class:`~discord.objects.PollAnswerCount` object.
+- Added :class:`~discord.enums.PollLayoutType` enum.
+- Added :class:`~discord.objects.PollAnswer` object.
+- Added :class:`~discord.objects.PollMedia` object.
+- Added :class:`~discord.objects.ResolvedData` object.
+- Added :class:`~discord.objects.Attachment` object.
+- Added :class:`~discord.flags.AttachmentFlags` flag.
+- Added :class:`~discord.objects.RoleSubscriptionData` object.
+- Added :class:`~discord.objects.StickerItem` object.
+- Added :class:`~discord.enums.ComponentType` enum.
+- Added :class:`~discord.flags.MessageFlags` flag.
+- Added :class:`~discord.components.CheckboxComponent` component.
+- Added :class:`~discord.components.CheckboxGroupComponent` component.
+- Added :class:`~discord.components.CheckboxGroupOption` object.
+- Added :class:`~discord.components.RadioGroupComponent` component.
+- Added :class:`~discord.components.RadioGroupOption` object.
+- Added :class:`~discord.components.FileUploadComponent` component.
+- Added :class:`~discord.components.LabelComponent` component.
+- Moved components from ``objects`` module to ``discord`` apex module.
+- Added :class:`~discord.components.ContainerComponent` component.
+- Added :class:`~discord.components.SeparatorComponent` component.
+
+**Documentation Changes**
+
+- Added missing documentations
+- Added "Components" reference
+
+
 v26.1.11
 --------
 

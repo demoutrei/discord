@@ -352,6 +352,65 @@ Received when an invite is deleted.
 .. autoclass:: discord.events.InviteDeleteEvent()
 
 
+``MESSAGE_DELETE``
+~~~~~~~~~~~~~~~~~~
+
+Received when a message is deleted.
+
+.. autoclass:: discord.events.MessageDeleteEvent()
+
+
+``MESSAGE_DELETE_BULK``
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Received when multiple messages are deleted at once.
+
+.. autoclass:: discord.events.MessageDeleteBulkEvent()
+
+
+``MESSAGE_REACTION_ADD``
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Received when a user adds a reaction to a message.
+
+.. autoclass:: discord.events.MessageReactionAddEvent()
+
+
+``MESSAGE_REACTION_REMOVE``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Received when a user removes a reaction from a message.
+
+.. autoclass:: discord.events.MessageReactionRemoveEvent()
+
+
+``MESSAGE_REACTION_REMOVE_ALL``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Received when a user explicitly removes all reactions from a message.
+
+.. autoclass:: discord.events.MessageReactionRemoveAllEvent()
+
+
+``MESSAGE_REACTION_REMOVE_EMOJI``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Received when a bot removes all instances of a given emoji from the reactions of a message.
+
+.. autoclass:: discord.events.MessageReactionRemoveEmojiEvent()
+
+
+``MESSAGE_UPDATE``
+~~~~~~~~~~~~~~~~~~
+
+Received when a message is updated. The inner payload is a :class:`~discord.objects.Message` object with the following extra fields:
+
+.. hint::
+    The value for :class:`~discord.objects.Message.tts` will always be ``False`` in message updates.
+
+.. autoclass:: discord.events.MessageUpdateEvent()
+
+
 ``PRESENCE_UPDATE``
 ~~~~~~~~~~~~~~~~~~~
 

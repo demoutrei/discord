@@ -43,6 +43,9 @@ To use an external iamge via media proxy, specify the URL as the field's value w
 .. autoclass:: discord.objects.ApplicationIntegrationTypeConfiguration()
 
 
+.. autoclass:: discord.objects.Attachment()
+
+
 .. autoclass:: discord.objects.AuditLogEntry()
 
 
@@ -218,6 +221,9 @@ The following table shows field requirements based on current entity type.
 .. autoclass:: discord.objects.GuildScheduledEventEntityMetadata()
 
 
+.. autoclass:: discord.objects.GuildScheduledEventRecurrenceRule()
+
+
 .. autoclass:: discord.objects.GuildScheduledEventRecurrenceRuleNWeekday()
 
 
@@ -242,6 +248,12 @@ The following table shows field requirements based on current entity type.
 .. autoclass:: discord.objects.InviteMetadata()
 
 
+.. autoclass:: discord.objects.Message()
+
+
+.. autoclass:: discord.objects.MessageCall()
+
+
 .. autoclass:: discord.objects.Nameplate()
 
 
@@ -257,11 +269,41 @@ The following table shows field requirements based on current entity type.
 .. autoclass:: discord.objects.PermissionOverwrite()
 
 
+.. autoclass:: discord.objects.Poll()
+
+
+.. autoclass:: discord.objects.PollAnswer()
+
+
+.. autoclass:: discord.objects.PollAnswerCount()
+
+
+.. autoclass:: discord.objects.PollMedia()
+
+
+.. autoclass:: discord.objects.PollResults()
+
+
+.. autoclass:: discord.objects.ResolvedData()
+
+
 .. autoclass:: discord.objects.Role()
+
+
+.. autoclass:: discord.objects.RoleColors()
+
+
+.. autoclass:: discord.objects.RoleSubscriptionData()
+
+
+.. autoclass:: discord.objects.RoleTags()
 
 
 .. autoclass:: discord.objects.SessionStartLimit()
   
+
+.. autoclass:: discord.objects.SharedClientTheme()
+
 
 .. autoclass:: discord.Snowflake()
 
@@ -273,6 +315,9 @@ The following table shows field requirements based on current entity type.
 
 
 .. autoclass:: discord.objects.Sticker()
+
+
+.. autoclass:: discord.objects.StickerItem()
 
 
 .. autoclass:: discord.objects.Team()
