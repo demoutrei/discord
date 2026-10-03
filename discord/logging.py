@@ -67,6 +67,7 @@ class Logger:
   @classmethod
   def debug(cls, *messages: str) -> Self:
     """:param messages: Messages to log as DEBUG level"""
+    if not self.__debug_flag: return
     if not messages:
       raise ValueError(f"messages: Must pass at least one message")
     messages: list[str] = list(messages)
@@ -142,6 +143,7 @@ class Logger:
 
   def log(self) -> None:
     """:meta private:"""
+    if not self.__allow_logging: return
     print(f"{self.get_prefix()} {f"\n{self.get_prefix(with_level = False, with_timestamp = False)} ".join([message for message in self.messages])}")
 
   @property

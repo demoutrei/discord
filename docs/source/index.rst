@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-demoutrei.discord documentation
-===============================
+demoutrei.discord
+=================
 
 
 .. toctree::
@@ -12,4 +12,5 @@ demoutrei.discord documentation
     :maxdepth: 1
 
     prerequisite
+    logging
     reference/index
