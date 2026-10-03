@@ -41,6 +41,48 @@ class GatewayEvent:
     return self.__d
 
 
+  @classmethod
+  def HEARTBEAT(cls: type[Self], s: Nullable[int], /) -> Self:
+    """Generate an :attr:`OpCode.HEARTBEAT <discord.enums.OpCode.HEARTBEAT>` event payload.
+
+    :param s: Last received sequence number.
+    """
+    if s is not None and not isinstance(s, int):
+      raise TypeError(f"s: Must be an instance of {int}; not {s.__class__}.")
+    return cls(
+      op = OpCode.HEARTBEAT.value,
+      d = s
+    )
+
+  
+  @classmethod
+  def IDENTIFY(cls: type[Self], *, token: str, intents: GatewayIntents) -> Self:
+    """Generate an :attr:`OpCode.IDENTIFY <discord.enums.OpCode.IDENTIFY>` event payload.
+
+    :param token: Discord application authentication token.
+    :param: intents: Gateway events you wish to receive.
+    """
+    
+    if not isinstance(token, str):
+      raise TypeError(f"token: Must be an instance of {str}; not {token.__class__}.")
+    if not token:
+      raise ValueError(f"token: Must not be an empty string.")
+    if not isinstance(intents, GatewayIntents):
+      raise TypeError(f"intents: Must be an instance of {GatewayIntents}; not {intents.__class__}.")
+    return cls(
+      op = OpCode.IDENTIFY.value,
+      d = {
+        "token": token,
+        "intents": intents.value,
+        "properties": {
+          "os": "windows",
+          "browser": "demoutrei.discord",
+          "device": "demoutrei.discord"
+        }
+      }
+    )
+
+
   @property
   def op(self) -> OpCode:
     """Gateway opcode, which indicates the payload type."""
@@ -72,33 +114,50 @@ class GatewayEvent:
       "t": self.t
     }
 
-  
-  @classmethod
-  def IDENTIFY(cls: type[Self], *, token: str, intents: GatewayIntents) -> Self:
-    """Generate an :attr:`OpCode.IDENTIFY <discord.enums.OpCode.IDENTIFY>` event payload.
 
-    :param token: Discord application authentication token.
-    :param: intents: Gateway events you wish to receive.
-    """
-    
-    if not isinstance(token, str):
-      raise TypeError(f"token: Must be an instance of {str}; not {token.__class__}.")
-    if not token:
-      raise ValueError(f"token: Must not be an empty string.")
-    if not isinstance(intents, GatewayIntents):
-      raise TypeError(f"intents: Must be an instance of {GatewayIntents}; not {intents.__class__}.")
-    return cls(
-      op = OpCode.IDENTIFY.value,
-      d = {
-        "token": token,
-        "intents": intents.value,
-        "properties": {
-          "os": "windows",
-          "browser": "demoutrei.discord",
-          "device": "demoutrei.discord"
-        }
-      }
-    )
+class KeepAliveThread(threading.Thread):
+  def __init__(self, socket: "DiscordWebSocket", /, *, interval: int) -> None:
+    if not isinstance(interval, int):
+      raise TypeError(f"interval: Must be an instance of {int}; not {interval.__class__}.")
+    if interval < 0:
+      raise ValueError(f"interval: Must be greater than or equal to 0.")
+    super().__init__(daemon = True)
+    self.__heartbeat_timeout: float = 60.0
+    self.__interval: int = interval
+    self.__last_ack: float = time.perf_counter()
+    self.__last_receive: float = time.perf_counter()
+    self.__last_send: float = time.perf_counter()
+    self.__socket: DiscordWebSocket = socket
+    self.__stop_event: threading.Event = threading.Event()
+
+
+  def run(self) -> None:
+    while not self.__stop_event.wait(self.__interval / 1_000):
+      if self.__last_receive + self.__heartbeat_timeout < time.perf_counter():
+        with Logger.debug("Attempted a restart."):
+          future: asyncio.Future = asyncio.run_coroutine_threadsafe(self.__socket.client.close(4000), loop = self.__socket.client._loop)
+          try: future.result()
+          except BaseException as exception: raise exception
+          finally: self.stop()
+          return
+      future: asyncio.Future = asyncio.run_coroutine_threadsafe(self.__socket.send(GatewayEvent.HEARTBEAT(self.__socket.last_sequence)), loop = self.__socket.client._loop)
+      try:
+        total: int = 0
+        while True:
+          try:
+            future.result(10)
+            break
+          except BaseException as exception: raise exception
+      except Exception: self.stop()
+      else: self.__last_send: float = time.perf_counter()
+
+
+  def stop(self) -> None:
+    self.__stop_event.set()
+
+
+  def tick(self) -> None:
+    self.__last_receive: float = time.perf_counter()
 
 
 class DiscordWebSocket:
@@ -124,8 +183,18 @@ class DiscordWebSocket:
       instance: Self = super().__new__(cls)
       instance.__client: Client = client
       instance.__connection: Optional[ClientWebSocketResponse] = MISSING
+      instance.__keep_alive_thread: Optional[KeepAliveThread] = MISSING
+      instance.__last_sequence: Nullable[int] = None
+      instance.__latency: float = float("inf")
       cls.__instance: Self = instance
     return cls.__instance
+
+
+  def ack(self) -> None:
+    if self.__keep_alive_thread:
+      ack_time: float = time.perf_counter()
+      self.__keep_alive_thread._KeepAliveThread__last_ack: float = ack_time
+      self.__latency: float = ack_time - self.__keep_alive_thread._KeepAliveThread__last_send
 
 
   async def close(self, code: int, /) -> None:
@@ -165,6 +234,10 @@ class DiscordWebSocket:
       if not event: continue
       hook_name: Optional[str] = MISSING
       match event.op:
+        case OpCode.HEARTBEAT: hook_name: str = "on_heartbeat"
+        case OpCode.HEARTBEAT_ACK:
+          hook_name: str = "on_heartbeat_ack"
+          self.ack()
         case OpCode.HELLO: hook_name: str = "on_hello"
       if hook_name and hasattr(self, hook_name):
         await getattr(self, hook_name)(event)
@@ -179,13 +252,49 @@ class DiscordWebSocket:
         self.__connection: Optional[ClientWebSocketResponse] = MISSING
 
 
-  async def on_hello(self, event: GatewayEvent, /) -> None:
-    """Asynchronous hook for receiving :attr:`discord.enums.OpCode.HELLO` Gateway events.
+  def keep_alive(self, *, interval: int) -> None:
+    """Construct a keep-alive thread for the socket.
+    
+    :param interval: The interval to send heartbeats to the gateway.
+    """
+    self.__keep_alive_thread: KeepAliveThread = KeepAliveThread(self, interval = interval)
+    self.__keep_alive_thread.start()
+
+
+  @property
+  def last_sequence(self) -> Nullable[int]:
+    """The last received sequence number."""
+    
+    return self.__last_sequence
+
+
+  @property
+  def latency(self) -> float:
+    """The Gateway API latency."""
+    return self.__latency
+
+
+  async def on_heartbeat(self, event: GatewayEvent, /) -> None:
+    """Asynchronous hook for receiving :attr:`OpCode.HEARTBEAT <discord.enums.OpCode.HEARTBEAT>` Gateway events.
 
     :param event: The received Gateway event payload.
     """
-    
     pass
+
+
+  async def on_hello(self, event: GatewayEvent, /) -> None:
+    """Asynchronous hook for receiving :attr:`OpCode.HELLO <discord.enums.OpCode.HELLO>` Gateway events.
+
+    :param event: The received Gateway event payload.
+    """
+    pass
+
+
+  async def on_heartbeat_ack(self, event: GatewayEvent, /) -> None:
+    """Asynchronous hook for receiving :attr:`OpCode.HEARTBEAT_ACK <discord.enums.OpCode.HEARTBEAT_ACK>` Gateway events.
+
+    :param event: The received Gateway event payload.
+    """
 
 
   async def receive(self) -> Nullable[GatewayEvent]:
@@ -202,6 +311,8 @@ class DiscordWebSocket:
         Logger.debug(f"Gateway event received: {event.op!r}")
         if event.s is not None:
           self.__last_sequence: int = event.s
+        if self.__keep_alive_thread:
+          self.__keep_alive_thread.tick()
         return event
 
 
