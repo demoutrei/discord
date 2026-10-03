@@ -191,6 +191,7 @@ class DiscordWebSocket:
 
 
   def ack(self) -> None:
+    """:meta private:"""
     if self.__keep_alive_thread:
       ack_time: float = time.perf_counter()
       self.__keep_alive_thread._KeepAliveThread__last_ack: float = ack_time
@@ -317,6 +318,10 @@ class DiscordWebSocket:
 
 
   async def send(self, event: GatewayEvent, /) -> None:
+    """Send an event to the Discord Gateway API.
+
+    :param event: The Gateway event to send.
+    """
     if not isinstance(event, GatewayEvent):
       raise TypeError(f"event: Must be an instance of {GatewayEvent}; not {event.__class__}")
     with Logger.debug(f"Gateway event sent: {event.op!r}"):
