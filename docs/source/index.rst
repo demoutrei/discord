@@ -6,6 +6,8 @@
 demoutrei.discord
 =================
 
+**Democord** is a Discord API wrapper written in Python 3.14.
+
 
 .. toctree::
     :hidden:
