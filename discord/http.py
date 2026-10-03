@@ -29,7 +29,7 @@ class HTTPResponse:
 
   .. code:: python
 
-    response: HTTPResponse = await client._http.sample_endpoint()
+    response: HTTPResponse = await client.http.sample_endpoint()
     response["sample_key"] # "sample value"
   """
 

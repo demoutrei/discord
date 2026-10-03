@@ -44,7 +44,7 @@ type Match[V, T] = tuple[str, tuple[V, T], ...]
 """Represents a match-case data type."""
 
 
-MISSING: __MissingSentinel = __MissingSentinel()
+MISSING = __MissingSentinel()
 """Represents a singleton MISSING sentinel."""
 
 

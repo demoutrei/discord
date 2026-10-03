@@ -1,11 +1,45 @@
+__all__ = (
+  "Client",
+)
+
+
 from .http import HTTPClient
 from .logging import Logger
 from .gateway import DiscordWebSocket
 from .types import MISSING, Nullable, Optional
 from aiohttp import ClientSession
-from os import getenv
+from os import environ, getenv
 from typing import Self
 import asyncio
+
+
+class EnvironmentVariables:
+  def __getattr__(self, key: str) -> Nullable[str]:
+    if not isinstance(key, str):
+      raise TypeError(f"key: Must be an instance of {str}; not {key.__class__}")
+    if not key:
+      raise ValueError(f"key: Must not be an empty string.")
+    return getenv(key)
+  
+  
+  def __init__(self) -> None:
+    from dotenv import load_dotenv
+    load_dotenv()
+
+
+  def __setattr__(self, key: str, value: str) -> None:
+    if not isinstance(key, str):
+      raise TypeError(f"key: Must be an instance of {str}; not {key.__class__}.")
+    if not key:
+      raise ValueError(f"key: Must not be an emptry string.")
+    if not key.isidentifier():
+      raise ValueError(f"key: Must be a valid identifier.")
+    if not isinstance(value, str):
+      raise TypeError(f"value: Must be an instance of {str}; not {value.__class__}")
+    if not value:
+      raise ValueError(f"value: Must not be an empty string.")
+    environ[key]: str = value
+
 
 
 class Client:
@@ -25,12 +59,8 @@ class Client:
       instance.__http: HTTPClient = HTTPClient(instance)
       instance.__session: Nullable[ClientSession] = None
       instance.__socket: Nullable[DiscordWebSocket] = None
-      instance.__token: Nullable[str] = getenv("APPLICATION_TOKEN")
-      if not instance._Client__token:
-        from dotenv import load_dotenv
-        load_dotenv()
-        instance.__token: Nullable[str] = getenv("APPLICATION_TOKEN")
-      if not instance._Client__token:
+      instance.__env: EnvironmentVariables = EnvironmentVariables()
+      if not instance.__env.APPLICATION_TOKEN:
         raise ValueError("No valid Discord application token configured.")
         exit()
       cls.__instance: Self = instance
@@ -62,7 +92,7 @@ class Client:
   def connect(self, *, gateway_cls: Nullable[type[DiscordWebSocket]] = DiscordWebSocket) -> None:
     """Initiate a connection with the Discord API.
 
-    :param gateway_cls: The :class:`discord.gateway.DiscordWebSocket` class to use for connecting with the Discord API Gateway. Pass ``None`` to disable.
+    :param gateway_cls: The :class:`~discord.gateway.DiscordWebSocket` class to use for connecting with the Discord API Gateway. Pass ``None`` to disable.
     """
     try:
       if gateway_cls is not None and not issubclass(gateway_cls, DiscordWebSocket):
@@ -71,7 +101,7 @@ class Client:
         self.__session: ClientSession = ClientSession(self.http.BASE_URL, raise_for_status = self.http._HTTPClient__status_check)
         if gateway_cls is not None:
           self.__socket: DiscordWebSocket = gateway_cls(self)
-          await self.socket.connect()
+          await self.socket.setup()
       self._loop.run_until_complete(inner())
     except KeyboardInterrupt:
       self._loop.create_task(self.close())
@@ -84,6 +114,13 @@ class Client:
 
 
   @property
+  def env(self) -> EnvironmentVariables:
+    """Configured environment variables for the client."""
+
+    return self.__env
+
+
+  @property
   def http(self) -> HTTPClient:
     """HTTP/S connection instance to the Discord API."""
     return self.__http
@@ -91,5 +128,5 @@ class Client:
 
   @property
   def socket(self) -> Nullable[DiscordWebSocket]:
-    """WebSocket conection instance to the Discord API gateway, if any."""
+    """WebSocket connection instance to the Discord API gateway, if any."""
     return self.__socket

@@ -5,6 +5,7 @@ __all__ = (
 
 
 from .enums import OpCode
+from .flags import GatewayIntents
 from .logging import Logger
 from .types import MISSING, Nullable, Optional
 from aiohttp import ClientWebSocketResponse, WSMessage, WSMsgType
@@ -71,6 +72,34 @@ class GatewayEvent:
       "t": self.t
     }
 
+  
+  @classmethod
+  def IDENTIFY(cls: type[Self], *, token: str, intents: GatewayIntents) -> Self:
+    """Generate an :attr:`OpCode.IDENTIFY <discord.enums.OpCode.IDENTIFY>` event payload.
+
+    :param token: Discord application authentication token.
+    :param: intents: Gateway events you wish to receive.
+    """
+    
+    if not isinstance(token, str):
+      raise TypeError(f"token: Must be an instance of {str}; not {token.__class__}.")
+    if not token:
+      raise ValueError(f"token: Must not be an empty string.")
+    if not isinstance(intents, GatewayIntents):
+      raise TypeError(f"intents: Must be an instance of {GatewayIntents}; not {intents.__class__}.")
+    return cls(
+      op = OpCode.IDENTIFY.value,
+      d = {
+        "token": token,
+        "intents": intents.value,
+        "properties": {
+          "os": "windows",
+          "browser": "demoutrei.discord",
+          "device": "demoutrei.discord"
+        }
+      }
+    )
+
 
 class DiscordWebSocket:
   """Represents a WebSocket connection to the Discord API gateway.
@@ -111,20 +140,21 @@ class DiscordWebSocket:
         self.__connection: Optional[ClientWebSocketResponse] = MISSING
 
 
-  async def connect(self, url: Optional[str] = MISSING, /) -> None:
+  @property
+  def client(self) -> Client:
+    """The associated Discord client."""
+
+    return self.__client
+
+
+  async def connect(self, url: str, /) -> None:
     """Initiate a WebSocket connection to the Discord Gateway API.
 
     :param url: WSS URL to use for connecting to the gateway.
     """
 
-    if url is not MISSING:
-      if not isinstance(url, str):
-        raise TypeError(f"url: Must be an instance of {str}; not {url.__class__}")
-    else:
-      async with await self.__client.http.get_gateway() as response:
-        url: str = f"{response["url"]}/?v=10&encoding=json"
-        self.__wss_url: str = url
-        Logger.debug(f"Cached WSS URL: {self.__wss_url}")
+    if not isinstance(url, str):
+      raise TypeError(f"url: Must be an instance of {str}; not {url.__class__}")
     with Logger.debug("Connected to gateway."):
       url: str = url.strip()
       if not url:
@@ -133,6 +163,11 @@ class DiscordWebSocket:
     while self.__connection:
       event: Nullable[GatewayEvent] = await self.receive()
       if not event: continue
+      hook_name: Optional[str] = MISSING
+      match event.op:
+        case OpCode.HELLO: hook_name: str = "on_hello"
+      if hook_name and hasattr(self, hook_name):
+        await getattr(self, hook_name)(event)
 
 
   async def disconnect(self) -> None:
@@ -142,6 +177,15 @@ class DiscordWebSocket:
       with Logger.debug("Discord WebSocket connection disconnected."):
         await self.__connection.close()
         self.__connection: Optional[ClientWebSocketResponse] = MISSING
+
+
+  async def on_hello(self, event: GatewayEvent, /) -> None:
+    """Asynchronous hook for receiving :attr:`discord.enums.OpCode.HELLO` Gateway events.
+
+    :param event: The received Gateway event payload.
+    """
+    
+    pass
 
 
   async def receive(self) -> Nullable[GatewayEvent]:
@@ -154,7 +198,11 @@ class DiscordWebSocket:
       case WSMsgType.CLOSE:
         await self.close(message.data)
       case _:
-        ...
+        event: GatewayEvent = GatewayEvent(**message.json())
+        Logger.debug(f"Gateway event received: {event.op!r}")
+        if event.s is not None:
+          self.__last_sequence: int = event.s
+        return event
 
 
   async def send(self, event: GatewayEvent, /) -> None:
@@ -162,3 +210,9 @@ class DiscordWebSocket:
       raise TypeError(f"event: Must be an instance of {GatewayEvent}; not {event.__class__}")
     with Logger.debug(f"Gateway event sent: {event.op!r}"):
       await self.__connection.send_json(event.to_dict())
+
+    
+  async def setup(self) -> None:
+    """Asynchronous hook for initializing connection to the Discord API."""
+
+    pass

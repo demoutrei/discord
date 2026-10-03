@@ -8,4 +8,5 @@ API Reference
     http
     gateway
     enums
+    flags
     exceptions

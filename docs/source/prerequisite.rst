@@ -32,6 +32,11 @@ You don't have to load your dotenv files as the library does it for you. All tha
     APPLICATION_TOKEN=...
 
 
+.. attention::
+
+    Do **NOT** publicly expose your application token or hand it to just anyone---store it in a secured place.
+
+
 .. seealso::
 
     `How Do I Get A Bot Token?`_
@@ -60,21 +65,42 @@ First, you must set up your :class:`~discord.Client` class and :class:`~discord.
     client.connect(gateway_cls = Default)
 
 
-Responding to Hello OpCode
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Upon initiating a connection through the WSS URL, Discord sends an :attr:`OpCode.HELLO` event containing a heartbeat interval in milliseconds. You must begin handling heartbeats and send a :attr:`GatewayEvent.IDENTIFY` payload.
+To initially connect to the Gateway API, you must fetch the WSS URL from the :attr:`HTTPClient.get_gateway() <discord.http.HTTPClient.get_gateway>` endpoint and cache it.
 
 
 .. code:: python
 
+    from discord.gateway import DiscordWebSocket
+    from discord.logging import Logger
+
+    class Default(DiscordWebSocket):
+      async def setup(self) -> None:
+        async with await self.client.http.get_gateway() as response:
+          url: str = f"{response["url"]}/v?=10&encoding=json"
+        with Logger.debug(f"Cached WSS URL: {url}"):
+          self.client.env.WSS_URL: str = url
+        await self.connect(self.client.env.WSS_URL)
+
+
+Hello OpCode
+^^^^^^^^^^^^
+
+Upon initiating a connection through the WSS URL, Discord sends an :attr:`OpCode.HELLO <discord.enums.OpCode.HELLO>` event containing a heartbeat interval in milliseconds. You must begin handling heartbeats and send a :attr:`GatewayEvent.IDENTIFY <discord.gateway.GatewayEvent.IDENTIFY>` payload.
+
+
+.. code:: python
+
+    from discord.gateway import DiscordWebSocket, GatewayEvent
+    from discord.flags import GatewayIntents
+
     class Default(DiscordWebSocket):
       async def on_hello(event: GatewayEvent) -> None:
-        identify_payload: GatewayEvent = GatewayEvent.IDENTIFY(
-          intents = self.client.intents,
-          token = self.client.token
+        await self.send(
+          GatewayEvent.IDENTIFY(
+            intents = GatewayIntents.default(),
+            token = self.client.env.APPLICATION_TOKEN
+          )
         )
-        await self.send(identify_payload)
 
 
 .. _How Do I Create an Application?: https://guides.demoutrei.dev/discord/api/faq#how-do-i-create-an-application
