@@ -4,7 +4,9 @@ __all__ = (
   "flags",
   "gateway",
   "http",
-  "Logger",
+  "logging",
+  "objects",
+  "Snowflake",
   "types"
 )
 
@@ -20,6 +22,6 @@ DISCORD_EPOCH: int = 1_420_070_400_000
 """Milliseconds since the first second of 2015."""
 
 
-from . import enums, exceptions, flags, gateway, http, types
-from .logging import Logger
+from . import enums, exceptions, flags, gateway, http, logging, objects, types
 from .client import Client
+from .snowflake import Snowflake

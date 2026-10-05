@@ -22,7 +22,7 @@ To enable, you must execute your code using the ``discord`` command-line command
 Usage
 +++++
 
-If logging is enabled, the :class:`~discord.Logger` singleton class can be imported from anywhere in your codebase.
+If logging is enabled, the :class:`~discord.logging.Logger` singleton class can be imported from anywhere in your codebase.
 
 .. code:: python
 
@@ -49,7 +49,7 @@ The library's logging system supports the implementation of explicitly logging a
     # xxxx-xx-xx xx:xx | [ INFO] "Task Completed"
 
     with Logger.info("Task completed"):
-      print(f"{0 / 0} = ")
+      print(f"{0 / 0 = } ")
 
     # Output:
     # xxxx-xx-xx xx:xx | [ERROR] ZeroDivisionError...

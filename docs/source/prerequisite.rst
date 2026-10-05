@@ -27,6 +27,10 @@ You don't have to load your dotenv files as the library does it for you. All tha
 
     APPLICATION_TOKEN=...
 
+.. tip::
+
+    Environment variables are accessible through the :attr:`Client.env <discord.Client.env>` property.
+
 .. attention::
 
     Do **NOT** publicly expose your application token or hand it to just anyone---store it in a secured place.
@@ -53,8 +57,8 @@ First, you must set up your :class:`~discord.Client` class and :class:`~discord.
     class Default(DiscordWebSocket):
       ...
 
-    client = Client()
-    client.connect(gateway_cls = Default)
+    client = Client(gateway_cls = Default)
+    client.connect()
 
 To initially connect to the Gateway API, you must fetch the WSS URL from the :attr:`HTTPClient.get_gateway() <discord.http.HTTPClient.get_gateway>` endpoint and cache it.
 
@@ -129,7 +133,38 @@ After the connection is open and your app is sending heartbeats, you should send
           token = self.client.env.APPLICATION_TOKEN
         ))
 
-After your app sends a valid :attr:`OpCode.IDENTIFY <discord.enums.OpCode.IDENTIFY>` payload, Discord will respond with a ``READY`` :attr:`OpCode.DISPATCH <discord.enums.OpCode.DISPATCH>` event which indicates that your app is in a successfully connected state with the Gateway.
+After your app sends a valid :attr:`OpCode.IDENTIFY <discord.enums.OpCode.IDENTIFY>` payload, Discord will respond with a :class:`~discord.gateway.events.ReadyEvent` which indicates that your app is in a successfully connected state with the Gateway.
+
+
+Ready Event
+^^^^^^^^^^^
+
+The :class:`~discord.gateway.events.ReadyEvent` is sent to your app after it sends a valid :meth:`GatewayEvent.IDENTIFY <discord.gateway.GatewayEvent.IDENTIFY>` payload.
+
+The :class:`~discord.gateway.events.ReadyEvent` includes fields that you'll need to cache in order to eventually resume your connection after disconnects:
+
+- :attr:`~discord.gateway.events.ReadyEvent.resume_gateway_url` is a WebSocket URL that your app should use when it resumes after a disconnect. The :attr:`~discord.gateway.events.ReadyEvent.resume_gateway_url` should be used instead of the URL used when connecting.
+
+- :attr:`~discord.gateway.events.ReadyEvent.session_id` is the ID for the Gateway session for the new connection. It's required to know which stream of events were associated with your disconnection.
+
+.. code:: python
+
+    from discord import Client
+    from discord.gateway import DiscordWebSocket
+    from discord.gateway.events import ReadyEvent
+    from discord.logging import Logger
+
+    class Default(DiscordWebSocket): ...
+
+    client: Client = Client(gateway_cls = Default)
+
+    @client.socket.dispatch("READY")
+    async def _(client: Client, event: ReadyEvent) -> None:
+      client.env.RESUME_GATEWAY_URL: str = event.resume_gateway_url
+      client.env.SESSION_ID: str = event.session_id
+      Logger.info("App is ready.")
+
+    client.connect()
 
 
 .. _How Do I Create an Application?: https://guides.demoutrei.dev/discord/api/faq#how-do-i-create-an-application

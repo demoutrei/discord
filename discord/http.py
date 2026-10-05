@@ -17,7 +17,10 @@ if TYPE_CHECKING:
 
 
 class RequestMethod(StrEnum):
-  """String enum of valid request methods."""
+  """String enum of valid request methods.
+
+  :meta private:
+  """
 
   GET: str = "GET"
 

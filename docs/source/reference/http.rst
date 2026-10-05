@@ -6,6 +6,3 @@ Discord HTTP API
 
 
 .. autoclass:: discord.http.HTTPResponse()
-
-
-.. autoclass:: discord.http.RequestMethod()

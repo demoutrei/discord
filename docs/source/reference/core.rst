@@ -1,13 +1,13 @@
 Core Reference
 ==============
 
-
 .. autoclass:: discord.Client
+
+.. autoclass:: discord.Snowflake
 
 
 Types
 +++++
-
 
 .. automodule:: discord.types
     :no-value:
@@ -15,6 +15,5 @@ Types
 
 Logging
 +++++++
-
 
 .. automodule:: discord.logging

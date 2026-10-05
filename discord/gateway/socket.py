@@ -4,11 +4,14 @@ __all__ = (
 )
 
 
-from .enums import OpCode
-from .flags import GatewayIntents
-from .logging import Logger
-from .types import MISSING, Nullable, Optional
+from ..enums import OpCode
+from ..flags import GatewayIntents
+from ..logging import Logger
+from ..types import MISSING, Nullable, Optional
+from .events._base import DispatchEvent
 from aiohttp import ClientWebSocketResponse, WSMessage, WSMsgType
+from collections.abc import Callable, Coroutine
+from inspect import iscoroutinefunction
 from typing import Any, Self, TYPE_CHECKING
 import asyncio, threading, time
 
@@ -115,6 +118,32 @@ class GatewayEvent:
     }
 
 
+class EventManager:
+  def __init__(self, socket: "DiscordWebSocket", /) -> None:
+    self.__socket: DiscordWebSocket = socket
+    self.__listeners: dict[type[DispatchEvent], list[Callable[..., Coroutine]]] = dict()
+
+
+  def add_listener(self, name: str, callback: Callable[..., Coroutine], /) -> None:
+    if not isinstance(name, str):
+      raise TypeError(f"name: Must be an instance of {str}; not {name.__class__}")
+    name: str = name.strip()
+    if not name:
+      raise ValueError("name: Must not be an empty string.")
+    if not iscoroutinefunction(callback):
+      raise TypeError(f"callback: Must be a coroutine function.")
+    event_cls: Optional[DispatchEvent] = DispatchEvent[name]
+    if not event_cls: return
+    if event_cls not in self.__listeners:
+      self.__listeners[event_cls]: list[Callable[..., Coroutine]] = list()
+    self.__listeners[event_cls].append(callback)
+
+
+  async def dispatch(self, event: DispatchEvent, /) -> None:
+    if event.__class__ not in self.__listeners: return
+    await asyncio.gather(*[listener(self.__socket.client, event) for listener in self.__listeners[event.__class__]])
+
+
 class KeepAliveThread(threading.Thread):
   def __init__(self, socket: "DiscordWebSocket", /, *, interval: int) -> None:
     if not isinstance(interval, int):
@@ -177,12 +206,13 @@ class DiscordWebSocket:
     """DiscordWebSocket constructor."""
 
     if not cls.__instance:
-      from .client import Client
+      from ..client import Client
       if not isinstance(client, Client):
         raise TypeError(f"client: Must be an instance of {Client}; not {client.__class__}")
       instance: Self = super().__new__(cls)
       instance.__client: Client = client
       instance.__connection: Optional[ClientWebSocketResponse] = MISSING
+      instance.__event_manager: EventManager = EventManager(instance)
       instance.__keep_alive_thread: Optional[KeepAliveThread] = MISSING
       instance.__last_sequence: Nullable[int] = None
       instance.__latency: float = float("inf")
@@ -225,6 +255,8 @@ class DiscordWebSocket:
 
     if not isinstance(url, str):
       raise TypeError(f"url: Must be an instance of {str}; not {url.__class__}")
+    if not url:
+      raise ValueError(f"url: Must not be an empty string.")
     with Logger.debug("Connected to gateway."):
       url: str = url.strip()
       if not url:
@@ -235,22 +267,39 @@ class DiscordWebSocket:
       if not event: continue
       hook_name: Optional[str] = MISSING
       match event.op:
-        case OpCode.HEARTBEAT: hook_name: str = "on_heartbeat"
+        case OpCode.DISPATCH:
+          event_cls: Optional[type[DispatchEvent]] = DispatchEvent[event.t]
+          if event_cls:
+            dispatch_event: DispatchEvent = event_cls(**event.d)
+            await self.__event_manager.dispatch(dispatch_event)
+          continue
         case OpCode.HEARTBEAT_ACK:
-          hook_name: str = "on_heartbeat_ack"
+          hook_name: str = f"on_{event.op.name.lower()}"
           self.ack()
-        case OpCode.HELLO: hook_name: str = "on_hello"
+        case _: hook_name: str = f"on_{event.op.name.lower()}"
       if hook_name and hasattr(self, hook_name):
         await getattr(self, hook_name)(event)
 
 
   async def disconnect(self) -> None:
     """Disconnect the connection with the Discord Gateway API."""
-
+    if self.__keep_alive_thread:
+      self.__keep_alive_thread.stop()
+      self.__keep_alive_thread: Optional[KeepAliveThread] = MISSING
     if self.__connection is not None:
       with Logger.debug("Discord WebSocket connection disconnected."):
         await self.__connection.close()
         self.__connection: Optional[ClientWebSocketResponse] = MISSING
+
+
+  def dispatch(self, name: str, /) -> None:
+    """A factory decorator for registering an :attr:`OpCode.DISPATCH <discord.enums.OpCode.DISPATCH>` Gateway event listener.
+
+    :param name: Name of the Dispatch event.
+    """
+    def wrapper(function: Callable[..., Coroutine]) -> None:
+      self.__event_manager.add_listener(name, function)
+    return wrapper
 
 
   def keep_alive(self, *, interval: int) -> None:
@@ -296,10 +345,22 @@ class DiscordWebSocket:
 
     :param event: The received Gateway event payload.
     """
+    pass
+
+
+  async def on_invalid_session(self, event: GatewayEvent, /) -> None:
+    """Asynchronous hook for receiving :attr:`OpCode.INVALID_SESSION <discord.enums.OpCode.INVALID_SESSION>` Gateway events.
+
+    :param event: The received Gateway event payload.
+    """
+    pass
 
 
   async def receive(self) -> Nullable[GatewayEvent]:
-    """Poll an event from the gateway."""
+    """Poll an event from the gateway.
+
+    :meta private:
+    """
 
     if not self.__connection:
       raise RuntimeError("No WebSocket connection found.")
@@ -309,7 +370,7 @@ class DiscordWebSocket:
         await self.close(message.data)
       case _:
         event: GatewayEvent = GatewayEvent(**message.json())
-        Logger.debug(f"Gateway event received: {event.op!r}")
+        Logger.debug(f"Gateway event received: {event.op!r}", str(message.json()))
         if event.s is not None:
           self.__last_sequence: int = event.s
         if self.__keep_alive_thread:
@@ -324,7 +385,7 @@ class DiscordWebSocket:
     """
     if not isinstance(event, GatewayEvent):
       raise TypeError(f"event: Must be an instance of {GatewayEvent}; not {event.__class__}")
-    with Logger.debug(f"Gateway event sent: {event.op!r}"):
+    with Logger.debug(f"Gateway event sent: {event.op!r}", str(event.to_dict())):
       await self.__connection.send_json(event.to_dict())
 
     

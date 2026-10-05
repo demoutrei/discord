@@ -43,7 +43,10 @@ class EnvironmentVariables:
 
 
 class Client:
-  """Represents a client used to connect to Discord's API."""
+  """Represents a client used to connect to Discord's API.
+
+  :param gateway_cls: The :class:`~discord.gateway.DiscordWebSocket` subclass to use for connecting with the Discord API Gateway. Pass ``None`` to disable. Defaults to ``None``.
+  """
   
   __instance: Optional[Self] = MISSING
   """Singleton Discord client instance.
@@ -52,13 +55,15 @@ class Client:
   """
 
 
-  def __new__(cls: type[Self]) -> Self:
+  def __new__(cls: type[Self], *, gateway_cls: Nullable[DiscordWebSocket] = None) -> Self:
     if not cls.__instance:
+      if gateway_cls is not None and not issubclass(gateway_cls, DiscordWebSocket):
+        raise TypeError(f"gateway_cls: Must be a subclass of {DiscordWebSocket}; not {gateway_cls}")
       instance: Self = super().__new__(cls)
       instance.__event_loop: Optional[asyncio.AbstractEventLoop] = MISSING
       instance.__http: HTTPClient = HTTPClient(instance)
       instance.__session: Nullable[ClientSession] = None
-      instance.__socket: Nullable[DiscordWebSocket] = None
+      instance.__socket: Nullable[DiscordWebSocket] = gateway_cls(instance) if gateway_cls is not None else None
       instance.__env: EnvironmentVariables = EnvironmentVariables()
       if not instance.__env.APPLICATION_TOKEN:
         raise ValueError("No valid Discord application token configured.")
@@ -89,18 +94,12 @@ class Client:
     await self._session.close()
 
 
-  def connect(self, *, gateway_cls: Nullable[type[DiscordWebSocket]] = DiscordWebSocket) -> None:
-    """Initiate a connection with the Discord API.
-
-    :param gateway_cls: The :class:`~discord.gateway.DiscordWebSocket` class to use for connecting with the Discord API Gateway. Pass ``None`` to disable.
-    """
+  def connect(self) -> None:
+    """Initiate a connection with the Discord API."""
     try:
-      if gateway_cls is not None and not issubclass(gateway_cls, DiscordWebSocket):
-        raise TypeError(f"gateway_cls: Must be a subclass of {DiscordWebSocket}; not {gateway_cls}")
       async def inner() -> None:
         self.__session: ClientSession = ClientSession(self.http.BASE_URL, raise_for_status = self.http._HTTPClient__status_check)
-        if gateway_cls is not None:
-          self.__socket: DiscordWebSocket = gateway_cls(self)
+        if self.socket:
           await self.socket.setup()
       self._loop.run_until_complete(inner())
     except KeyboardInterrupt:
