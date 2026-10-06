@@ -5,7 +5,7 @@ __all__ = (
 
 
 from ..enums import OpCode
-from ..flags import GatewayIntents
+from ..flags import GatewayCapabilities, GatewayIntents
 from ..logging import Logger
 from ..types import MISSING, Nullable, Optional
 from .events._base import DispatchEvent
@@ -59,30 +59,66 @@ class GatewayEvent:
 
   
   @classmethod
-  def IDENTIFY(cls: type[Self], *, token: str, intents: GatewayIntents) -> Self:
+  def IDENTIFY(cls: type[Self], *, intents: GatewayIntents, token: str, capabilities: Optional[GatewayCapabilities] = MISSING, compress: bool = False, large_threshold: int = 50, presence: Optional[GatewayEvent] = MISSING, shard: Optional[list[int, int]] = MISSING) -> Self:
     """Generate an :attr:`OpCode.IDENTIFY <discord.enums.OpCode.IDENTIFY>` event payload.
 
+    :param capabilities: Bitfield representing capabilities of your gateway client.
+    :param compress: Whether this connection supports compression of packets. Defaults to ``False``
+    :param intents: Gateway events you wish to receive.
+    :param large_threshold: Value between ``50`` and ``250``; total number of members where the gateway will stop sending offline members in the guild member list.
+    :param presence: :attr:`GatewayEvent.UPDATE_PRESENCE <discord.gateway.GatewayEvent.UPDATE_PRESENCE>` structure for initial presence information.
+    :param shard: Used for Guild Sharding.
     :param token: Discord application authentication token.
-    :param: intents: Gateway events you wish to receive.
     """
-    
+    if capabilities is not MISSING:
+      if not isinstance(capabilities, GatewayCapabilities):
+        raise TypeError(f"capabilities: Must be an instance of {GatewayCapabilities}; not {capabilities.__class__}")
+    if not isinstance(compress, bool):
+      raise TypeError(f"compress: Must be an instance of {bool}; not {compress.__class__}")
+    if not isinstance(intents, GatewayIntents):
+      raise TypeError(f"intents: Must be an instance of {GatewayIntents}; not {intents.__class__}.")
+    if not isinstance(large_threshold, int):
+      raise TypeError(f"large_threshold: Must be an instance of {int}; not {large_threshold.__class__}")
+    if not (50 <= large_threshold <= 250):
+      raise ValueError(f"large_threshold: Value must be between 50 and 250")
+    if presence is not MISSING:
+      if not isinstance(presence, GatewayEvent):
+        raise TypeError(f"presence: Must be an instance of {GatewayEvent}; not {presence.__class__}")
+      if not (presence.op is OpCode.PRESENCE_UPDATE):
+        raise ValueError(f"presence.op: Must be {OpCode.PRESENCE_UPDATE}")
+    if shard is not MISSING:
+      if not isinstance(shard, list):
+        raise TypeError(f"shard: Must be an instance of {list}; not {shard.__class__}")
+      if len(shard) != 2:
+        raise ValueError(f"shard: Must be an array of two integers (shard_id, num_shards)")
+      for index, item in enumerate(shard):
+        if not isinstance(item, int):
+          raise TypeError(f"shard[{index}]: Must be an instance of {int}; not {item.__class__}")
+        if item < 0:
+          raise ValueError(f"shard[{index}]: Must be a positive integer")
     if not isinstance(token, str):
       raise TypeError(f"token: Must be an instance of {str}; not {token.__class__}.")
     if not token:
       raise ValueError(f"token: Must not be an empty string.")
-    if not isinstance(intents, GatewayIntents):
-      raise TypeError(f"intents: Must be an instance of {GatewayIntents}; not {intents.__class__}.")
+    data: dict[str, Any] = {
+      "compress": compress,
+      "intents": intents.value,
+      "properties": {
+        "os": "windows",
+        "browser": "demoutrei.discord",
+        "device": "demoutrei.discord"
+      },
+      "token": token
+    }
+    if capabilities is not MISSING:
+      data["capabilities"]: int = capabilities.value
+    if presence is not MISSING:
+      data["presence"]: dict[str, Any] = presence.to_dict()["d"]
+    if shard is not MISSING:
+      data["shard"]: list[int, int] = shard
     return cls(
       op = OpCode.IDENTIFY.value,
-      d = {
-        "token": token,
-        "intents": intents.value,
-        "properties": {
-          "os": "windows",
-          "browser": "demoutrei.discord",
-          "device": "demoutrei.discord"
-        }
-      }
+      d = data
     )
 
 

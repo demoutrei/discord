@@ -1,6 +1,13 @@
 Changelog
 =========
 
+
+v26.0.2
++++++++
+
+- Completed :meth:`GatewayEvent.IDENTIFY <discord.gateway.GatewayEvent.IDENTIFY>`.
+
+
 v26.0.1
 +++++++
 
