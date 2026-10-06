@@ -63,6 +63,14 @@ class ChannelFlags(IntFlag):
 
 
 @unique
+class GatewayCapabilities(IntFlag):
+  """Bitfields you can use to opt a bot client into gateway behaviors. It's a separate :meth:`GatewayEvent.IDENTIFY <discord.gateway.GatewayEvent.IDENTIFY>` bitfield from ``intents``; :class:`~discord.flags.GatewayIntents` control which events your bot client receives, while :class:`~discord.flags.GatewayCapabilities` affects gateway behaviors."""
+
+  CHANNEL_OBFUSCATION: int = 1 << 15
+  """Opts the client into receiving obfuscated channel metadata over the Gateway for channels it can't view."""
+
+
+@unique
 class GatewayIntents(IntFlag):
   """Represents a set of Gateway intents.
 

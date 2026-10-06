@@ -6,6 +6,7 @@ v26.0.2
 +++++++
 
 - Completed :meth:`GatewayEvent.IDENTIFY <discord.gateway.GatewayEvent.IDENTIFY>`.
+- Added :class:`~discord.flags.GatewayCapabilities`.
 
 
 v26.0.1
