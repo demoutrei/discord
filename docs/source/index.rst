@@ -16,3 +16,4 @@ demoutrei.discord
     prerequisite
     logging
     reference/index
+    changelog
