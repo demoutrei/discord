@@ -1,4 +1,4 @@
-from discord import Logger
+from discord.logging import Logger
 from os import environ, system
 from pathlib import Path
 from sys import argv, executable, modules

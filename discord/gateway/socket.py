@@ -93,6 +93,35 @@ class GatewayEvent:
     return OpCode(self.__op)
 
 
+  @classmethod
+  def RESUME(cls: type[Self], *, token: str, session_id: str, sequence: Nullable[int]) -> Self:
+    """Generate an :attr:`OpCode.RESUME <discord.enums.OpCode.RESUME>` event.
+
+    :param token: Session token.
+    :param session_id: Session ID.
+    :param sequence: Last sequence number received.
+    """
+    if not isinstance(token, str):
+      raise TypeError(f"token: Must be an instance of {str}; not {token.__class__}")
+    if not token:
+      raise ValueError(f"token: Must not be an empty string.")
+    if not isinstance(session_id, str):
+      raise TypeError(f"session_id: Must be an instance of {str}; not {session_id.__class__}")
+    if not session_id:
+      raise ValueError(f"session_id: Must not be an empty string.")
+    if sequence is not None:
+      if not isinstance(sequence, int):
+        raise TypeError(f"sequence: Must be an instance of {int}; not {sequence.__class__}")
+    return cls(
+      op = OpCode.RESUME.value,
+      d = {
+        "token": token,
+        "session_id": session_id,
+        "seq": sequence
+      }
+    )
+
+
   @property
   def s(self) -> Nullable[int]:
     """Sequence number of event used for resuming sessions and heartbeating."""
@@ -314,7 +343,6 @@ class DiscordWebSocket:
   @property
   def last_sequence(self) -> Nullable[int]:
     """The last received sequence number."""
-    
     return self.__last_sequence
 
 
@@ -356,6 +384,14 @@ class DiscordWebSocket:
     pass
 
 
+  async def on_reconnect(self, event: GatewayEvent, /) -> None:
+    """Asynchronous hook for receiving :attr:`OpCode.RECONNECT <discord.enums.OpCode.RECONNECT>` Gateway events.
+
+    :param event: The received Gateway event payload.
+    """
+    pass
+
+
   async def receive(self) -> Nullable[GatewayEvent]:
     """Poll an event from the gateway.
 
@@ -371,8 +407,7 @@ class DiscordWebSocket:
       case _:
         event: GatewayEvent = GatewayEvent(**message.json())
         Logger.debug(f"Gateway event received: {event.op!r}", str(message.json()))
-        if event.s is not None:
-          self.__last_sequence: int = event.s
+        self.__last_sequence: int = event.s
         if self.__keep_alive_thread:
           self.__keep_alive_thread.tick()
         return event
