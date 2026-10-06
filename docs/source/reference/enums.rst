@@ -1,0 +1,5 @@
+Enumerations
+============
+
+
+.. automodule:: discord.enums

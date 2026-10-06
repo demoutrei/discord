@@ -1,7 +1,7 @@
 from .._dataclass import dataclass
 from ..flags import PermissionFlags, RoleFlags
 from ..snowflake import Snowflake
-from ..utils import Nullable, Optional
+from ..types import Nullable, Optional
 from .role_colors import RoleColors
 from .role_tags import RoleTags
 
@@ -18,37 +18,37 @@ class Role:
   """
 
   colors: RoleColors
-  """The role's colors"""
+  """The role's colors."""
 
   flags: RoleFlags
-  """Role flags combined as a bitfield"""
+  """Role flags combined as a bitfield."""
 
   hoist: bool
-  """If this role is pinned in the user listing"""
+  """If this role is pinned in the user listing."""
 
   icon: Optional[Nullable[str]]
-  """Role icon hash"""
+  """Role icon hash."""
 
   id: Snowflake
-  """Role ID"""
+  """Role ID."""
 
   managed: bool
-  """Whether this role is managed by an integration"""
+  """Whether this role is managed by an integration."""
 
   mentionable: bool
-  """Whether this role is mentionable"""
+  """Whether this role is mentionable."""
 
   name: str
-  """Role name"""
+  """Role name."""
 
   permissions: PermissionFlags
-  """Permission bit set"""
+  """Permission bit set."""
 
   position: int
-  """Position of this role (roles with the same position are sorted by ID)"""
+  """Position of this role (roles with the same position are sorted by ID)."""
 
   tags: Optional[RoleTags]
-  """The tags this role has"""
+  """The tags this role has."""
 
   unicode_emoji: Optional[Nullable[str]]
-  """Role unicode emoji"""
+  """Role unicode emoji."""

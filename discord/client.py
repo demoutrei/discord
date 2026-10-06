@@ -1,111 +1,131 @@
-from ._http import HTTP
-from ._logging import Logger
-from .events import EventManager
+__all__ = (
+  "Client",
+)
+
+
+from .http import HTTPClient
+from .logging import Logger
 from .gateway import DiscordWebSocket
-from .flags import GatewayIntents
-from .utils import MISSING, Nullable, Optional
+from .types import MISSING, Nullable, Optional
 from aiohttp import ClientSession
-from collections.abc import Coroutine, Callable
 from os import environ, getenv
 from typing import Self
 import asyncio
 
 
+class EnvironmentVariables:
+  def __getattr__(self, key: str) -> Nullable[str]:
+    if not isinstance(key, str):
+      raise TypeError(f"key: Must be an instance of {str}; not {key.__class__}")
+    if not key:
+      raise ValueError(f"key: Must not be an empty string.")
+    return getenv(key)
+  
+  
+  def __init__(self) -> None:
+    from dotenv import load_dotenv
+    load_dotenv()
+
+
+  def __setattr__(self, key: str, value: str) -> None:
+    if not isinstance(key, str):
+      raise TypeError(f"key: Must be an instance of {str}; not {key.__class__}.")
+    if not key:
+      raise ValueError(f"key: Must not be an emptry string.")
+    if not key.isidentifier():
+      raise ValueError(f"key: Must be a valid identifier.")
+    if not isinstance(value, str):
+      raise TypeError(f"value: Must be an instance of {str}; not {value.__class__}")
+    if not value:
+      raise ValueError(f"value: Must not be an empty string.")
+    environ[key]: str = value
+
+
+
 class Client:
-  """Represents a Discord client.
+  """Represents a client used to connect to Discord's API.
 
-  :param intents: Set of Gateway intents to associate with the client
+  :param gateway_cls: The :class:`~discord.gateway.DiscordWebSocket` subclass to use for connecting with the Discord API Gateway. Pass ``None`` to disable. Defaults to ``None``.
   """
-
+  
   __instance: Optional[Self] = MISSING
-  """Singleton Discord client instance
+  """Singleton Discord client instance.
 
   :meta private:
   """
 
-  def __new__(cls: type[Self], *, intents: GatewayIntents) -> Self:
+
+  def __new__(cls: type[Self], *, gateway_cls: Nullable[DiscordWebSocket] = None) -> Self:
     if not cls.__instance:
-      if not isinstance(intents, GatewayIntents):
-        raise TypeError(f"intents: Must be an instance of {GatewayIntents}; not {intents.__class__}")
+      if gateway_cls is not None and not issubclass(gateway_cls, DiscordWebSocket):
+        raise TypeError(f"gateway_cls: Must be a subclass of {DiscordWebSocket}; not {gateway_cls}")
       instance: Self = super().__new__(cls)
       instance.__event_loop: Optional[asyncio.AbstractEventLoop] = MISSING
-      instance.__event_manager: EventManager = EventManager(instance)
-      instance.__http: HTTP = HTTP(instance)
-      instance.__intents: GatewayIntents = intents
+      instance.__http: HTTPClient = HTTPClient(instance)
       instance.__session: Nullable[ClientSession] = None
-      instance.__socket: Nullable[DiscordWebSocket] = None
-      instance.__token: Optional[str] = environ.get("APPLICATION_TOKEN")
-      if not instance._Client__token:
-        from dotenv import load_dotenv
-        load_dotenv()
-        instance.__token: Optional[str] = getenv("APPLICATION_TOKEN")
-      if not instance._Client__token:
-        raise ValueError("No valid Discord application token configured")
+      instance.__socket: Nullable[DiscordWebSocket] = gateway_cls(instance) if gateway_cls is not None else None
+      instance.__env: EnvironmentVariables = EnvironmentVariables()
+      if not instance.__env.APPLICATION_TOKEN:
+        raise ValueError("No valid Discord application token configured.")
         exit()
       cls.__instance: Self = instance
     return cls.__instance
 
-  @property
-  def _http(self) -> HTTP:
-    """HTTP/S connection instance to the Discord API"""
-    return self.__http
 
   @property
-  def _loop(self):
+  def _loop(self) -> asyncio.AbstractEventLoop:
     if not self.__event_loop:
       from asyncio import new_event_loop, set_event_loop
       self.__event_loop = new_event_loop()
       set_event_loop(self.__event_loop)
     return self.__event_loop
 
+
   @property
   def _session(self) -> Nullable[ClientSession]:
-    """Current aiohttp session of the client, if any"""
+    """Current aiohttp session of the client, if any."""
     return self.__session
 
+
   async def close(self, code: int = 4000, /) -> None:
-    """Close connection from the Discord API"""
-    await self.ws.close(code)
+    """Close connection from the Discord API."""
+
+    await self.socket.close(code)
     await self._session.close()
 
-  def connect(self, *, gateway: bool = True) -> None:
-    """Initiate a connection with the Discord API
 
-    :param gateway: Join connection with the gateway
-    """
+  def connect(self) -> None:
+    """Initiate a connection with the Discord API."""
     try:
       async def inner() -> None:
-        if not isinstance(gateway, bool):
-          raise TypeError(f"gateway: Must be an instance of {bool}; not {gateway.__class__}")
-        self.__session: ClientSession = ClientSession(self._http.BASE_URL, raise_for_status = self._http._HTTP__status_check)
-        if gateway:
-          self.__socket: DiscordWebSocket = DiscordWebSocket(self)
-          await self.ws.connect()
+        self.__session: ClientSession = ClientSession(self.http.BASE_URL, raise_for_status = self.http._HTTPClient__status_check)
+        if self.socket:
+          await self.socket.setup()
       self._loop.run_until_complete(inner())
     except KeyboardInterrupt:
       self._loop.create_task(self.close())
-      Logger.info("Program terminated through keyboard interrupt")
+      Logger.info("Program terminated through keyboard interrupt.")
       exit()
     except Exception as exception:
       Logger.error(exception)
     else:
       self._loop.create_task(self.close(1000))
 
-  def event_listener(name: str) -> None:
-    """Register a dispatch event listener
-
-    :param name: Name of the event to listen to
-    """
-    async def decorator(function: Callable[..., Coroutine]) -> None:
-      self.__event_manager.add_listener(name, function)
-    return decorator
 
   @property
-  def intents(self) -> GatewayIntents:
-    """Set of Gateway intents to associate with the client."""
-    return self.__intents
+  def env(self) -> EnvironmentVariables:
+    """Configured environment variables for the client."""
+
+    return self.__env
+
 
   @property
-  def ws(self) -> Nullable[DiscordWebSocket]:
-    """WebSocket connection instance to the Discord gateway, if any."""
+  def http(self) -> HTTPClient:
+    """HTTP/S connection instance to the Discord API."""
+    return self.__http
+
+
+  @property
+  def socket(self) -> Nullable[DiscordWebSocket]:
+    """WebSocket connection instance to the Discord API gateway, if any."""
     return self.__socket

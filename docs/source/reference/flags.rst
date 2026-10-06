@@ -1,0 +1,5 @@
+Flags
+=====
+
+
+.. automodule:: discord.flags

@@ -9,20 +9,20 @@
 project = 'demoutrei.discord'
 copyright = '2026, demoutrei'
 author = 'demoutrei'
-release = '26.1.11'
+release = '26.0.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ["sphinx.ext.autodoc", "sphinx.ext.viewcode", "sphinx.ext.intersphinx"]
+extensions = [
+  "sphinx.ext.autodoc",
+  "sphinx.ext.viewcode",
+  "sphinx.ext.intersphinx"
+]
 
 autodoc_default_options = {
   "members": True,
   "undoc-members": True
-}
-
-intersphinx_mapping = {
-  "python": ("https://docs.python.org/3", None)
 }
 
 toc_object_entries_show_parents = "hide"
@@ -52,8 +52,9 @@ html_theme_options = {
       "class": "",
     },
   ],
+  "announcement": "This rewrite is still in pre-alpha development."
 }
-
+html_title = "democord"
 
 def setup(app):
   app.add_css_file("custom.css")

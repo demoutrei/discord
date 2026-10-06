@@ -1,7 +1,7 @@
 from .._dataclass import dataclass
 from ..enums import StickerFormatType, StickerType
 from ..snowflake import Snowflake
-from ..utils import Nullable, Optional
+from ..types import Nullable, Optional
 from .user import User
 
 
@@ -10,28 +10,28 @@ class Sticker:
   """Represents a sticker that can be sent in messages."""
 
   available: Optional[bool]
-  """Whether this guild sticker can be used, may be ``False`` due to loss of Server Boosts"""
+  """Whether this guild sticker can be used, may be ``False`` due to loss of Server Boosts."""
 
   description: Nullable[str]
-  """Description of the sticker"""
+  """Description of the sticker."""
 
   format_type: StickerFormatType
-  """Type of sticker format"""
+  """Type of sticker format."""
 
   guild_id: Optional[Snowflake]
-  """ID of the guild that owns this sticker"""
+  """ID of the guild that owns this sticker."""
 
   id: Snowflake
-  """ID of the sticker"""
+  """ID of the sticker."""
 
   name: str
-  """Name of the sticker"""
+  """Name of the sticker."""
 
   pack_id: Optional[Snowflake]
-  """For standard stickers, id of the pack the sticker is from"""
+  """For standard stickers, id of the pack the sticker is from."""
 
   sort_value: Optional[int]
-  """The standard sticker's sort order within its pack"""
+  """The standard sticker's sort order within its pack."""
 
   tags: list[str]
   """Autocomplete/suggestion tags for the sticker (max 200 characters).
@@ -41,7 +41,7 @@ class Sticker:
   """
 
   type: StickerType
-  """Type of sticker"""
+  """Type of sticker."""
 
   user: Optional[User]
-  """The user that uploaded the guild sticker"""
+  """The user that uploaded the guild sticker."""

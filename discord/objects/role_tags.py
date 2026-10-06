@@ -1,6 +1,6 @@
 from .._dataclass import dataclass
 from ..snowflake import Snowflake
-from ..utils import Optional
+from ..types import Optional
 
 
 @dataclass
@@ -11,19 +11,19 @@ class RoleTags:
   """
 
   available_for_purchase: Optional[None]
-  """Whether this role is available for purchase"""
+  """Whether this role is available for purchase."""
 
   bot_id: Optional[Snowflake]
-  """The ID of the bot this role belongs to"""
+  """The ID of the bot this role belongs to."""
 
   guild_connections: Optional[None]
-  """Whether this role is a guild's linked role"""
+  """Whether this role is a guild's linked role."""
 
   integration_id: Optional[Snowflake]
-  """The ID of the integration this role belongs to"""
+  """The ID of the integration this role belongs to."""
 
   premium_subscriber: Optional[None]
-  """Whether this is the guild's Booster role"""
+  """Whether this is the guild's Booster role."""
 
   subscription_listing_id: Optional[Snowflake]
-  """The ID of this role's subscription sku and listing"""
+  """The ID of this role's subscription sku and listing."""

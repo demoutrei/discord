@@ -1,6 +1,6 @@
 from .flags import PermissionFlags
 from .snowflake import Snowflake
-from .utils import ISO8601Timestamp, Match, MISSING, Nullable, Optional
+from .types import ISO8601Timestamp, Match, MISSING, Nullable, Optional
 from annotationlib import get_annotations
 from datetime import datetime
 from enum import Enum
@@ -14,9 +14,14 @@ def is_dataclass(obj: type) -> bool:
 
 def dataclass[T](cls: T) -> T:
   def __init__(self, **kwargs) -> None:
-    for name, annotation in get_annotations(self.__class__).items():
+    fields: dict[str, Union[GenericAlias, type, Self[T]]] = get_annotations(self.__class__).items()
+    self.__dict__["__extras__"]: dict[str, Any] = dict()
+    for name, annotation in fields:
       value: Optional[Nullable[Any]] = self.__parse(annotation, kwargs.get(name, ...), data = kwargs)
       setattr(self, name, value)
+    for key, value in kwargs.items():
+      if key in fields: continue
+      self.__dict__["__extras__"][name]: Any = value
 
   def __init_subclass__(subclass, **kwargs) -> None:
     super(subclass).__init_subclass__(**kwargs)

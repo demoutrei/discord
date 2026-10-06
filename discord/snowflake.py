@@ -4,7 +4,7 @@ from typing import Self, Union
 
 
 class Snowflake:
-  """Represents a Discord snowflake"""
+  """Represents a Discord snowflake."""
 
   def __eq__(self, other: Union[type[Self], int, str]) -> bool:
     if not isinstance(other, (self.__class__, int, str)): return False
@@ -26,7 +26,7 @@ class Snowflake:
 
   @property
   def increment(self) -> int:
-    """For every ID that is generated on that process, this number is incremented"""
+    """For every ID that is generated on that process, this number is incremented."""
     return self.__value & 0xFFF
 
   @property
@@ -39,9 +39,9 @@ class Snowflake:
 
   @property
   def timestamp(self) -> int:
-    """Milliseconds since Discord Epoch, the first second of 2015 or ``1420070400000``"""
+    """Milliseconds since Discord Epoch, the first second of 2015 or ``1420070400000``."""
     return (self.__value >> 22) + DISCORD_EPOCH
 
   def to_datetime(self) -> datetime:
-    """Returns the corresponding :class:`datetime.datetime` object"""
+    """Returns the corresponding :class:`datetime.datetime` object."""
     return datetime.fromtimestamp(self.timestamp)

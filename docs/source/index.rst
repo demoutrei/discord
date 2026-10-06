@@ -1,17 +1,18 @@
 .. demoutrei.discord documentation master file, created by
-   sphinx-quickstart on Wed Jul 22 16:47:33 2026.
+   sphinx-quickstart on Fri Oct  2 20:18:41 2026.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-demoutrei.discord documentation
-===============================
+demoutrei.discord
+=================
+
+**Democord** is a Discord API wrapper written in Python 3.14.
 
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Table of Contents
+    :hidden:
+    :maxdepth: 1
 
-   installation
-   guide/index
-   api/index
-   changelog
+    prerequisite
+    logging
+    reference/index
