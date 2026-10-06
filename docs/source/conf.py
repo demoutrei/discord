@@ -9,7 +9,7 @@
 project = 'demoutrei.discord'
 copyright = '2026, demoutrei'
 author = 'demoutrei'
-release = '26.0.0-dev'
+release = '26.0.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
