@@ -5,6 +5,8 @@ Activity
 
 .. autoclass:: discord.objects.ActivityEmoji()
 
+.. autoclass:: discord.objects.ActivityParty()
+
 .. autoclass:: discord.objects.ActivityTimestamps()
 
 
