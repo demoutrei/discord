@@ -4,11 +4,22 @@ from enum import auto, IntEnum, StrEnum, unique
 @unique
 class ActivityType(IntEnum):
   PLAYING: int = 0
+  """Playing ``{name}``."""
+  
   STREAMING: int = 1
+  """Streaming ``{details}``."""
+  
   LISTENING: int = 2
+  """Listening to ``{name}``."""
+  
   WATCHING: int = 3
+  """Watching ``{name}``."""
+  
   CUSTOM: int = 4
+  """``{emoji}`` ``{state}``."""
+  
   COMPETING: int = 5
+  """Competing in ``{name}``."""
 
 
 @unique
