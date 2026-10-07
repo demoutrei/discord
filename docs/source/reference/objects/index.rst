@@ -4,6 +4,7 @@ Discord Objects
 .. toctree::
     :maxdepth: 2
 
+    activity
     application
     channel
     emoji

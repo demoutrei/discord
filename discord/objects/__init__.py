@@ -1,5 +1,5 @@
 __all__ = (
-  "Application", "ApplicationIntegrationTypeConfiguration", "AvatarDecorationData",
+  "Activity", "Application", "ApplicationIntegrationTypeConfiguration", "AvatarDecorationData",
   "Collectible",
   "Emoji",
   "Guild",
@@ -13,6 +13,7 @@ __all__ = (
 )
 
 
+from .activity import Activity
 from .application import Application
 from .application_integration_type_configuration import ApplicationIntegrationTypeConfiguration
 from .avatar_decoration_data import AvatarDecorationData

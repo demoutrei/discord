@@ -9,6 +9,7 @@ v26.0.2
 - Added :class:`~discord.flags.GatewayCapabilities`.
 - Added :meth:`GatewayEvent.PRESENCE_UPDATE() <discord.gateway.GatewayEvent.PRESENCE_UPDATE>`.
 - Added :class:`~discord.enums.StatusType`.
+- Added :class:`~discord.objects.Activity`.
 
 
 v26.0.1
