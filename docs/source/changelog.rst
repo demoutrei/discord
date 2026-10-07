@@ -12,6 +12,7 @@ v26.0.2
 - Added :class:`~discord.objects.Activity`.
 - Moved :class:`~discord.enums.ActivityType` documentation.
 - Moved :class:`~discord.enums.StatusDisplayType` documentation.
+- Added :class:`~discord.objects.ActivityTimestamps`.
 
 
 v26.0.1
