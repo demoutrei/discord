@@ -4,9 +4,10 @@ __all__ = (
 )
 
 
-from ..enums import OpCode
+from ..enums import OpCode, StatusType
 from ..flags import GatewayCapabilities, GatewayIntents
 from ..logging import Logger
+from ..objects.activity import Activity
 from ..types import MISSING, Nullable, Optional
 from .events._base import DispatchEvent
 from aiohttp import ClientWebSocketResponse, WSMessage, WSMsgType
@@ -127,6 +128,41 @@ class GatewayEvent:
     """Gateway opcode, which indicates the payload type."""
 
     return OpCode(self.__op)
+
+
+  @classmethod
+  def PRESENCE_UPDATE(cls: type[Self], *, activities: list[Activity], afk: bool, status: StatusType, since: Nullable[int] = None) -> Self:
+    """Generate an :attr:`OpCode.PRESENCE_UPDATE <discord.enums.OpCode.PRESENCE_UPDATE> event.
+
+    :param activities: User's activities.
+    :param afk: Whether or not the client is AFK.
+    :param since: Unix time (in milliseconds) of when the client went idle, or null if the client is not idle.
+    :param status: User's new status.
+    """
+    if not isinstance(activities, list):
+      raise TypeError(f"activities: Must be an instance of {list}; not {activities.__class__}")
+    for index, item in enumerate(activities):
+      if not isinstance(item, Activity):
+        raise TypeError(f"activities[{index}]: Must be an instance of {Activity}; not {item.__class__}")
+    if not isinstance(afk, bool):
+      raise TypeError(f"afk: Must be an instance of {bool}; not {afk.__class__}")
+    if not isinstance(status, StatusType):
+      raise TypeError(f"status: Must be an instance of {StatusType}; not {status.__class__}")
+    if since is not None:
+      if not isinstance(since, int):
+        raise TypeError(f"since: Must be an instance of {int}; not {since.__class__}")
+      if since < 0:
+        raise ValueError(f"since: Must be greater than or equal to 0")
+    data: dict[str, Any] = {
+      "activities": [activity._to_dict() for activity in activities],
+      "afk": afk,
+      "since": since,
+      "status": status
+    }
+    return cls(
+      op = OpCode.PRESENCE_UPDATE.value,
+      d = data
+    )
 
 
   @classmethod

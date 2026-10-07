@@ -5,8 +5,9 @@ Changelog
 v26.0.2
 +++++++
 
-- Completed :meth:`GatewayEvent.IDENTIFY <discord.gateway.GatewayEvent.IDENTIFY>`.
+- Completed :meth:`GatewayEvent.IDENTIFY() <discord.gateway.GatewayEvent.IDENTIFY>`.
 - Added :class:`~discord.flags.GatewayCapabilities`.
+- Added :meth:`GatewayEvent.PRESENCE_UPDATE() <discord.gateway.GatewayEvent.PRESENCE_UPDATE>`.
 
 
 v26.0.1
