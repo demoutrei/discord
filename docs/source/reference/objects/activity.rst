@@ -1,11 +1,13 @@
 Activity
 ========
 
+
 .. autoclass:: discord.objects.Activity()
 
 
 Enumerations
 ++++++++++++
+
 
 .. autoclass:: discord.enums.ActivityType()
 
@@ -14,3 +16,9 @@ Enumerations
 
 .. note::
     :attr:`ActivityType.STREAMING <discord.enums.ActivityType.STREAMING>` currently only supports Twitch and YouTube. OKnly ``https://twitch.tv/`` and ``https://youtube.com/`` urls will work.
+
+
+.. autoclass:: discord.enums.StatusDisplayType()
+
+.. note::
+    This applies to all activity types. "Listening" was used to serve as a consistent example of what different fields might be used for.

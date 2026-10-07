@@ -11,6 +11,7 @@ v26.0.2
 - Added :class:`~discord.enums.StatusType`.
 - Added :class:`~discord.objects.Activity`.
 - Moved :class:`~discord.enums.ActivityType` documentation.
+- Moved :class:`~discord.enums.StatusDisplayType` documentation.
 
 
 v26.0.1
