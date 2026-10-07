@@ -949,6 +949,24 @@ class StatusDisplayType(IntEnum):
 
 
 @unique
+class StatusType(StrEnum):
+  ONLINE: str = auto()
+  """Online."""
+  
+  DND: str = auto()
+  """Do Not Disturb."""
+  
+  IDLE: str = auto()
+  """AFK."""
+  
+  INVISIBLE: str = auto()
+  """Invisible and shown as offline."""
+  
+  OFFLINE: str = auto()
+  """Offline."""
+
+
+@unique
 class StickerFormatType(IntEnum):
   PNG: int = 1
   APNG: int = 2
