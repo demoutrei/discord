@@ -1,16 +1,15 @@
 Activity
 ========
 
-
 .. autoclass:: discord.objects.Activity()
 
+.. autoclass:: discord.objects.ActivityEmoji()
 
 .. autoclass:: discord.objects.ActivityTimestamps()
 
 
 Enumerations
 ++++++++++++
-
 
 .. autoclass:: discord.enums.ActivityType()
 
@@ -19,7 +18,6 @@ Enumerations
 
 .. note::
     :attr:`ActivityType.STREAMING <discord.enums.ActivityType.STREAMING>` currently only supports Twitch and YouTube. Only ``https://twitch.tv/`` and ``https://youtube.com/`` urls will work.
-
 
 .. autoclass:: discord.enums.StatusDisplayType()
 
