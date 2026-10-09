@@ -15,6 +15,7 @@ v26.0.2
 - Added :class:`~discord.objects.ActivityTimestamps`.
 - Added :class:`~discord.objects.ActivityEmoji`.
 - Added :class:`~discord.objects.ActivityParty`.
+- Added :class:`~discord.objects.ActivityAssets`.
 
 
 v26.0.1

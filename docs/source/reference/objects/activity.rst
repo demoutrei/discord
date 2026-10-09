@@ -3,6 +3,8 @@ Activity
 
 .. autoclass:: discord.objects.Activity()
 
+.. autoclass:: discord.objects.ActivityAssets()
+
 .. autoclass:: discord.objects.ActivityEmoji()
 
 .. autoclass:: discord.objects.ActivityParty()
