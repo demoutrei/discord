@@ -67,7 +67,7 @@ class GatewayEvent:
     :param compress: Whether this connection supports compression of packets. Defaults to ``False``
     :param intents: Gateway events you wish to receive.
     :param large_threshold: Value between ``50`` and ``250``; total number of members where the gateway will stop sending offline members in the guild member list.
-    :param presence: :attr:`GatewayEvent.UPDATE_PRESENCE <discord.gateway.GatewayEvent.UPDATE_PRESENCE>` structure for initial presence information.
+    :param presence: :attr:`GatewayEvent.PRESENCE_UPDATE() <discord.gateway.GatewayEvent.PRESENCE_UPDATE>` structure for initial presence information.
     :param shard: Used for Guild Sharding.
     :param token: Discord application authentication token.
     """
@@ -132,7 +132,7 @@ class GatewayEvent:
 
   @classmethod
   def PRESENCE_UPDATE(cls: type[Self], *, activities: list[Activity], afk: bool, status: StatusType, since: Nullable[int] = None) -> Self:
-    """Generate an :attr:`OpCode.PRESENCE_UPDATE <discord.enums.OpCode.PRESENCE_UPDATE> event.
+    """Generate an :attr:`OpCode.PRESENCE_UPDATE <discord.enums.OpCode.PRESENCE_UPDATE>` event.
 
     :param activities: User's activities.
     :param afk: Whether or not the client is AFK.

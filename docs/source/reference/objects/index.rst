@@ -9,6 +9,7 @@ Discord Objects
     channel
     emoji
     guild
+    permissions
     role
     sticker
     team

@@ -8,6 +8,4 @@ API Reference
     http
     gateway/index
     objects/index
-    enums
-    flags
     exceptions

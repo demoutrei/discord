@@ -4,12 +4,20 @@ Discord Gateway API
 .. automodule:: discord.gateway
 
 
+Enumerations
+++++++++++++
+
+.. autoclass:: discord.enums.OpCode()
+
+.. autoclass:: discord.enums.StatusType()
+
+
 Flags
 +++++
 
-.. autoclass:: discord.flags.GatewayCapabilities
+.. autoclass:: discord.flags.GatewayCapabilities()
 
-.. autoclass:: discord.flags.GatewayIntents
+.. autoclass:: discord.flags.GatewayIntents()
 
 
 .. toctree::

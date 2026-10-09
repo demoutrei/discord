@@ -13,7 +13,9 @@ from .activity_timestamps import ActivityTimestamps
 
 @dataclass
 class Activity:
-  """.. note::
+  """
+  .. note::
+
       Bot users are only able to set :attr:`Activity.name <.name>`, :attr:`Activity.state <.state>`, :attr:`Activity.type <.type>`, and :attr:`Activity.url <.url>`.
   """
   
@@ -27,6 +29,7 @@ class Activity:
   """Custom button shown in the Rich Presence (max 2).
 
   .. note::
+  
       When received over the gateway, the field is an array of strings, which are the button labels. Bots cannot access a user's activity button URLs. When sending, the field must be an array of the object.
   """
   
