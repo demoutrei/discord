@@ -479,7 +479,8 @@ class DiscordWebSocket:
       case _:
         event: GatewayEvent = GatewayEvent(**message.json())
         Logger.debug(f"Gateway event received: {event.op!r}", str(message.json()))
-        self.__last_sequence: int = event.s
+        if event.s is not None:
+          self.__last_sequence: int = event.s
         if self.__keep_alive_thread:
           self.__keep_alive_thread.tick()
         return event
