@@ -17,6 +17,7 @@ v26.0.2
 - Added :class:`~discord.objects.ActivityParty`.
 - Added :class:`~discord.objects.ActivityAssets`.
 - Added :class:`~discord.objects.ActivitySecrets`.
+- Moved :class:`~discord.flags.ActivityFlags` documentation.
 
 
 v26.0.1

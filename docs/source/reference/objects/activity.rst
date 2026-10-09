@@ -29,3 +29,9 @@ Enumerations
 
 .. note::
     This applies to all activity types. "Listening" was used to serve as a consistent example of what different fields might be used for.
+
+
+Flags
++++++
+
+.. autoclass:: discord.flags.ActivityFlags()
