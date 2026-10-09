@@ -19,6 +19,7 @@ v26.0.2
 - Added :class:`~discord.objects.ActivitySecrets`.
 - Moved :class:`~discord.flags.ActivityFlags` documentation.
 - Added :class:`~discord.objects.ActivityButton`.
+- Moved documentations: :class:`~discord.flags.GatewayCapabilities`, :class:`~discord.flags.GatewayIntents`.
 
 
 v26.0.1
