@@ -5,6 +5,8 @@ Activity
 
 .. autoclass:: discord.objects.ActivityAssets()
 
+.. autoclass:: discord.objects.ActivityButton()
+
 .. autoclass:: discord.objects.ActivityEmoji()
 
 .. autoclass:: discord.objects.ActivityParty()

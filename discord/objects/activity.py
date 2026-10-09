@@ -24,7 +24,11 @@ class Activity:
   """Images for the presence and their hover texts."""
 
   buttons: Optional[list[ActivityButton, 2]]
-  """Custom button shown in the Rich Presence (max 2)."""
+  """Custom button shown in the Rich Presence (max 2).
+
+  .. note::
+      When received over the gateway, the field is an array of strings, which are the button labels. Bots cannot access a user's activity button URLs. When sending, the field must be an array of the object.
+  """
   
   created_at: int
   """Unix timestamp (in milliseconds) of when the activity was added to the user's session."""
