@@ -4,9 +4,10 @@ __all__ = (
 )
 
 
-from ..enums import OpCode
-from ..flags import GatewayIntents
+from ..enums import OpCode, StatusType
+from ..flags import GatewayCapabilities, GatewayIntents
 from ..logging import Logger
+from ..objects.activity import Activity
 from ..types import MISSING, Nullable, Optional
 from .events._base import DispatchEvent
 from aiohttp import ClientWebSocketResponse, WSMessage, WSMsgType
@@ -59,30 +60,66 @@ class GatewayEvent:
 
   
   @classmethod
-  def IDENTIFY(cls: type[Self], *, token: str, intents: GatewayIntents) -> Self:
+  def IDENTIFY(cls: type[Self], *, intents: GatewayIntents, token: str, capabilities: Optional[GatewayCapabilities] = MISSING, compress: bool = False, large_threshold: int = 50, presence: Optional[GatewayEvent] = MISSING, shard: Optional[list[int, int]] = MISSING) -> Self:
     """Generate an :attr:`OpCode.IDENTIFY <discord.enums.OpCode.IDENTIFY>` event payload.
 
+    :param capabilities: Bitfield representing capabilities of your gateway client.
+    :param compress: Whether this connection supports compression of packets. Defaults to ``False``
+    :param intents: Gateway events you wish to receive.
+    :param large_threshold: Value between ``50`` and ``250``; total number of members where the gateway will stop sending offline members in the guild member list.
+    :param presence: :attr:`GatewayEvent.PRESENCE_UPDATE() <discord.gateway.GatewayEvent.PRESENCE_UPDATE>` structure for initial presence information.
+    :param shard: Used for Guild Sharding.
     :param token: Discord application authentication token.
-    :param: intents: Gateway events you wish to receive.
     """
-    
+    if capabilities is not MISSING:
+      if not isinstance(capabilities, GatewayCapabilities):
+        raise TypeError(f"capabilities: Must be an instance of {GatewayCapabilities}; not {capabilities.__class__}")
+    if not isinstance(compress, bool):
+      raise TypeError(f"compress: Must be an instance of {bool}; not {compress.__class__}")
+    if not isinstance(intents, GatewayIntents):
+      raise TypeError(f"intents: Must be an instance of {GatewayIntents}; not {intents.__class__}.")
+    if not isinstance(large_threshold, int):
+      raise TypeError(f"large_threshold: Must be an instance of {int}; not {large_threshold.__class__}")
+    if not (50 <= large_threshold <= 250):
+      raise ValueError(f"large_threshold: Value must be between 50 and 250")
+    if presence is not MISSING:
+      if not isinstance(presence, GatewayEvent):
+        raise TypeError(f"presence: Must be an instance of {GatewayEvent}; not {presence.__class__}")
+      if not (presence.op is OpCode.PRESENCE_UPDATE):
+        raise ValueError(f"presence.op: Must be {OpCode.PRESENCE_UPDATE}")
+    if shard is not MISSING:
+      if not isinstance(shard, list):
+        raise TypeError(f"shard: Must be an instance of {list}; not {shard.__class__}")
+      if len(shard) != 2:
+        raise ValueError(f"shard: Must be an array of two integers (shard_id, num_shards)")
+      for index, item in enumerate(shard):
+        if not isinstance(item, int):
+          raise TypeError(f"shard[{index}]: Must be an instance of {int}; not {item.__class__}")
+        if item < 0:
+          raise ValueError(f"shard[{index}]: Must be a positive integer")
     if not isinstance(token, str):
       raise TypeError(f"token: Must be an instance of {str}; not {token.__class__}.")
     if not token:
       raise ValueError(f"token: Must not be an empty string.")
-    if not isinstance(intents, GatewayIntents):
-      raise TypeError(f"intents: Must be an instance of {GatewayIntents}; not {intents.__class__}.")
+    data: dict[str, Any] = {
+      "compress": compress,
+      "intents": intents.value,
+      "properties": {
+        "os": "windows",
+        "browser": "demoutrei.discord",
+        "device": "demoutrei.discord"
+      },
+      "token": token
+    }
+    if capabilities is not MISSING:
+      data["capabilities"]: int = capabilities.value
+    if presence is not MISSING:
+      data["presence"]: dict[str, Any] = presence.to_dict()["d"]
+    if shard is not MISSING:
+      data["shard"]: list[int, int] = shard
     return cls(
       op = OpCode.IDENTIFY.value,
-      d = {
-        "token": token,
-        "intents": intents.value,
-        "properties": {
-          "os": "windows",
-          "browser": "demoutrei.discord",
-          "device": "demoutrei.discord"
-        }
-      }
+      d = data
     )
 
 
@@ -91,6 +128,41 @@ class GatewayEvent:
     """Gateway opcode, which indicates the payload type."""
 
     return OpCode(self.__op)
+
+
+  @classmethod
+  def PRESENCE_UPDATE(cls: type[Self], *, activities: list[Activity], afk: bool, status: StatusType, since: Nullable[int] = None) -> Self:
+    """Generate an :attr:`OpCode.PRESENCE_UPDATE <discord.enums.OpCode.PRESENCE_UPDATE>` event.
+
+    :param activities: User's activities.
+    :param afk: Whether or not the client is AFK.
+    :param since: Unix time (in milliseconds) of when the client went idle, or null if the client is not idle.
+    :param status: User's new status.
+    """
+    if not isinstance(activities, list):
+      raise TypeError(f"activities: Must be an instance of {list}; not {activities.__class__}")
+    for index, item in enumerate(activities):
+      if not isinstance(item, Activity):
+        raise TypeError(f"activities[{index}]: Must be an instance of {Activity}; not {item.__class__}")
+    if not isinstance(afk, bool):
+      raise TypeError(f"afk: Must be an instance of {bool}; not {afk.__class__}")
+    if not isinstance(status, StatusType):
+      raise TypeError(f"status: Must be an instance of {StatusType}; not {status.__class__}")
+    if since is not None:
+      if not isinstance(since, int):
+        raise TypeError(f"since: Must be an instance of {int}; not {since.__class__}")
+      if since < 0:
+        raise ValueError(f"since: Must be greater than or equal to 0")
+    data: dict[str, Any] = {
+      "activities": [activity._to_dict() for activity in activities],
+      "afk": afk,
+      "since": since,
+      "status": status
+    }
+    return cls(
+      op = OpCode.PRESENCE_UPDATE.value,
+      d = data
+    )
 
 
   @classmethod
@@ -407,7 +479,8 @@ class DiscordWebSocket:
       case _:
         event: GatewayEvent = GatewayEvent(**message.json())
         Logger.debug(f"Gateway event received: {event.op!r}", str(message.json()))
-        self.__last_sequence: int = event.s
+        if event.s is not None:
+          self.__last_sequence: int = event.s
         if self.__keep_alive_thread:
           self.__keep_alive_thread.tick()
         return event

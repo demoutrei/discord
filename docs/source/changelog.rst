@@ -1,6 +1,27 @@
 Changelog
 =========
 
+
+v26.0.2
++++++++
+
+- Completed :meth:`GatewayEvent.IDENTIFY() <discord.gateway.GatewayEvent.IDENTIFY>`.
+- Added :class:`~discord.flags.GatewayCapabilities`.
+- Added :meth:`GatewayEvent.PRESENCE_UPDATE() <discord.gateway.GatewayEvent.PRESENCE_UPDATE>`.
+- Added :class:`~discord.enums.StatusType`.
+- Added :class:`~discord.objects.Activity`.
+- Moved :class:`~discord.enums.ActivityType` documentation.
+- Moved :class:`~discord.enums.StatusDisplayType` documentation.
+- Added :class:`~discord.objects.ActivityTimestamps`.
+- Added :class:`~discord.objects.ActivityEmoji`.
+- Added :class:`~discord.objects.ActivityParty`.
+- Added :class:`~discord.objects.ActivityAssets`.
+- Added :class:`~discord.objects.ActivitySecrets`.
+- Moved :class:`~discord.flags.ActivityFlags` documentation.
+- Added :class:`~discord.objects.ActivityButton`.
+- Moved documentations: :class:`~discord.flags.GatewayCapabilities`, :class:`~discord.flags.GatewayIntents`.
+
+
 v26.0.1
 +++++++
 
