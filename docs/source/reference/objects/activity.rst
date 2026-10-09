@@ -9,6 +9,8 @@ Activity
 
 .. autoclass:: discord.objects.ActivityParty()
 
+.. autoclass:: discord.objects.ActivitySecrets()
+
 .. autoclass:: discord.objects.ActivityTimestamps()
 
 

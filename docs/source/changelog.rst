@@ -16,6 +16,7 @@ v26.0.2
 - Added :class:`~discord.objects.ActivityEmoji`.
 - Added :class:`~discord.objects.ActivityParty`.
 - Added :class:`~discord.objects.ActivityAssets`.
+- Added :class:`~discord.objects.ActivitySecrets`.
 
 
 v26.0.1

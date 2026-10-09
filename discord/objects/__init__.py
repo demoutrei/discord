@@ -1,5 +1,5 @@
 __all__ = (
-  "Activity", "ActivityAssets", "ActivityEmoji", "ActivityParty", "ActivityTimestamps", "Application", "ApplicationIntegrationTypeConfiguration", "AvatarDecorationData",
+  "Activity", "ActivityAssets", "ActivityEmoji", "ActivityParty", "ActivitySecrets", "ActivityTimestamps", "Application", "ApplicationIntegrationTypeConfiguration", "AvatarDecorationData",
   "Collectible",
   "Emoji",
   "Guild",
@@ -17,6 +17,7 @@ from .activity import Activity
 from .activity_assets import ActivityAssets
 from .activity_emoji import ActivityEmoji
 from .activity_party import ActivityParty
+from .activity_secrets import ActivitySecrets
 from .activity_timestamps import ActivityTimestamps
 from .application import Application
 from .application_integration_type_configuration import ApplicationIntegrationTypeConfiguration
