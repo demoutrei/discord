@@ -8,12 +8,13 @@ from ..enums import OpCode, StatusType
 from ..flags import GatewayCapabilities, GatewayIntents
 from ..logging import Logger
 from ..objects.activity import Activity
+from ..snowflake import Snowflake
 from ..types import MISSING, Nullable, Optional
 from .events._base import DispatchEvent
 from aiohttp import ClientWebSocketResponse, WSMessage, WSMsgType
 from collections.abc import Callable, Coroutine
 from inspect import iscoroutinefunction
-from typing import Any, Self, TYPE_CHECKING
+from typing import Any, Self, TYPE_CHECKING, Union
 import asyncio, threading, time
 
 if TYPE_CHECKING:
@@ -161,6 +162,75 @@ class GatewayEvent:
     }
     return cls(
       op = OpCode.PRESENCE_UPDATE.value,
+      d = data
+    )
+
+
+  @classmethod
+  def REQUEST_GUILD_MEMBERS(cls: type[Self], *, guild_id: Snowflake, limit: int, nonce: Optional[str] = MISSING, presences: Optional[bool] = MISSING, query: Optional[str] = MISSING, user_ids: Optional[Union[Snowflake, list[Snowflake]]] = MISSING) -> Self:
+    """Used to request all members for a guild or a list of guilds.
+    
+    When initially connecting, if you don't have the :attr:`GatewayIntents.GUILD_PRESENCES <discord.flags.GatewayIntents.GUILD_PRESENCES>`, or if the guild is over 75k members, it will only send members who are in voice, plus the member for you (the connecting user). Otherwise, if a guild has over ``large_threshold`` members (value in the :meth:`GatewayEvent.IDENTIFY() <discord.gateway.GatewayEvent.IDENTIFY>`), it will only send members who are online, have a role, have a nickname, or are in a voice channel; and if it has under ``large_threshold`` members, it will send all members.
+    
+    If the client wishes to receive additional members, they need to explicitly request them via this operation. The server will send :meth:`GatewayEvent.GUILD_MEMBERS_CHUNK() <discord.gateway.GatewayEvent.GUILD_MEMBERS_CHUNK>` in response with up to 1000 members per chunk until all members that match the request have been sent.
+
+    .. important::
+
+        Due to our privacy and infrastructural concerns with this feature, there are some limitations that apply:
+
+        - :attr:`GatewayIntents.GUILD_PRESENCES <discord.flags.GatewayIntents.GUILD_PRESENCES>` is required to set ``presences = True``. Otherwise, it will always be ``False``.
+
+        - :attr:`GatewayIntents.GUILD_MEMBERS <discord.flags.GatewayIntents.GUILD_MEMBERS>` is required to request the entire member list---``(query = '', limit = 0 <= n)``.
+
+        - You will be limited to requesting 1 ``guild_id`` per request.
+
+        - Requesting a prefix (``query`` parameter) will return a maximum of 100 members.
+
+        - Requesting ``user_ids`` will continue to be limited to returning 100 members.
+
+    :param guild_id: ID of the guild to get members for.
+    :param limit: Maximum number of members to send matching the ``query``; a limit of ``0`` can be used with an empty string ``query`` to return all members.
+    :param nonce: Nonce to identify the :class:`OpCode.GUILD_MEMBERS_CHUNK <discord.enums.OpCode.GUILD_MEMBERS_CHUNK>` response.
+    :param presences: Used to specify if we want the presences of the matched members.
+    :param query: String that username starts with, or an empty string to return all members.
+    :param user_ids: Used to specify which users you wish to fetch.
+    """
+    if not isinstance(guild_id, Snowflake):
+      raise TypeError(f"guild_id: Must be an instance of {Snowflake}; not {guild_id.__class__}")
+    if not isinstance(limit, int):
+      raise TypeError(f"limit: Must be an instance of {int}; not {limit.__class__}")
+    if limit < 0:
+      raise ValueError(f"limit: Must be greater than or equal to 0")
+    if nonce is not MISSING:
+      if not isinstance(nonce, str):
+        raise TypeError(f"nonce: Must be an instance of {str}; not {nonce.__class__}")
+    if presences is not MISSING:
+      if not isinstance(presences, (_ := bool)):
+        raise TypeError(f"presences: Must be an instance of {_}; not {presences.__class__}")
+    if query is not MISSING:
+      if not isinstance(query, (_ := str)):
+        raise TypeError(f"query: Must be an instance of {_}; not {query.__class__}")
+    if not isinstance(user_ids, MISSING):
+      if isinstance(user_ids, list):
+        for index, item in enumerate(user_ids):
+          if not isinstance(item, (_ := Snowflake)):
+            raise TypeError(f"user_ids[{index}]: Must be an instance of {_}; not {item.__class__}")
+      if not isinstance(user_ids, (_ := Snowflake)):
+        raise TypeError(f"user_id: Must be an instance of {_}; not {user_ids.__class__}")
+    data: dict[str, Any] = {
+      "guild_id": guild_id,
+      "limit": limit
+    }
+    if nonce is not MISSING:
+      data["nonce"]: str = nonce
+    if presences is not MISSING:
+      data["presences"]: bool = presences
+    if query is not MISSING:
+      data["query"]: str = query
+    if user_ids is not MISSING:
+      data["user_ids"]: Union[Snowflake, list[Snowflake]] = user_ids
+    return cls(
+      op = OpCode.REQUEST_GUILD_MEMBERS.value,
       d = data
     )
 

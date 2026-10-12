@@ -5,6 +5,8 @@ Changelog
 v26.0.3
 +++++++
 
+- Added :meth:`GatewayEvent.REQUEST_GUILD_MEMBERS() <discord.gateway.GatewayEvent.REQUEST_GUILD_MEMBERS>`.
+
 
 v26.0.2
 +++++++
