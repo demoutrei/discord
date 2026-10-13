@@ -6,17 +6,27 @@ from .team_member import TeamMember
 
 @dataclass
 class Team:
-  icon: Nullable[str]
-  """Hash of the image of the team's icon."""
+  @property
+  def icon(self) -> Nullable[str]:
+    """Hash of the image of the team's icon."""
+    return self.__dict__["icon"]
 
-  id: Snowflake
-  """Unique ID of the team."""
+  @property
+  def id(self) -> Snowflake:
+    """Unique ID of the team."""
+    return Snowflake(self.__dict__["id"])
 
-  members: list[TeamMember]
-  """Members of the team."""
+  @property
+  def members(self) -> list[TeamMember]:
+    """Members of the team."""
+    return [TeamMember(**data) for data in self.__dict__["members"]]
 
-  name: str
-  """Name of the team."""
+  @property
+  def name(self) -> str:
+    """Name of the team."""
+    return self.__dict__["name"]
 
-  owner_user_id: Snowflake
-  """User ID of the current team owner."""
+  @property
+  def owner_user_id(self) -> Snowflake:
+    """User ID of the current team owner."""
+    return Snowflake(self.__dict__["owner_user_id"])

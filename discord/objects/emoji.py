@@ -1,27 +1,43 @@
 from .._dataclass import dataclass
 from ..snowflake import Snowflake
-from ..types import Nullable, Optional
+from ..types import MISSING, Nullable, Optional
 
 
 @dataclass
 class Emoji:
-  animated: Optional[bool]
-  """Whether this emoji is animated."""
+  @property
+  def animated(self) -> Optional[bool]:
+    """Whether this emoji is animated."""
+    return self.__dict__.get("animated", MISSING)
 
-  available: Optional[bool]
-  """Whether this emoji can be used, may be ``False`` due to loss of Server Boosts."""
+  @property
+  def available(self) -> Optional[bool]:
+    """Whether this emoji can be used, may be ``False`` due to loss of Server Boosts."""
+    return self.__dict__.get("available", MISSING)
   
-  id: Nullable[Snowflake]
-  """Emoji ID."""
+  @property
+  def id(self) -> Nullable[Snowflake]:
+    """Emoji ID."""
+    if (data := self.__dict__["id"]) is None: return data
+    return Snowflake(data)
 
-  managed: Optional[bool]
-  """Whether this emoji is managed."""
+  @property
+  def managed(self) -> Optional[bool]:
+    """Whether this emoji is managed."""
+    return self.__dict__.get("managed", MISSING)
 
-  name: Nullable[str]
-  """Emoji name; can be null only in reaction emoji objects."""
+  @property
+  def name(self) -> Nullable[str]:
+    """Emoji name; can be null only in reaction emoji objects."""
+    return self.__dict__["name"]
 
-  required_colons: Optional[bool]
-  """Whether this emoji must be wrapped in colons."""
+  @property
+  def required_colons(self) -> Optional[bool]:
+    """Whether this emoji must be wrapped in colons."""
+    return self.__dict__.get("required_colons", MISSING)
 
-  roles: Optional[list[Snowflake]]
-  """Roles allowed to use this emoji."""
+  @property
+  def roles(self) -> Optional[list[Snowflake]]:
+    """Roles allowed to use this emoji."""
+    if (data := self.__dict__.get("roles", MISSING)) is MISSING: return data
+    return [Snowflake(_) for _ in data]

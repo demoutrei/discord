@@ -1,11 +1,16 @@
 from .._dataclass import dataclass
-from ..types import Optional
+from ..types import MISSING, Optional
 
 
 @dataclass
 class ActivityTimestamps:
-  end: Optional[int]
-  """Unix time (in milliseconds) of when the activity ends."""
+
+  @property
+  def end(self) -> Optional[int]:
+    """Unix time (in milliseconds) of when the activity ends."""
+    return self.__dict__.get("end", MISSING)
   
-  start: Optional[int]
-  """Unix time (in milliseconds) of when the activity started."""
+  @property
+  def start(self) -> Optional[int]:
+    """Unix time (in milliseconds) of when the activity started."""
+    return self.__dict__.get("start", MISSING)

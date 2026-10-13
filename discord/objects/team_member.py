@@ -6,14 +6,22 @@ from .user import User
 
 @dataclass
 class TeamMember:
-  membership_state: MembershipState
-  """User's membership state on the team."""
+  @property
+  def membership_state(self) -> MembershipState:
+    """User's membership state on the team."""
+    return MembershipState(self.__dict__["membership_state"])
 
-  role: TeamMemberRole
-  """Role of the team member."""
+  @property
+  def role(self) -> TeamMemberRole:
+    """Role of the team member."""
+    return TeamMemberRole(self.__dict__["role"])
 
-  team_id: Snowflake
-  """ID of the parent team of which they are a member."""
+  @property
+  def team_id(self) -> Snowflake:
+    """ID of the parent team of which they are a member."""
+    return Snowflake(self.__dict__["team_id"])
 
-  user: User
-  """Avatar, discriminator, ID, and username of the user."""
+  @property
+  def user(self) -> User:
+    """Avatar, discriminator, ID, and username of the user."""
+    return User(**self.__dict__["user"])

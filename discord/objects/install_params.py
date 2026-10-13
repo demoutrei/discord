@@ -4,8 +4,12 @@ from ..flags import PermissionFlags
 
 @dataclass
 class InstallParams:
-  permissions: PermissionFlags
-  """Permissions to request for the bot role."""
+  @property
+  def permissions(self) -> PermissionFlags:
+    """Permissions to request for the bot role."""
+    return PermissionFlags(int(self.__dict__["permissions"]))
   
-  scopes: list[str]
-  """Scopes to add the application to the server with."""
+  @property
+  def scopes(self) -> list[str]:
+    """Scopes to add the application to the server with."""
+    return self.__dict__["scopes"]

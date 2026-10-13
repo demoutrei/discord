@@ -6,8 +6,12 @@ from ..snowflake import Snowflake
 class AvatarDecorationData:
   """The data for the user's avatar decoration."""
 
-  asset: str
-  """The avatar decoration hash."""
+  @property
+  def asset(self) -> str:
+    """The avatar decoration hash."""
+    return self.__dict__["asset"]
 
-  sku_id: Snowflake
-  """ID of the avatar decoration's SKU."""
+  @property
+  def sku_id(self) -> Snowflake:
+    """ID of the avatar decoration's SKU."""
+    return Snowflake(self.__dict__["sku_id"])

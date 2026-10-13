@@ -8,12 +8,13 @@ from ..enums import OpCode, StatusType
 from ..flags import GatewayCapabilities, GatewayIntents
 from ..logging import Logger
 from ..objects.activity import Activity
+from ..snowflake import Snowflake
 from ..types import MISSING, Nullable, Optional
 from .events._base import DispatchEvent
 from aiohttp import ClientWebSocketResponse, WSMessage, WSMsgType
 from collections.abc import Callable, Coroutine
 from inspect import iscoroutinefunction
-from typing import Any, Self, TYPE_CHECKING
+from typing import Any, Self, TYPE_CHECKING, Union
 import asyncio, threading, time
 
 if TYPE_CHECKING:
@@ -166,6 +167,121 @@ class GatewayEvent:
 
 
   @classmethod
+  def REQUEST_CHANNEL_INFO(cls: type[Self], *, guild_id: Snowflake, fields: list[str]) -> Self:
+    """Requests ephemeral channel data for channels in a guild. The server will send an :attr:`OpCode.CHANNEL_INFO <discord.enums.OpCode.CHANNEL_INFO>` event in response.
+
+    :param fields: The fields to request. The current available fields are ``status`` and ``voice_start_time``.
+    :param guild_id: The guild ID to request channel info for.
+    """
+    if not isinstance(guild_id, (_ := Snowflake)):
+      raise TypeError(f"guild_id: Must be an instance of {_}; not {guild_id.__class__}")
+    if not isinstance(fields, (_ := list)):
+      raise TypeError(f"fields: Must be an instance of {_}; not {fields.__class__}")
+    if not fields:
+      raise ValueError(f"fields: Must not be an empty string.")
+    for index, item in enumerate(fields):
+      if not isinstance(item (_ := str)):
+        raise TypeError(f"fields[{index}]: Must be an instance of {_}; not {item.__class__}")
+      if item not in ("status", "voice_start_time"):
+        raise ValueError(f"fields[{index}]: The current available fields are 'status' and 'voice_start_time'.")
+    return cls(
+      op = OpCode.REQUEST_CHANNEL_INFO.value,
+      d = {
+        "guild_id": str(snowflake),
+        "fields": fields
+      }
+    )
+
+
+  @classmethod
+  def REQUEST_GUILD_MEMBERS(cls: type[Self], *, guild_id: Snowflake, limit: int, nonce: Optional[str] = MISSING, presences: Optional[bool] = MISSING, query: Optional[str] = MISSING, user_ids: Optional[Union[Snowflake, list[Snowflake]]] = MISSING) -> Self:
+    """Used to request all members for a guild or a list of guilds.
+    
+    When initially connecting, if you don't have the :attr:`GatewayIntents.GUILD_PRESENCES <discord.flags.GatewayIntents.GUILD_PRESENCES>`, or if the guild is over 75k members, it will only send members who are in voice, plus the member for you (the connecting user). Otherwise, if a guild has over ``large_threshold`` members (value in the :meth:`GatewayEvent.IDENTIFY() <discord.gateway.GatewayEvent.IDENTIFY>`), it will only send members who are online, have a role, have a nickname, or are in a voice channel; and if it has under ``large_threshold`` members, it will send all members.
+    
+    If the client wishes to receive additional members, they need to explicitly request them via this operation. The server will send :meth:`GatewayEvent.GUILD_MEMBERS_CHUNK() <discord.gateway.GatewayEvent.GUILD_MEMBERS_CHUNK>` in response with up to 1000 members per chunk until all members that match the request have been sent.
+
+    .. important::
+
+        Due to our privacy and infrastructural concerns with this feature, there are some limitations that apply:
+
+        - :attr:`GatewayIntents.GUILD_PRESENCES <discord.flags.GatewayIntents.GUILD_PRESENCES>` is required to set ``presences = True``. Otherwise, it will always be ``False``.
+
+        - :attr:`GatewayIntents.GUILD_MEMBERS <discord.flags.GatewayIntents.GUILD_MEMBERS>` is required to request the entire member list---``(query = '', limit = 0 <= n)``.
+
+        - You will be limited to requesting 1 ``guild_id`` per request.
+
+        - Requesting a prefix (``query`` parameter) will return a maximum of 100 members.
+
+        - Requesting ``user_ids`` will continue to be limited to returning 100 members.
+
+    :param guild_id: ID of the guild to get members for.
+    :param limit: Maximum number of members to send matching the ``query``; a limit of ``0`` can be used with an empty string ``query`` to return all members.
+    :param nonce: Nonce to identify the :class:`OpCode.GUILD_MEMBERS_CHUNK <discord.enums.OpCode.GUILD_MEMBERS_CHUNK>` response.
+    :param presences: Used to specify if we want the presences of the matched members.
+    :param query: String that username starts with, or an empty string to return all members.
+    :param user_ids: Used to specify which users you wish to fetch.
+    """
+    if not isinstance(guild_id, Snowflake):
+      raise TypeError(f"guild_id: Must be an instance of {Snowflake}; not {guild_id.__class__}")
+    if not isinstance(limit, int):
+      raise TypeError(f"limit: Must be an instance of {int}; not {limit.__class__}")
+    if limit < 0:
+      raise ValueError(f"limit: Must be greater than or equal to 0")
+    if nonce is not MISSING:
+      if not isinstance(nonce, str):
+        raise TypeError(f"nonce: Must be an instance of {str}; not {nonce.__class__}")
+    if presences is not MISSING:
+      if not isinstance(presences, (_ := bool)):
+        raise TypeError(f"presences: Must be an instance of {_}; not {presences.__class__}")
+    if query is not MISSING:
+      if not isinstance(query, (_ := str)):
+        raise TypeError(f"query: Must be an instance of {_}; not {query.__class__}")
+    if not isinstance(user_ids, MISSING):
+      if isinstance(user_ids, list):
+        for index, item in enumerate(user_ids):
+          if not isinstance(item, (_ := Snowflake)):
+            raise TypeError(f"user_ids[{index}]: Must be an instance of {_}; not {item.__class__}")
+      if not isinstance(user_ids, (_ := Snowflake)):
+        raise TypeError(f"user_id: Must be an instance of {_}; not {user_ids.__class__}")
+    data: dict[str, Any] = {
+      "guild_id": guild_id,
+      "limit": limit
+    }
+    if nonce is not MISSING:
+      data["nonce"]: str = nonce
+    if presences is not MISSING:
+      data["presences"]: bool = presences
+    if query is not MISSING:
+      data["query"]: str = query
+    if user_ids is not MISSING:
+      data["user_ids"]: Union[Snowflake, list[Snowflake]] = user_ids
+    return cls(
+      op = OpCode.REQUEST_GUILD_MEMBERS.value,
+      d = data
+    )
+
+
+  @classmethod
+  def REQUEST_SOUNDBOARD_SOUNDS(cls: type[Self], *, guild_ids: list[Snowflake]) -> Self:
+    """Used to request soundboard sounds for a list of guilds. The server will send :attr:`OpCode.SOUNDBOARD_SOUNDS <discord.enums.OpCode.SOUNDBOARD_SOUNDS>` events for each guild in response.
+
+    :param guild_ids: IDs of the guilds to get soundboard sounds for.
+    """
+    if not isinstance(guild_ids, (_ := list)):
+      raise TypeError(f"guild_ids: Must be an instance of {_}; not {guild_ids.__class__}")
+    for index, item in enumerate(guild_ids):
+      if not isinstance(item, (_ := Snowflake)):
+        raise TypeError(f"guild_ids[{index}]: Must be an instance of {_}; not {item.__class__}")
+    return cls(
+      op = OpCode.REQUEST_SOUNDBOARD_SOUNDS.value,
+      d = {
+        "guild_ids": [str(snowflake) for snowflake in guild_ids]
+      }
+    )
+
+
+  @classmethod
   def RESUME(cls: type[Self], *, token: str, session_id: str, sequence: Nullable[int]) -> Self:
     """Generate an :attr:`OpCode.RESUME <discord.enums.OpCode.RESUME>` event.
 
@@ -197,26 +313,54 @@ class GatewayEvent:
   @property
   def s(self) -> Nullable[int]:
     """Sequence number of event used for resuming sessions and heartbeating."""
-
     return self.__s
 
 
   @property
   def t(self) -> Nullable[str]:
     """Event name."""
-
     return self.__t
 
 
   def to_dict(self) -> dict[str, Any]:
     """Parse into a dictionary."""
-
     return {
       "op": self.op.value,
       "d": self.d,
       "s": self.s,
       "t": self.t
     }
+
+
+  @classmethod
+  def VOICE_STATE_UPDATE(cls, *, guild_id: Snowflake, channel_id: Nullable[Snowflake], self_mute: bool, self_deaf: bool) -> Self:
+    """Sent when a client wants to join, move, or disconnect from a voice channel.
+
+    :param channel_id: ID of the voice channel the client wants to join (``None`` is disconnecting).
+    :param guild_id: ID of the guild.
+    :param self_deaf: Whether the client is deafened.
+    :param self_mute: Whether the client is muted.
+    """
+    if not isinstance(guild_id, (_ := Snowflake)):
+      raise TypeError(f"guild_id: Must be an instance of {_}; not {guild_id.__class__}")
+    if channel_id is not None:
+      if not isinstance(channel_id, (_ := Snowflake)):
+        raise TypeError(f"channel_id: Must be an instance of {_}; not {channel_id.__class__}")
+    if not isinstance(self_mute, (_ := bool)):
+      raise TypeError(f"self_mute: Must be an instance of {_}; not {self_mute.__class__}")
+    if not isinstance(self_deaf, (_ := bool)):
+      raise TypeError(f"self_deaf: Must be an instance of {_}; not {self_deaf.__class__}")
+    data: dict[str, Any] = {
+      "guild_id": str(guild_id),
+      "self_mute": self_mute,
+      "self_deaf": self_deaf
+    }
+    if channel_id is not None:
+      data["channel_id"]: str = str(channel_id)
+    return cls(
+      op = OpCode.VOICE_STATE_UPDATE.value,
+      d = data
+    )
 
 
 class EventManager:

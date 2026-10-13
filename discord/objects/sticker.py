@@ -1,7 +1,7 @@
 from .._dataclass import dataclass
 from ..enums import StickerFormatType, StickerType
 from ..snowflake import Snowflake
-from ..types import Nullable, Optional
+from ..types import MISSING, Nullable, Optional
 from .user import User
 
 
@@ -9,39 +9,64 @@ from .user import User
 class Sticker:
   """Represents a sticker that can be sent in messages."""
 
-  available: Optional[bool]
-  """Whether this guild sticker can be used, may be ``False`` due to loss of Server Boosts."""
+  @property
+  def available(self) -> Optional[bool]:
+    """Whether this guild sticker can be used, may be ``False`` due to loss of Server Boosts."""
+    return self.__dict__.get("available", MISSING)
 
-  description: Nullable[str]
-  """Description of the sticker."""
+  @property
+  def description(self) -> Nullable[str]:
+    """Description of the sticker."""
+    return self.__dict__["description"]
 
-  format_type: StickerFormatType
-  """Type of sticker format."""
+  @property
+  def format_type(self) -> StickerFormatType:
+    """Type of sticker format."""
+    return StickerFormatType(self.__dict__["format_type"])
 
-  guild_id: Optional[Snowflake]
-  """ID of the guild that owns this sticker."""
+  @property
+  def guild_id(self) -> Optional[Snowflake]:
+    """ID of the guild that owns this sticker."""
+    if (data := self.__dict__.get("guild_id", MISSING)) is MISSING: return data
+    return Snowflake(data)
 
-  id: Snowflake
-  """ID of the sticker."""
+  @property
+  def id(self) -> Snowflake:
+    """ID of the sticker."""
+    return Snowflake(self.__dict__["id"])
 
-  name: str
-  """Name of the sticker."""
+  @property
+  def name(self) -> str:
+    """Name of the sticker."""
+    return self.__dict__["name"]
 
-  pack_id: Optional[Snowflake]
-  """For standard stickers, id of the pack the sticker is from."""
+  @property
+  def pack_id(self) -> Optional[Snowflake]:
+    """For standard stickers, id of the pack the sticker is from."""
+    if (data := self.__dict__.get("pack_id", MISSING)) is MISSING: return data
+    return Snowflake(data)
 
-  sort_value: Optional[int]
-  """The standard sticker's sort order within its pack."""
+  @property
+  def sort_value(self) -> Optional[int]:
+    """The standard sticker's sort order within its pack."""
+    return self.__dict__.get("sort_value", MISSING)
 
-  tags: list[str]
-  """Autocomplete/suggestion tags for the sticker (max 200 characters).
+  @property
+  def tags(self) -> list[str]:
+    """Autocomplete/suggestion tags for the sticker (max 200 characters).
 
-  .. important::
-      A comma separated list of keywords is the format used in this field by standard stickers, but this is just a convention. Incidentally the client will always use a name generated from an emoji as the value of this field when creating or modifying a guild sticker.
-  """
+    .. important::
+        A comma separated list of keywords is the format used in this field by standard stickers, but this is just a convention. Incidentally the client will always use a name generated from an emoji as the value of this field when creating or modifying a guild sticker.
+    """
+    return self.__dict__["tags"]
 
-  type: StickerType
-  """Type of sticker."""
+  @property
+  def type(self) -> StickerType:
+    """Type of sticker."""
+    return StickerType(self.__dict__["type"])
 
-  user: Optional[User]
-  """The user that uploaded the guild sticker."""
+  @property
+  def user(self) -> Optional[User]:
+    """The user that uploaded the guild sticker."""
+    if (data := self.__dict__.get("user", MISSING)) is MISSING: return data
+    return User(**data)

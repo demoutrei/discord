@@ -7,14 +7,22 @@ from ..snowflake import Snowflake
 class Nameplate:
   """The nameplate the user has."""
   
-  asset: str
-  """Path to the nameplate asset."""
+  @property
+  def asset(self) -> str:
+    """Path to the nameplate asset."""
+    return self.__dict__["asset"]
 
-  label: str
-  """The label of this nameplate. Currently unused."""
+  @property
+  def label(self) -> str:
+    """The label of this nameplate. Currently unused."""
+    return self.__dict__["label"]
 
-  palette: NameplatePalette
-  """Background color of the nameplate."""
+  @property
+  def palette(self) -> NameplatePalette:
+    """Background color of the nameplate."""
+    return NameplatePalette(**self.__dict__["palette"])
   
-  sku_id: Snowflake
-  """ID of the nameplate SKU."""
+  @property
+  def sku_id(self) -> Snowflake:
+    """ID of the nameplate SKU."""
+    return Snowflake(self.__dict__["sku_id"])
