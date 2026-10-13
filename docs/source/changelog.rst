@@ -6,16 +6,33 @@ v26.0.3
 +++++++
 
 
-Added Changes
-^^^^^^^^^^^^^
-
-Added :meth:`GatewayEvent.REQUEST_GUILD_MEMBERS() <discord.gateway.GatewayEvent.REQUEST_GUILD_MEMBERS>`.
-
-
 Custom Dataclass Rewritten
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Object attributes now utilize the ``@property`` factory decorator. Raw data of an object is stored in the ``__dict__`` attribute.
+
+
+New Partial Type
+^^^^^^^^^^^^^^^^
+
+A new ``Partial`` type is implemented. When applied on an object, missing fields will always return :data:`discord.types.MISSING`.
+
+.. code-block:: python
+
+    @dataclass
+    class Object:
+      @property
+      def field(self) -> bool:
+        return self.__dict__["field"]
+
+    object_: Partial[Object] = Partial[Object]()
+    print(f"{object_.field = }") # MISSING
+
+
+Added Methods
+^^^^^^^^^^^^^
+
+- :meth:`GatewayEvent.REQUEST_GUILD_MEMBERS() <discord.gateway.GatewayEvent.REQUEST_GUILD_MEMBERS>`
 
 
 v26.0.2

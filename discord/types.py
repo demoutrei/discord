@@ -13,24 +13,19 @@ class __MissingSentinel:
   __slots__: tuple = tuple()
   __instance: Union[Self, None] = None
 
-
   def __bool__(self) -> Literal[False]:
     return False
-
 
   def __eq__(self, _: Any) -> Literal[False]:
     return False
 
-
   def __hash__(self) -> Literal[0]:
     return 0
-
 
   def __new__(cls: type[Self]) -> Self:
     if cls.__instance is None:
       cls.__instance: Self = super().__new__(cls)
     return cls.__instance
-
 
   def __repr__(self) -> Literal["..."]:
     return "..."
@@ -38,10 +33,6 @@ class __MissingSentinel:
 
 type ISO8601Timestamp = str
 """Represents an ISO8601 timestamp. When parsed, this becomes a :class:`datetime.datetime` object."""
-
-
-type Match[V, T] = tuple[str, tuple[V, T], ...]
-"""Represents a match-case data type."""
 
 
 MISSING = __MissingSentinel()
