@@ -313,26 +313,54 @@ class GatewayEvent:
   @property
   def s(self) -> Nullable[int]:
     """Sequence number of event used for resuming sessions and heartbeating."""
-
     return self.__s
 
 
   @property
   def t(self) -> Nullable[str]:
     """Event name."""
-
     return self.__t
 
 
   def to_dict(self) -> dict[str, Any]:
     """Parse into a dictionary."""
-
     return {
       "op": self.op.value,
       "d": self.d,
       "s": self.s,
       "t": self.t
     }
+
+
+  @classmethod
+  def VOICE_STATE_UPDATE(cls, *, guild_id: Snowflake, channel_id: Nullable[Snowflake], self_mute: bool, self_deaf: bool) -> Self:
+    """Sent when a client wants to join, move, or disconnect from a voice channel.
+
+    :param channel_id: ID of the voice channel the client wants to join (``None`` is disconnecting).
+    :param guild_id: ID of the guild.
+    :param self_deaf: Whether the client is deafened.
+    :param self_mute: Whether the client is muted.
+    """
+    if not isinstance(guild_id, (_ := Snowflake)):
+      raise TypeError(f"guild_id: Must be an instance of {_}; not {guild_id.__class__}")
+    if channel_id is not None:
+      if not isinstance(channel_id, (_ := Snowflake)):
+        raise TypeError(f"channel_id: Must be an instance of {_}; not {channel_id.__class__}")
+    if not isinstance(self_mute, (_ := bool)):
+      raise TypeError(f"self_mute: Must be an instance of {_}; not {self_mute.__class__}")
+    if not isinstance(self_deaf, (_ := bool)):
+      raise TypeError(f"self_deaf: Must be an instance of {_}; not {self_deaf.__class__}")
+    data: dict[str, Any] = {
+      "guild_id": str(guild_id),
+      "self_mute": self_mute,
+      "self_deaf": self_deaf
+    }
+    if channel_id is not None:
+      data["channel_id"]: str = str(channel_id)
+    return cls(
+      op = OpCode.VOICE_STATE_UPDATE.value,
+      d = data
+    )
 
 
 class EventManager:

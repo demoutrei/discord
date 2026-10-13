@@ -35,6 +35,7 @@ Added Methods
 - :meth:`GatewayEvent.REQUEST_GUILD_MEMBERS() <discord.gateway.GatewayEvent.REQUEST_GUILD_MEMBERS>`
 - :meth:`GatewayEvent.REQUEST_SOUNDBOARD_SOUNDS() <discord.gateway.GatewayEvent.REQUEST_SOUNDBOARD_SOUNDS>`
 - :meth:`GatewayEvent.REQUEST_CHANNEL_INFO() <discord.gateway.GatewayEvent.REQUEST_CHANNEL_INFO>`
+- :meth:`GatewayEvent.VOICE_STATE_UPDATE() <discord.gateway.GatewayEvent.VOICE_STATE_UPDATE>`
 
 
 v26.0.2
