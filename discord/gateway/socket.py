@@ -167,6 +167,33 @@ class GatewayEvent:
 
 
   @classmethod
+  def REQUEST_CHANNEL_INFO(cls: type[Self], *, guild_id: Snowflake, fields: list[str]) -> Self:
+    """Requests ephemeral channel data for channels in a guild. The server will send an :attr:`OpCode.CHANNEL_INFO <discord.enums.OpCode.CHANNEL_INFO>` event in response.
+
+    :param fields: The fields to request. The current available fields are ``status`` and ``voice_start_time``.
+    :param guild_id: The guild ID to request channel info for.
+    """
+    if not isinstance(guild_id, (_ := Snowflake)):
+      raise TypeError(f"guild_id: Must be an instance of {_}; not {guild_id.__class__}")
+    if not isinstance(fields, (_ := list)):
+      raise TypeError(f"fields: Must be an instance of {_}; not {fields.__class__}")
+    if not fields:
+      raise ValueError(f"fields: Must not be an empty string.")
+    for index, item in enumerate(fields):
+      if not isinstance(item (_ := str)):
+        raise TypeError(f"fields[{index}]: Must be an instance of {_}; not {item.__class__}")
+      if item not in ("status", "voice_start_time"):
+        raise ValueError(f"fields[{index}]: The current available fields are 'status' and 'voice_start_time'.")
+    return cls(
+      op = OpCode.REQUEST_CHANNEL_INFO.value,
+      d = {
+        "guild_id": str(snowflake),
+        "fields": fields
+      }
+    )
+
+
+  @classmethod
   def REQUEST_GUILD_MEMBERS(cls: type[Self], *, guild_id: Snowflake, limit: int, nonce: Optional[str] = MISSING, presences: Optional[bool] = MISSING, query: Optional[str] = MISSING, user_ids: Optional[Union[Snowflake, list[Snowflake]]] = MISSING) -> Self:
     """Used to request all members for a guild or a list of guilds.
     
@@ -236,7 +263,7 @@ class GatewayEvent:
 
 
   @classmethod
-  def REQUEST_SOUNDBOARD_SOUNDS(cls: type[Self], guild_ids: list[Snowflake], /) -> Self:
+  def REQUEST_SOUNDBOARD_SOUNDS(cls: type[Self], *, guild_ids: list[Snowflake]) -> Self:
     """Used to request soundboard sounds for a list of guilds. The server will send :attr:`OpCode.SOUNDBOARD_SOUNDS <discord.enums.OpCode.SOUNDBOARD_SOUNDS>` events for each guild in response.
 
     :param guild_ids: IDs of the guilds to get soundboard sounds for.
