@@ -5,7 +5,17 @@ Changelog
 v26.0.3
 +++++++
 
-- Added :meth:`GatewayEvent.REQUEST_GUILD_MEMBERS() <discord.gateway.GatewayEvent.REQUEST_GUILD_MEMBERS>`.
+
+Added Changes
+^^^^^^^^^^^^^
+
+Added :meth:`GatewayEvent.REQUEST_GUILD_MEMBERS() <discord.gateway.GatewayEvent.REQUEST_GUILD_MEMBERS>`.
+
+
+Custom Dataclass Rewritten
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Object attributes now utilize the ``@property`` factory decorator. Raw data of an object is stored in the ``__dict__`` attribute.
 
 
 v26.0.2

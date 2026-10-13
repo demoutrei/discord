@@ -3,8 +3,13 @@ from .._dataclass import dataclass
 
 @dataclass
 class ActivityButton:
-  label: str
-  """Text shown on the button (1--32 characters)."""
+  
+  @property
+  def label(self) -> str:
+    """Text shown on the button (1--32 characters)."""
+    return self.__dict__["label"]
 
-  url: str
-  """URL opened when clicking the button (1--512 characters)."""
+  @property
+  def url(self) -> str:
+    """URL opened when clicking the button (1--512 characters)."""
+    return self.__dict__["url"]

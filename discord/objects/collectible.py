@@ -1,5 +1,5 @@
 from .._dataclass import dataclass
-from ..types import Optional
+from ..types import MISSING, Optional
 from .nameplate import Nameplate
 
 
@@ -7,5 +7,8 @@ from .nameplate import Nameplate
 class Collectible:
   """The collectibles the user has, excluding Avatar Decorations and Profile Effects."""
   
-  nameplate: Optional[Nameplate]
-  """Object mapping of nameplate data."""
+  @property
+  def nameplate(self) -> Optional[Nameplate]:
+    """Object mapping of nameplate data."""
+    if (data := self.__dict__.get("nameplate", MISSING)) is MISSING: return data
+    return Nameplate(**data)

@@ -1,14 +1,21 @@
 from .._dataclass import dataclass
-from ..types import Optional
+from ..types import MISSING, Optional
 
 
 @dataclass
 class ActivitySecrets:
-  join: Optional[str]
-  """Secret for joining a party."""
+  
+  @property
+  def join(self) -> Optional[str]:
+    """Secret for joining a party."""
+    return self.__dict__.get("join", MISSING)
 
-  match: Optional[str]
-  """Secret for a specific instanced match."""
+  @property
+  def match(self) -> Optional[str]:
+    """Secret for a specific instanced match."""
+    return self.__dict__.get("match", MISSING)
 
-  spectate: Optional[str]
-  """Secret for spectating a game."""
+  @property
+  def spectate(self) -> Optional[str]:
+    """Secret for spectating a game."""
+    return self.__dict__.get("spectate", MISSING)

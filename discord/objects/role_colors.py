@@ -4,11 +4,17 @@ from ..types import Nullable
 
 @dataclass
 class RoleColors:
-  primary_color: int
-  """The primary color for the role."""
+  @property
+  def primary_color(self) -> int:
+    """The primary color for the role."""
+    return self.__dict__["primary_color"]
 
-  secondary_color: Nullable[int]
-  """The secondary color for the role, this will make the role a gradient between the other provided colors."""
+  @property
+  def secondary_color(self) -> Nullable[int]:
+    """The secondary color for the role, this will make the role a gradient between the other provided colors."""
+    return self.__dict__["secondary_color"]
 
-  tertiary_color: Nullable[int]
-  """The tertiary color for the role, this will turn the gradient into a holographic style."""
+  @property
+  def tertiary_color(self) -> Nullable[int]:
+    """The tertiary color for the role, this will turn the gradient into a holographic style."""
+    return self.__dict__["tertiary_color"]

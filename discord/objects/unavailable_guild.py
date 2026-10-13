@@ -6,5 +6,10 @@ from ..snowflake import Snowflake
 class UnavailableGuild:
   """Represents an Offline Guild, or a Guild whose information has not been provided through Guild Create events during the Gateway connect."""
 
-  id: Snowflake
-  unavailable: bool
+  @property
+  def id(self) -> Snowflake:
+    return Snowflake(self.__dict__["id"])
+  
+  @property
+  def unavailable(self) -> bool:
+    return self.__dict__["unavailable"]
