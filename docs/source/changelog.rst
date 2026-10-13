@@ -33,6 +33,7 @@ Added Methods
 ^^^^^^^^^^^^^
 
 - :meth:`GatewayEvent.REQUEST_GUILD_MEMBERS() <discord.gateway.GatewayEvent.REQUEST_GUILD_MEMBERS>`
+- :meth:`GatewayEvent.REQUEST_SOUNDBOARD_SOUNDS() <discord.gateway.GatewayEvent.REQUEST_SOUNDBOARD_SOUNDS>`
 
 
 v26.0.2

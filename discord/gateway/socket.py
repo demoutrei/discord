@@ -236,6 +236,25 @@ class GatewayEvent:
 
 
   @classmethod
+  def REQUEST_SOUNDBOARD_SOUNDS(cls: type[Self], guild_ids: list[Snowflake], /) -> Self:
+    """Used to request soundboard sounds for a list of guilds. The server will send :attr:`OpCode.SOUNDBOARD_SOUNDS <discord.enums.OpCode.SOUNDBOARD_SOUNDS>` events for each guild in response.
+
+    :param guild_ids: IDs of the guilds to get soundboard sounds for.
+    """
+    if not isinstance(guild_ids, (_ := list)):
+      raise TypeError(f"guild_ids: Must be an instance of {_}; not {guild_ids.__class__}")
+    for index, item in enumerate(guild_ids):
+      if not isinstance(item, (_ := Snowflake)):
+        raise TypeError(f"guild_ids[{index}]: Must be an instance of {_}; not {item.__class__}")
+    return cls(
+      op = OpCode.REQUEST_SOUNDBOARD_SOUNDS.value,
+      d = {
+        "guild_ids": [str(snowflake) for snowflake in guild_ids]
+      }
+    )
+
+
+  @classmethod
   def RESUME(cls: type[Self], *, token: str, session_id: str, sequence: Nullable[int]) -> Self:
     """Generate an :attr:`OpCode.RESUME <discord.enums.OpCode.RESUME>` event.
 
